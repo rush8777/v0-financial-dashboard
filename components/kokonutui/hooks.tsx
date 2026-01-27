@@ -2,16 +2,38 @@
 
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Play, Pause, Volume2, Send, ArrowUp } from "lucide-react"
+import {
+  Play,
+  Pause,
+  Volume2,
+  Send,
+  MessageCircle,
+  Search,
+  FileText,
+  Scissors,
+  Megaphone,
+  Cpu,
+} from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const tabs = [
-  { id: "video-chat", label: "Video Chat", isActive: true },
-  { id: "clip-search", label: "Clip Search", isActive: false },
-  { id: "transcription", label: "Video Transcription", isActive: false },
-  { id: "editor", label: "Video Editor", isActive: false },
-  { id: "marketer", label: "Video Marketer", isActive: false, badge: "Agent" },
-  { id: "hardware", label: "AI Hardware", isActive: false, badge: "Agent" },
+  { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
+  { id: "clip-search", label: "Clip Search", icon: Search, isActive: false },
+  {
+    id: "transcription",
+    label: "Video Transcription",
+    icon: FileText,
+    isActive: false,
+  },
+  { id: "editor", label: "Video Editor", icon: Scissors, isActive: false },
+  {
+    id: "marketer",
+    label: "Video Marketer",
+    icon: Megaphone,
+    isActive: false,
+    badge: "Agent",
+  },
+  { id: "hardware", label: "AI Hardware", icon: Cpu, isActive: false, badge: "Agent" },
 ]
 
 const suggestedQuestions = [
@@ -40,26 +62,30 @@ export default function Hooks() {
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 py-8 px-4">
       {/* Tab Navigation */}
-      <div className="mb-8 px-6 max-w-6xl mx-auto">
-        <div className="flex items-center gap-3 overflow-x-auto pb-2 -mx-2 px-2">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              className={cn(
-                "px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-all flex items-center gap-2 flex-shrink-0",
-                tab.isActive
-                  ? "bg-zinc-800 text-white"
-                  : "text-zinc-400 hover:text-zinc-300"
-              )}
-            >
-              {tab.label}
-              {tab.badge && (
-                <span className="ml-1 px-1.5 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
-                  {tab.badge}
-                </span>
-              )}
-            </button>
-          ))}
+      <div className="mb-8">
+        <div className="flex items-center justify-center gap-2 flex-wrap">
+          {tabs.map((tab) => {
+            const Icon = tab.icon
+            return (
+              <button
+                key={tab.id}
+                className={cn(
+                  "px-4 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2.5",
+                  tab.isActive
+                    ? "bg-zinc-800 text-white shadow-lg"
+                    : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
+                )}
+              >
+                <Icon className="h-4 w-4" />
+                {tab.label}
+                {tab.badge && (
+                  <span className="ml-1 px-1.5 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
+                    {tab.badge}
+                  </span>
+                )}
+              </button>
+            )
+          })}
         </div>
       </div>
 
