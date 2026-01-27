@@ -77,7 +77,7 @@ export default function Sidebar() {
             {subsections.map((subsection) => (
               <Link
                 key={subsection}
-                href={subsection === "Hooks" ? "/hooks" : subsection === "Comments" ? "/youtube" : "#"}
+                href={subsection === "Hooks" ? "/hooks" : subsection === "Comments" ? "/yt-comments" : "#"}
                 onClick={handleNavigation}
                 className="w-full text-left block px-3 py-1.5 text-sm rounded-md transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-[#1F1F23]"
               >
