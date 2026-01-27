@@ -4,7 +4,7 @@ A comprehensive, scalable design system for consistent theming and styling acros
 
 ## Structure
 
-```
+\`\`\`
 design-system/
 ├── tokens/              # Design tokens (colors, spacing, typography, shadows)
 ├── typography/          # Font configurations and text styles
@@ -14,7 +14,7 @@ design-system/
 ├── layouts/             # Layout templates and patterns
 ├── animations/          # Animation and transition definitions
 └── documentation/       # Design system documentation
-```
+\`\`\`
 
 ## Getting Started
 

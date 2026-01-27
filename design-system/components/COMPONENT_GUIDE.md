@@ -4,7 +4,7 @@
 
 All components should follow this structure:
 
-```typescript
+\`\`\`typescript
 import React from "react"
 import { cn } from "@/lib/utils"
 
@@ -41,7 +41,7 @@ export const Component = React.forwardRef<HTMLElement, ComponentProps>(
   }
 )
 Component.displayName = "Component"
-```
+\`\`\`
 
 ## Naming Conventions
 
@@ -82,7 +82,7 @@ Component.displayName = "Component"
 ## Component Patterns
 
 ### Button Component Example
-```typescript
+\`\`\`typescript
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "outline" | "ghost"
   size?: "sm" | "md" | "lg"
@@ -104,10 +104,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     />
   )
 )
-```
+\`\`\`
 
 ### Card Component Example
-```typescript
+\`\`\`typescript
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   hover?: boolean
   interactive?: boolean
@@ -127,7 +127,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
     />
   )
 )
-```
+\`\`\`
 
 ## Testing Components
 

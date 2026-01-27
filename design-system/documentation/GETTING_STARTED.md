@@ -10,17 +10,17 @@ This design system provides a comprehensive set of tools, components, and patter
 
 Use design tokens in your components for consistency:
 
-```typescript
+\`\`\`typescript
 import { colorTokens } from "@/design-system/tokens/colors"
 import { spacingTokens } from "@/design-system/tokens/spacing"
 import { typographyTokens } from "@/design-system/tokens/typography"
-```
+\`\`\`
 
 ### 2. Use Layout Components
 
 Wrap your content with layout components:
 
-```typescript
+\`\`\`typescript
 import { Container, Section, Grid, Stack } from "@/design-system/layouts/layoutPatterns"
 
 export default function Page() {
@@ -36,13 +36,13 @@ export default function Page() {
     </Section>
   )
 }
-```
+\`\`\`
 
 ### 3. Apply Styling Utilities
 
 Use utility helpers for consistent styling:
 
-```typescript
+\`\`\`typescript
 import { buttonVariants, cardStyles } from "@/design-system/utilities/componentHelpers"
 
 export function MyButton() {
@@ -60,7 +60,7 @@ export function MyCard() {
     </div>
   )
 }
-```
+\`\`\`
 
 ## File Structure
 
@@ -89,7 +89,7 @@ export function MyCard() {
 
 ### Creating a Responsive Grid
 
-```typescript
+\`\`\`typescript
 <Grid 
   cols={{ sm: 1, md: 2, lg: 3 }}
   gap="lg"
@@ -98,11 +98,11 @@ export function MyCard() {
     <div key={item.id}>{item.name}</div>
   ))}
 </Grid>
-```
+\`\`\`
 
 ### Building a Flexible Layout
 
-```typescript
+\`\`\`typescript
 <Stack 
   direction="horizontal"
   align="center"
@@ -112,19 +112,19 @@ export function MyCard() {
   <h1>Title</h1>
   <button>Action</button>
 </Stack>
-```
+\`\`\`
 
 ### Applying Consistent Spacing
 
-```typescript
+\`\`\`typescript
 <div className={`p-${spacingTokens[4]} gap-${spacingTokens[3]}`}>
   Content
 </div>
-```
+\`\`\`
 
 ### Using Typography Tokens
 
-```typescript
+\`\`\`typescript
 <h1 style={{
   fontSize: headingStyles.h1.fontSize,
   fontWeight: headingStyles.h1.fontWeight,
@@ -132,7 +132,7 @@ export function MyCard() {
 }}>
   Heading
 </h1>
-```
+\`\`\`
 
 ## Best Practices
 
@@ -149,7 +149,7 @@ export function MyCard() {
 
 Edit `/design-system/tokens/colors.ts`:
 
-```typescript
+\`\`\`typescript
 export const colorTokens = {
   // ... existing colors
   brand: {
@@ -157,13 +157,13 @@ export const colorTokens = {
     // ... additional shades
   },
 }
-```
+\`\`\`
 
 ### Adding New Components
 
 Create new file in `/design-system/components/`:
 
-```typescript
+\`\`\`typescript
 export interface MyComponentProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "default" | "alternative"
 }
@@ -173,7 +173,7 @@ export const MyComponent = React.forwardRef<HTMLDivElement, MyComponentProps>(
     <div ref={ref} className={cn(baseStyles, variantStyles[variant], className)} {...props} />
   )
 )
-```
+\`\`\`
 
 ## Troubleshooting
 

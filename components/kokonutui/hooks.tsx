@@ -62,24 +62,24 @@ export default function Hooks() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 py-8 px-4 flex flex-col items-center">
       {/* Tab Navigation */}
-      <div className="mb-8 max-w-4xl w-full">
-        <div className="flex items-center justify-center gap-2 flex-wrap">
+      <div className="mb-8 max-w-4xl w-full overflow-x-auto">
+        <div className="flex items-center justify-center gap-1.5 flex-nowrap px-2">
           {tabs.map((tab) => {
             const Icon = tab.icon
             return (
               <button
                 key={tab.id}
                 className={cn(
-                  "px-4 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2.5",
+                  "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap flex-shrink-0",
                   tab.isActive
                     ? "bg-zinc-800 text-white shadow-lg"
                     : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
                 )}
               >
-                <Icon className="h-4 w-4" />
+                <Icon className="h-3.5 w-3.5" />
                 {tab.label}
                 {tab.badge && (
-                  <span className="ml-1 px-1.5 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
+                  <span className="ml-0.5 px-1 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
                     {tab.badge}
                   </span>
                 )}

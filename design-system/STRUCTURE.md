@@ -2,7 +2,7 @@
 
 ## Directory Organization
 
-```
+\`\`\`
 design-system/
 ├── README.md                          # Design system overview and principles
 ├── STRUCTURE.md                       # This file - complete structure guide
@@ -36,7 +36,7 @@ design-system/
 └── documentation/                     # Additional documentation
     ├── GETTING_STARTED.md             # Quick start guide
     └── ...                            # Other guides and references
-```
+\`\`\`
 
 ## What Goes Where
 
@@ -152,7 +152,7 @@ design-system/
 ## Import Patterns
 
 ### Importing Tokens
-```typescript
+\`\`\`typescript
 // Option 1: Import specific tokens
 import { colorTokens, spacingTokens } from "@/design-system/tokens"
 
@@ -162,26 +162,26 @@ import { colorTokens } from "@/design-system/tokens/colors"
 // Option 3: Use destructuring
 import { colorTokens } from "@/design-system/tokens"
 const { primary, secondary } = colorTokens
-```
+\`\`\`
 
 ### Importing Utilities
-```typescript
+\`\`\`typescript
 // Option 1: Import index
 import { buttonVariants, cardStyles } from "@/design-system/utilities"
 
 // Option 2: Import specific file
 import { buttonVariants } from "@/design-system/utilities/componentHelpers"
-```
+\`\`\`
 
 ### Importing Layouts
-```typescript
+\`\`\`typescript
 import { Container, Grid, Stack } from "@/design-system/layouts/layoutPatterns"
-```
+\`\`\`
 
 ### Importing Animations
-```typescript
+\`\`\`typescript
 import { keyframes, animations } from "@/design-system/animations/keyframes"
-```
+\`\`\`
 
 ## Naming Conventions
 
