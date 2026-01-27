@@ -75,12 +75,14 @@ export default function Sidebar() {
         {isExpanded && (
           <div className="pl-6 space-y-1 py-1">
             {subsections.map((subsection) => (
-              <button
+              <Link
                 key={subsection}
-                className="w-full text-left px-3 py-1.5 text-sm rounded-md transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-[#1F1F23]"
+                href={subsection === "Hooks" ? "/hooks" : "#"}
+                onClick={handleNavigation}
+                className="w-full text-left block px-3 py-1.5 text-sm rounded-md transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-[#1F1F23]"
               >
                 {subsection}
-              </button>
+              </Link>
             ))}
           </div>
         )}
