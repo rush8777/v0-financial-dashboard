@@ -60,9 +60,9 @@ export default function Hooks() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 py-8 px-4 flex flex-col items-center">
       {/* Tab Navigation */}
-      <div className="mb-8">
+      <div className="mb-8 max-w-4xl w-full">
         <div className="flex items-center justify-center gap-2 flex-wrap">
           {tabs.map((tab) => {
             const Icon = tab.icon
@@ -90,7 +90,7 @@ export default function Hooks() {
       </div>
 
       {/* Main Content Card */}
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl w-full">
         <Card className="border border-zinc-800 bg-zinc-900/50 backdrop-blur-xl overflow-hidden">
           <CardContent className="p-0">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
