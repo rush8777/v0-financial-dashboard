@@ -54,7 +54,7 @@ export default function Sidebar() {
     label: string
   }) {
     const isExpanded = expandedApps[appId]
-    const subsections = ["Compare", "Comments", "Reach"]
+    const subsections = ["Hooks", "Comments", "Reach"]
 
     return (
       <div className="space-y-0">
