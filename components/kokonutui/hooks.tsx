@@ -13,6 +13,11 @@ import {
   Scissors,
   Megaphone,
   Cpu,
+  X,
+  Edit2,
+  Share2,
+  MoreHorizontal,
+  Copy,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -44,6 +49,9 @@ const suggestedQuestions = [
 export default function Hooks() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [chatInput, setChatInput] = useState("")
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalInput, setModalInput] = useState("")
+  const [modalMessages, setModalMessages] = useState<Array<{ id: number; text: string; isUser: boolean }>>([])
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -51,6 +59,13 @@ export default function Hooks() {
       isUser: true,
     },
   ])
+
+  const handleSendModalMessage = () => {
+    if (modalInput.trim()) {
+      setModalMessages([...modalMessages, { id: modalMessages.length + 1, text: modalInput, isUser: true }])
+      setModalInput("")
+    }
+  }
 
   const handleSendMessage = () => {
     if (chatInput.trim()) {
@@ -147,11 +162,12 @@ export default function Hooks() {
                       type="text"
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
+                      onClick={() => setIsModalOpen(true)}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") handleSendMessage()
                       }}
                       placeholder="Ask about your videos..."
-                      className="flex-1 bg-zinc-800 border border-zinc-700 rounded-md px-3 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                      className="flex-1 bg-zinc-800 border border-zinc-700 rounded-md px-3 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-purple-500 cursor-pointer"
                     />
                     <button
                       onClick={handleSendMessage}
@@ -218,6 +234,112 @@ export default function Hooks() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Floating Chat Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40" onClick={() => setIsModalOpen(false)} />
+      )}
+      
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+          <Card className="border border-zinc-700 bg-zinc-900 w-full max-w-2xl max-h-[80vh] overflow-hidden shadow-2xl">
+            {/* Modal Header */}
+            <div className="border-b border-zinc-700 p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <h3 className="text-sm font-semibold text-white">New AI chat</h3>
+                <div className="px-2 py-1 rounded-md bg-zinc-800 text-xs text-zinc-300 border border-zinc-700">
+                  Private
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <button className="p-2 hover:bg-zinc-800 rounded-md transition-colors text-zinc-400 hover:text-zinc-200">
+                  <Edit2 className="h-4 w-4" />
+                </button>
+                <button className="p-2 hover:bg-zinc-800 rounded-md transition-colors text-zinc-400 hover:text-zinc-200">
+                  <Copy className="h-4 w-4" />
+                </button>
+                <button className="p-2 hover:bg-zinc-800 rounded-md transition-colors text-zinc-400 hover:text-zinc-200">
+                  <Share2 className="h-4 w-4" />
+                </button>
+                <button className="p-2 hover:bg-zinc-800 rounded-md transition-colors text-zinc-400 hover:text-zinc-200">
+                  <MoreHorizontal className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="p-2 hover:bg-zinc-800 rounded-md transition-colors text-zinc-400 hover:text-zinc-200"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Content Area */}
+            <CardContent className="p-0 flex flex-col h-[calc(80vh-120px)]">
+              {/* Messages Area */}
+              <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                {modalMessages.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center h-full text-center">
+                    <div className="space-y-3">
+                      <p className="text-sm text-zinc-400">Start a conversation</p>
+                      <p className="text-xs text-zinc-500">Ask anything about your content or workflows</p>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    {modalMessages.map((msg) => (
+                      <div key={msg.id} className="flex justify-end">
+                        <div className="max-w-md bg-purple-600/20 border border-purple-500/30 rounded-lg px-4 py-3">
+                          <p className="text-sm text-white">{msg.text}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                )}
+              </div>
+
+              {/* Input Area */}
+              <div className="border-t border-zinc-700 p-4 space-y-3">
+                <div className="flex items-center gap-2 px-3 py-2 bg-zinc-800/50 rounded-lg border border-zinc-700">
+                  <div className="flex items-center gap-1">
+                    <div className="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center text-xs font-bold text-white">
+                      K
+                    </div>
+                    <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-xs font-bold text-white">
+                      L
+                    </div>
+                  </div>
+                  <span className="text-xs text-zinc-400">Kevin x Louise</span>
+                  <button className="ml-auto text-zinc-400 hover:text-zinc-300">
+                    <X className="h-3 w-3" />
+                  </button>
+                </div>
+                <div className="flex items-end gap-2">
+                  <input
+                    type="text"
+                    value={modalInput}
+                    onChange={(e) => setModalInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleSendModalMessage()
+                    }}
+                    placeholder="Ask AI anything"
+                    className="flex-1 bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                  />
+                  <button
+                    onClick={handleSendModalMessage}
+                    className="p-2.5 rounded-lg bg-purple-600 hover:bg-purple-700 text-white transition-colors"
+                  >
+                    <Send className="h-4 w-4" />
+                  </button>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-zinc-500">
+                  <span>Gemini 3 Pro</span>
+                  <span className="px-1.5 py-0.5 bg-zinc-800 rounded text-purple-400">Beta</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   )
 }
