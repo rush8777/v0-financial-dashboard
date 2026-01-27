@@ -1,11 +1,8 @@
 "use client"
 
-import React from "react"
-
 import { useState } from "react"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
-import { Play, Pause, Volume2, MessageSquare } from "lucide-react"
+import { Play, Pause, Volume2, Send, ArrowUp } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const tabs = [
@@ -17,117 +14,140 @@ const tabs = [
   { id: "hardware", label: "AI Hardware", isActive: false, badge: "Agent" },
 ]
 
-const questions = [
+const suggestedQuestions = [
   "What are Dr. Ford's classic lines in Westworld?",
   "Which architectural styles appear in Westworld?",
 ]
 
 export default function Hooks() {
   const [isPlaying, setIsPlaying] = useState(false)
+  const [chatInput, setChatInput] = useState("")
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      text: "Count all the fight scenes and describe them.",
+      isUser: true,
+    },
+  ])
+
+  const handleSendMessage = () => {
+    if (chatInput.trim()) {
+      setMessages([...messages, { id: messages.length + 1, text: chatInput, isUser: true }])
+      setChatInput("")
+    }
+  }
 
   return (
-    <Layout>
-      <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900">
-        {/* Tab Navigation */}
-        <div className="pt-6 px-6">
-          <div className="flex items-center gap-3 overflow-x-auto pb-4">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                className={cn(
-                  "px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all flex items-center gap-2",
-                  tab.isActive
-                    ? "bg-zinc-900 dark:bg-zinc-800 text-white"
-                    : "bg-white dark:bg-zinc-800/50 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700"
-                )}
-              >
-                {tab.label}
-                {tab.badge && (
-                  <span className="ml-1 px-2 py-0.5 text-xs rounded bg-purple-500/20 text-purple-400">
-                    {tab.badge}
-                  </span>
-                )}
-              </button>
-            ))}
-          </div>
+    <div className="w-full min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 py-8 px-4">
+      {/* Tab Navigation */}
+      <div className="mb-8 px-6 max-w-6xl mx-auto">
+        <div className="flex items-center gap-3 overflow-x-auto pb-2 -mx-2 px-2">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              className={cn(
+                "px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-all flex items-center gap-2 flex-shrink-0",
+                tab.isActive
+                  ? "bg-zinc-800 text-white"
+                  : "text-zinc-400 hover:text-zinc-300"
+              )}
+            >
+              {tab.label}
+              {tab.badge && (
+                <span className="ml-1 px-1.5 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
+                  {tab.badge}
+                </span>
+              )}
+            </button>
+          ))}
         </div>
+      </div>
 
-        {/* Main Content Section */}
-        <div className="px-6 py-12">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Left Column - Questions */}
-              <div className="flex flex-col justify-center space-y-6">
-                <h1 className="text-3xl lg:text-4xl font-bold text-zinc-900 dark:text-white mb-4">
-                  Ask me about your videos.
-                </h1>
+      {/* Main Content Card */}
+      <div className="max-w-6xl mx-auto">
+        <Card className="border border-zinc-800 bg-zinc-900/50 backdrop-blur-xl overflow-hidden">
+          <CardContent className="p-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              {/* Left Column - Chat Interface */}
+              <div className="flex flex-col h-full min-h-96 border-r border-zinc-800 lg:border-r-0">
+                {/* Header */}
+                <div className="p-6 border-b border-zinc-800">
+                  <h2 className="text-xl font-semibold text-white">Ask me about your videos.</h2>
+                </div>
 
-                {/* Question Input Box */}
-                <Card className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50">
-                  <CardContent className="p-4">
-                    <div className="flex items-start gap-3">
-                      <MessageSquare className="h-5 w-5 text-zinc-600 dark:text-zinc-400 mt-1 flex-shrink-0" />
-                      <div className="space-y-3 w-full">
-                        <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                          Count all the fight scenes and describe them.
-                        </p>
-                        <div className="space-y-2">
-                          {questions.map((q, idx) => (
-                            <button
-                              key={idx}
-                              className="w-full text-left px-3 py-2 rounded-md text-sm text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
-                            >
-                              {q}
-                            </button>
-                          ))}
-                        </div>
+                {/* Chat Messages Area */}
+                <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                  {messages.length === 0 ? (
+                    <div className="flex flex-col justify-center items-start space-y-3 h-full">
+                      <div className="space-y-2 w-full">
+                        <p className="text-sm font-medium text-zinc-300">Suggested questions:</p>
+                        {suggestedQuestions.map((q, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => {
+                              setMessages([
+                                { id: 1, text: q, isUser: true },
+                              ])
+                            }}
+                            className="w-full text-left px-3 py-2.5 rounded-md text-sm text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50 transition-all"
+                          >
+                            {q}
+                          </button>
+                        ))}
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  ) : (
+                    <>
+                      {messages.map((msg) => (
+                        <div key={msg.id} className="flex justify-end">
+                          <div className="max-w-xs lg:max-w-md bg-zinc-800 rounded-lg px-4 py-2.5">
+                            <p className="text-sm text-zinc-100">{msg.text}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  )}
+                </div>
 
-                {/* Another Example */}
-                <Card className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 cursor-pointer hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm text-zinc-900 dark:text-zinc-100 font-medium">
-                        Count all the fight scenes and describe them.
-                      </p>
-                      <svg
-                        className="w-5 h-5 text-zinc-600 dark:text-zinc-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M7 16V4m0 0L3 8m4-4l4 4"
-                        />
-                      </svg>
-                    </div>
-                  </CardContent>
-                </Card>
+                {/* Chat Input */}
+                <div className="border-t border-zinc-800 p-4">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="text"
+                      value={chatInput}
+                      onChange={(e) => setChatInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") handleSendMessage()
+                      }}
+                      placeholder="Ask about your videos..."
+                      className="flex-1 bg-zinc-800 border border-zinc-700 rounded-md px-3 py-2 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                    />
+                    <button
+                      onClick={handleSendMessage}
+                      className="p-2 rounded-md bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-zinc-200 transition-colors"
+                    >
+                      <Send className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
               </div>
 
               {/* Right Column - Video Player */}
-              <div className="flex items-center justify-center">
-                <div className="w-full aspect-video rounded-2xl overflow-hidden bg-zinc-900 dark:bg-black shadow-2xl">
+              <div className="flex items-center justify-center p-6">
+                <div className="w-full aspect-video rounded-xl overflow-hidden bg-black shadow-xl">
                   {/* Video Thumbnail */}
-                  <div className="relative w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center overflow-hidden">
+                  <div className="relative w-full h-full bg-gradient-to-br from-zinc-800 to-black flex items-center justify-center overflow-hidden">
                     <img
                       src="/images/screenshot-202026-01-27-20122452.png"
                       alt="Video thumbnail"
-                      className="w-full h-full object-cover opacity-70"
+                      className="w-full h-full object-cover"
                     />
-                    
+
                     {/* Video Controls Overlay */}
-                    <div className="absolute inset-0 flex flex-col justify-between p-4 bg-gradient-to-t from-black/80 via-transparent to-transparent">
-                      {/* Top Controls */}
+                    <div className="absolute inset-0 flex flex-col justify-between p-4 bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                      {/* Top Section */}
                       <div className="flex justify-between items-start">
-                        {/* Title/Metadata */}
-                        <div className="text-white text-xs tracking-widest">
+                        <div className="text-white text-xs tracking-widest opacity-75">
                           <p>EXECUTIVE PRODUCER</p>
                           <p className="font-light">JONATHAN NOLAN</p>
                         </div>
@@ -135,29 +155,27 @@ export default function Hooks() {
 
                       {/* Bottom Controls */}
                       <div className="space-y-3">
-                        {/* Play/Pause */}
+                        {/* Play/Pause and Progress */}
                         <div className="flex items-center gap-3">
                           <button
                             onClick={() => setIsPlaying(!isPlaying)}
                             className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
                           >
                             {isPlaying ? (
-                              <Pause className="h-5 w-5" />
+                              <Pause className="h-4 w-4" />
                             ) : (
-                              <Play className="h-5 w-5" />
+                              <Play className="h-4 w-4" />
                             )}
                           </button>
 
                           {/* Progress Bar */}
-                          <div className="flex-1 flex items-center gap-2">
-                            <div className="flex-1 h-1.5 bg-zinc-600 rounded-full overflow-hidden">
-                              <div className="h-full w-1/3 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full" />
-                            </div>
+                          <div className="flex-1 h-1 bg-zinc-700 rounded-full overflow-hidden">
+                            <div className="h-full w-1/3 bg-gradient-to-r from-purple-500 to-purple-600" />
                           </div>
 
                           {/* Volume */}
                           <button className="p-2 rounded-full hover:bg-white/10 text-white transition-colors">
-                            <Volume2 className="h-5 w-5" />
+                            <Volume2 className="h-4 w-4" />
                           </button>
                         </div>
                       </div>
@@ -166,13 +184,9 @@ export default function Hooks() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
-    </Layout>
+    </div>
   )
-}
-
-function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
 }
