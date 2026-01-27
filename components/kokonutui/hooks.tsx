@@ -61,6 +61,11 @@ export default function Hooks() {
 
   return (
     <div className="min-h-screen  py-8 px-4 flex flex-col items-center text-primary">
+      {/* Insights Heading */}
+      <div className="mb-6 max-w-4xl w-full">
+        <h1 className="text-3xl font-bold text-white">Insights</h1>
+      </div>
+
       {/* Tab Navigation */}
       <div className="mb-8 max-w-4xl w-full overflow-x-auto">
         <div className="flex items-center justify-center gap-1.5 flex-nowrap px-2">
@@ -164,7 +169,7 @@ export default function Hooks() {
                   {/* Video Thumbnail */}
                   <div className="relative w-full h-full bg-gradient-to-br from-zinc-800 to-black flex items-center justify-center overflow-hidden">
                     <img
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lay-4CBFIZUWsGnf6NOsB9We1KXuW6cWCi.png"
+                      src="/images/lay.png"
                       alt="Video thumbnail"
                       className="w-full h-full object-cover"
                     />
