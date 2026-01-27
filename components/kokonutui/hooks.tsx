@@ -298,8 +298,8 @@ export default function Hooks() {
               </div>
 
               {/* Input Area */}
-              <div className="border-t border-zinc-700 p-4 space-y-3">
-                <div className="flex items-center gap-2 px-3 py-2 bg-zinc-800/50 rounded-lg border border-zinc-700">
+              <div className="p-4 space-y-3">
+                <div className="flex items-center gap-2 px-3 py-2 bg-zinc-800/50 rounded-lg">
                   <div className="flex items-center gap-1">
                     <div className="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center text-xs font-bold text-white">
                       K
@@ -322,7 +322,7 @@ export default function Hooks() {
                       if (e.key === "Enter") handleSendModalMessage()
                     }}
                     placeholder="Ask AI anything"
-                    className="flex-1 bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                    className="flex-1 bg-zinc-800 rounded-lg px-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
                   />
                   <button
                     onClick={handleSendModalMessage}
