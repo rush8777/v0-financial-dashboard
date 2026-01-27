@@ -63,7 +63,7 @@ export default function Hooks() {
     <div className="min-h-screen  py-8 px-4 flex flex-col items-center text-primary">
       {/* Insights Heading */}
       <div className="mb-6 max-w-4xl w-full">
-        <h1 className="text-3xl font-bold text-white">Insights</h1>
+        <h1 className="text-3xl font-bold text-white">{"HOOKS"}</h1>
       </div>
 
       {/* Tab Navigation */}
