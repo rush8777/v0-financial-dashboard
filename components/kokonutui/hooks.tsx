@@ -224,7 +224,7 @@ export default function Hooks() {
                       ? "text-white border-purple-600"
                       : "text-zinc-400 border-transparent hover:text-zinc-300"
                   )}
-                
+                  >
                   {tab.label}
                 </button>
               ))}
