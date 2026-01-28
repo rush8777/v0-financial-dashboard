@@ -368,119 +368,124 @@ export default function Hooks() {
       {/* Floating Chatbar with Expandable Modal */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none">
         <div className="max-w-md mx-auto pointer-events-auto">
-          {isModalOpen ? (
-            // Expanded Chat Modal
-            <div className="animate-in slide-in-from-bottom-2 duration-200 origin-bottom">
-              <div className="bg-zinc-900/95 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-3">
-                {/* Modal Header */}
-                <div className="flex items-center justify-between p-4 border-b border-zinc-800">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
-                      <MessageCircle className="h-4 w-4 text-white" />
+          <div className="relative">
+            {/* Expanded Chat Modal - appears above chatbar */}
+            {isModalOpen && (
+              <div className="absolute bottom-full left-0 right-0 mb-3 animate-in slide-in-from-bottom-2 duration-200 origin-bottom">
+                <div className="bg-zinc-900/95 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl flex flex-col overflow-hidden">
+                  {/* Modal Header */}
+                  <div className="flex items-center justify-between p-4 border-b border-zinc-800">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
+                        <MessageCircle className="h-4 w-4 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-semibold text-white">Video Assistant</h3>
+                        <p className="text-xs text-zinc-400">Active now</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-white">Video Assistant</h3>
-                      <p className="text-xs text-zinc-400">Active now</p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => setIsModalOpen(false)}
-                    className="p-2 hover:bg-zinc-800 rounded-lg transition-colors"
-                  >
-                    <X className="h-4 w-4 text-zinc-400" />
-                  </button>
-                </div>
-
-                {/* Messages Container */}
-                <div className="h-[400px] overflow-y-auto p-4 space-y-4">
-                  {modalMessages.map((msg) => (
-                    <div
-                      key={msg.id}
-                      className={cn(
-                        "flex gap-3",
-                        msg.isUser ? "justify-end" : "justify-start"
-                      )}
+                    <button
+                      onClick={() => setIsModalOpen(false)}
+                      className="p-2 hover:bg-zinc-800 rounded-lg transition-colors"
                     >
-                      {!msg.isUser && (
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
-                          <MessageCircle className="h-4 w-4 text-white" />
-                        </div>
-                      )}
+                      <X className="h-4 w-4 text-zinc-400" />
+                    </button>
+                  </div>
+
+                  {/* Messages Container */}
+                  <div className="h-[400px] overflow-y-auto p-4 space-y-4">
+                    {modalMessages.map((msg) => (
                       <div
+                        key={msg.id}
                         className={cn(
-                          "max-w-[75%] rounded-2xl px-4 py-2.5 text-sm",
-                          msg.isUser
-                            ? "bg-purple-600 text-white rounded-br-sm"
-                            : "bg-zinc-800 text-zinc-100 rounded-bl-sm"
+                          "flex gap-3",
+                          msg.isUser ? "justify-end" : "justify-start"
                         )}
                       >
-                        {msg.text}
-                      </div>
-                      {msg.isUser && (
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-xs font-semibold text-white">
-                          You
+                        {!msg.isUser && (
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
+                            <MessageCircle className="h-4 w-4 text-white" />
+                          </div>
+                        )}
+                        <div
+                          className={cn(
+                            "max-w-[75%] rounded-2xl px-4 py-2.5 text-sm",
+                            msg.isUser
+                              ? "bg-purple-600 text-white rounded-br-sm"
+                              : "bg-zinc-800 text-zinc-100 rounded-bl-sm"
+                          )}
+                        >
+                          {msg.text}
                         </div>
-                      )}
-                    </div>
-                  ))}
+                        {msg.isUser && (
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-xs font-semibold text-white">
+                            You
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
+            )}
 
-              {/* Chatbar as Input */}
-              <div className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 shadow-lg">
-                <button className="p-1 hover:bg-white/10 rounded-lg transition-colors">
-                  <Plus className="h-4 w-4 text-zinc-400" />
-                </button>
-                <button className="p-1 hover:bg-white/10 rounded-lg transition-colors">
-                  <Paperclip className="h-4 w-4 text-zinc-400" />
-                </button>
-                <button className="p-1 hover:bg-white/10 rounded-lg transition-colors">
-                  <ImageIcon className="h-4 w-4 text-zinc-400" />
-                </button>
-                <input
-                  type="text"
-                  value={modalInput}
-                  onChange={(e) => setModalInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault()
-                      handleSendModalMessage()
-                    }
-                  }}
-                  placeholder="Type something..."
-                  className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-sm"
-                  autoFocus
-                />
-                <button
-                  onClick={handleSendModalMessage}
-                  disabled={!modalInput.trim()}
-                  className={cn(
-                    "p-2 rounded-lg transition-all",
-                    modalInput.trim()
-                      ? "bg-purple-600 hover:bg-purple-700"
-                      : "opacity-50 cursor-not-allowed"
-                  )}
-                >
-                  <Send className="h-4 w-4 text-white" />
-                </button>
-              </div>
+            {/* Single Chatbar - transforms based on state */}
+            <div className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 shadow-lg hover:bg-white/10 transition-colors">
+              {!isModalOpen ? (
+                <>
+                  {/* Collapsed State */}
+                  <MessageCircle className="h-5 w-5 text-zinc-400 flex-shrink-0" />
+                  <input
+                    type="text"
+                    placeholder="Ask a question..."
+                    readOnly
+                    onClick={() => setIsModalOpen(true)}
+                    className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-sm cursor-pointer"
+                  />
+                  <ArrowUp className="h-4 w-4 text-zinc-400 flex-shrink-0" />
+                </>
+              ) : (
+                <>
+                  {/* Expanded State - Active Input */}
+                  <button className="p-1 hover:bg-white/10 rounded-lg transition-colors">
+                    <Plus className="h-4 w-4 text-zinc-400" />
+                  </button>
+                  <button className="p-1 hover:bg-white/10 rounded-lg transition-colors">
+                    <Paperclip className="h-4 w-4 text-zinc-400" />
+                  </button>
+                  <button className="p-1 hover:bg-white/10 rounded-lg transition-colors">
+                    <ImageIcon className="h-4 w-4 text-zinc-400" />
+                  </button>
+                  <input
+                    type="text"
+                    value={modalInput}
+                    onChange={(e) => setModalInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault()
+                        handleSendModalMessage()
+                      }
+                    }}
+                    placeholder="Type something..."
+                    className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-sm"
+                    autoFocus
+                  />
+                  <button
+                    onClick={handleSendModalMessage}
+                    disabled={!modalInput.trim()}
+                    className={cn(
+                      "p-2 rounded-lg transition-all",
+                      modalInput.trim()
+                        ? "bg-purple-600 hover:bg-purple-700"
+                        : "opacity-50 cursor-not-allowed"
+                    )}
+                  >
+                    <Send className="h-4 w-4 text-white" />
+                  </button>
+                </>
+              )}
             </div>
-          ) : (
-            // Collapsed Chatbar
-            <div
-              className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 shadow-lg hover:bg-white/10 transition-colors cursor-pointer"
-              onClick={() => setIsModalOpen(true)}
-            >
-              <MessageCircle className="h-5 w-5 text-zinc-400 flex-shrink-0" />
-              <input
-                type="text"
-                placeholder="Ask a question..."
-                readOnly
-                className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-sm cursor-pointer"
-              />
-              <ArrowUp className="h-4 w-4 text-zinc-400 flex-shrink-0" />
-            </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
