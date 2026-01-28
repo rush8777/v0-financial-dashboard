@@ -6,7 +6,7 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   MessageCircle,
-  Search,
+  ChartSpline,
   FileText,
   Scissors,
   Megaphone,
@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
-  { id: "clip-search", label: "Clip Search", icon: Search, isActive: false },
+  { id: "statistics", label: "Statistics", icon: ChartSpline, isActive: false },
   {
     id: "transcription",
     label: "Video Transcription",
