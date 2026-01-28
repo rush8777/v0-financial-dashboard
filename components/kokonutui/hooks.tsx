@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import {
   MessageCircle,
   FileText,
+  Search,
   Scissors,
   Megaphone,
   Cpu,
@@ -29,7 +30,7 @@ import { cn } from "@/lib/utils"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
-  { id: "statistics", label: "Statistics", icon: ChartNoAxesColumnIncreasing, isActive: false },
+  { id: "statistics", label: "Statistics", icon: Search, isActive: false },
   {
     id: "transcription",
     label: "Video Transcription",
