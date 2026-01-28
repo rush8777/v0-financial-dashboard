@@ -472,7 +472,7 @@ export default function Hooks() {
                         : "opacity-50 cursor-not-allowed"
                     )}
                   >
-                    <Send className="h-4 w-4 text-white" />
+                    <ArrowUp className="h-4 w-4 text-zinc-400 flex-shrink-0" />
                   </button>
                 </>
               )}
