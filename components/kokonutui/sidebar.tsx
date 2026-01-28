@@ -62,19 +62,24 @@ export default function Sidebar() {
       <div className="space-y-0">
         <button
           onClick={() => toggleApp(appId)}
-          className="w-full flex items-center justify-between px-3 py-2 text-sm rounded-md transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#1F1F23]"
+          className={`w-full flex items-center rounded-md transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#1F1F23] ${
+            isSidebarExpanded ? "justify-between px-3 py-2" : "justify-center px-0 py-2"
+          }`}
+          title={isSidebarExpanded ? "" : label}
         >
-          <div className="flex items-center">
-            <Icon className="h-4 w-4 mr-3 flex-shrink-0" />
-            {label}
+          <div className={`flex items-center ${isSidebarExpanded ? "" : "flex-col"}`}>
+            <Icon className="h-4 w-4 flex-shrink-0" />
+            {isSidebarExpanded && <span className="ml-3 text-sm">{label}</span>}
           </div>
-          <ChevronDown
-            className={`h-4 w-4 transition-transform duration-200 ${
-              isExpanded ? "rotate-180" : ""
-            }`}
-          />
+          {isSidebarExpanded && (
+            <ChevronDown
+              className={`h-4 w-4 transition-transform duration-200 ${
+                isExpanded ? "rotate-180" : ""
+              }`}
+            />
+          )}
         </button>
-        {isExpanded && (
+        {isExpanded && isSidebarExpanded && (
           <div className="pl-6 space-y-1 py-1">
             {subsections.map((subsection) => (
               <Link
@@ -105,10 +110,13 @@ export default function Sidebar() {
       <Link
         href={href}
         onClick={handleNavigation}
-        className="flex items-center px-3 py-2 text-sm rounded-md transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#1F1F23]"
+        className={`flex items-center rounded-md transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#1F1F23] ${
+          isSidebarExpanded ? "px-3 py-2 justify-start" : "px-0 py-2 justify-center"
+        }`}
+        title={isSidebarExpanded ? "" : children?.toString()}
       >
-        <Icon className="h-4 w-4 mr-3 flex-shrink-0" />
-        {children}
+        <Icon className="h-4 w-4 flex-shrink-0" />
+        {isSidebarExpanded && <span className="ml-3 text-sm">{children}</span>}
       </Link>
     )
   }
@@ -131,7 +139,7 @@ export default function Sidebar() {
             `}
       >
         <div className="h-full flex flex-col">
-          <div className="h-16 px-6 flex items-center justify-between border-b border-gray-200 dark:border-[#1F1F23]">
+          <div className={`flex items-center justify-between border-b border-gray-200 dark:border-[#1F1F23] ${isSidebarExpanded ? "h-16 px-6" : "h-16 px-2"}`}>
             {isSidebarExpanded && (
               <Link
                 href="https://kokonutui.com/"
@@ -141,14 +149,14 @@ export default function Sidebar() {
               >
                 <Image
                   src="https://kokonutui.com/logo.svg"
-                  alt="Acme"
+                  alt="Logo"
                   width={32}
                   height={32}
                   className="flex-shrink-0 hidden dark:block"
                 />
                 <Image
                   src="https://kokonutui.com/logo-black.svg"
-                  alt="Acme"
+                  alt="Logo"
                   width={32}
                   height={32}
                   className="flex-shrink-0 block dark:hidden"
@@ -158,19 +166,31 @@ export default function Sidebar() {
                 </span>
               </Link>
             )}
+            {!isSidebarExpanded && (
+              <Image
+                src="https://kokonutui.com/logo.svg"
+                alt="Logo"
+                width={24}
+                height={24}
+                className="flex-shrink-0 hidden dark:block mx-auto"
+              />
+            )}
             <button
               onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}
-              className="p-1 hover:bg-gray-100 dark:hover:bg-[#1F1F23] rounded-md transition-colors text-gray-600 dark:text-gray-400 hidden lg:flex"
+              className="p-1 hover:bg-gray-100 dark:hover:bg-[#1F1F23] rounded-md transition-colors text-gray-600 dark:text-gray-400 hidden lg:flex flex-shrink-0"
             >
               <ChevronLeft className={`h-4 w-4 transition-transform ${!isSidebarExpanded ? "rotate-180" : ""}`} />
             </button>
           </div>
-          <div className="flex-1 overflow-y-auto py-4 px-4">
-            <div className="space-y-6">
+
+          <div className="flex-1 overflow-y-auto py-4">
+            <div className={`space-y-6 ${isSidebarExpanded ? "px-4" : "px-2"}`}>
               <div>
-                <div className="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                  Overview
-                </div>
+                {isSidebarExpanded && (
+                  <div className="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                    Overview
+                  </div>
+                )}
                 <div className="space-y-1">
                   <NavItem href="#" icon={Home}>
                     Home
@@ -188,9 +208,11 @@ export default function Sidebar() {
               </div>
 
               <div>
-                <div className="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                  APPS
-                </div>
+                {isSidebarExpanded && (
+                  <div className="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                    APPS
+                  </div>
+                )}
                 <div className="space-y-0">
                   <AppItem appId="facebook" icon={Facebook} label="Facebook" />
                   <AppItem appId="instagram" icon={Instagram} label="Instagram" />
@@ -199,9 +221,11 @@ export default function Sidebar() {
               </div>
 
               <div>
-                <div className="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                  Team
-                </div>
+                {isSidebarExpanded && (
+                  <div className="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                    Team
+                  </div>
+                )}
                 <div className="space-y-1">
                   <NavItem href="#" icon={Users2}>
                     Members
@@ -220,7 +244,7 @@ export default function Sidebar() {
             </div>
           </div>
 
-          <div className="px-4 py-4 border-t border-gray-200 dark:border-[#1F1F23]">
+          <div className={`border-t border-gray-200 dark:border-[#1F1F23] ${isSidebarExpanded ? "px-4 py-4" : "px-2 py-4"}`}>
             <div className="space-y-1">
               <NavItem href="#" icon={Settings}>
                 Settings
