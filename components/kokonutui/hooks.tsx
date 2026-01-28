@@ -190,7 +190,7 @@ export default function Hooks() {
             {/* Summary Card */}
             <Card className="border border-zinc-800 ">
               <CardContent className="pt-6">
-                <h2 className="text-sm font-semibold text-white mb-3">Summary</h3>
+                <h2 className="text-sm font-semibold text-white mb-3">Summary</h2>
                 <p className="text-sm text-zinc-300 leading-relaxed">{insights.summary}</p>
               </CardContent>
             </Card>
