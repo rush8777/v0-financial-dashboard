@@ -28,22 +28,6 @@ const events = [
   { id: 14, title: "Meetup event", time: "3:00 PM", day: "Wed", color: "bg-yellow-900" },
 ]
 
-const events = [
-  { id: 1, title: "Monday standup", time: "9:00 AM", day: "Mon", color: "bg-zinc-800" },
-  { id: 2, title: "Deep work", time: "9:00 AM", day: "Wed", color: "bg-blue-700", duration: 3 },
-  { id: 3, title: "One-on-one with Eva", time: "10:00 AM", day: "Tue", color: "bg-pink-800" },
-  { id: 4, title: "Design sync", time: "10:30 AM", day: "Wed", color: "bg-blue-900" },
-  { id: 5, title: "Friday standup", time: "9:00 AM", day: "Fri", color: "bg-zinc-800" },
-  { id: 6, title: "Olivia x Riley", time: "10:00 AM", day: "Fri", color: "bg-purple-800" },
-  { id: 7, title: "Content planning", time: "11:00 AM", day: "Mon", color: "bg-blue-900" },
-  { id: 8, title: "House inspection", time: "11:00 AM", day: "Sat", color: "bg-red-900", hasIndicator: true },
-  { id: 9, title: "Lunch with Olivia", time: "12:00 PM", day: "Thu", color: "bg-green-800", hasIndicator: true },
-  { id: 10, title: "SEO planning", time: "1:30 PM", day: "Wed", color: "bg-purple-900" },
-  { id: 11, title: "Product demo", time: "1:30 PM", day: "Fri", color: "bg-purple-900", duration: 2 },
-  { id: 12, title: "Ava's engagement...", time: "9:00 AM", day: "Sun", color: "bg-purple-900", hasIndicator: true },
-  { id: 13, title: "Catch up w/ Alex", time: "3:30 PM", day: "Tue", color: "bg-purple-900" },
-  { id: 14, title: "Meetup event", time: "3:00 PM", day: "Wed", color: "bg-yellow-900" },
-]
 
 const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 const dayNumbers = [6, 7, 8, 9, 10, 11, 12]
