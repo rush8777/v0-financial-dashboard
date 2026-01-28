@@ -296,7 +296,7 @@ export default function Hooks() {
         <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
           <Card className="bg-zinc-900 w-full max-w-2xl max-h-[80vh] overflow-hidden shadow-2xl">
             {/* Modal Header */}
-            <div className="border-b border-zinc-700 p-4 flex items-center justify-between">
+            <div className="p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <h3 className="text-sm font-semibold text-white">New AI chat</h3>
                 <div className="px-2 py-1 rounded-md bg-zinc-800 text-xs text-zinc-300 border border-zinc-700">
@@ -350,7 +350,7 @@ export default function Hooks() {
               </div>
 
               {/* Input Area */}
-              <div className="border-t border-zinc-700 p-4 space-y-3">
+              <div className="p-4 space-y-3">
                 <div className="flex items-center gap-2 px-3 py-2 bg-zinc-800/50 rounded-lg border border-zinc-700">
                   <div className="flex items-center gap-1">
                     <div className="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center text-xs font-bold text-white">
