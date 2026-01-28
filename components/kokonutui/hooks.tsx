@@ -466,13 +466,13 @@ export default function Hooks() {
                     onClick={handleSendModalMessage}
                     disabled={!modalInput.trim()}
                     className={cn(
-                      "p-2 rounded-lg transition-all",
+                      "transition-all",
                       modalInput.trim()
-                        ? "bg-purple-600 hover:bg-purple-700"
+                        ? "text-purple-600 hover:text-purple-700"
                         : "opacity-50 cursor-not-allowed"
                     )}
                   >
-                    <ArrowUp className="h-4 w-4 text-zinc-400 flex-shrink-0" />
+                    <Send className="h-4 w-4" />
                   </button>
                 </>
               )}
