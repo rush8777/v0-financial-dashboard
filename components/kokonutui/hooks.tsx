@@ -393,7 +393,7 @@ export default function Hooks() {
                   </div>
 
                   {/* Messages Container */}
-                  <div className="h-[400px] overflow-y-auto p-4 space-y-4">
+                  <div className="h-[400px] overflow-y-auto p-4 space-y-4 bg-transparent">
                     {modalMessages.map((msg) => (
                       <div
                         key={msg.id}
