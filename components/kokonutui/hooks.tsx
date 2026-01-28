@@ -188,7 +188,7 @@ export default function Hooks() {
           {/* Right Sidebar - Insights */}
           <div className="space-y-6">
             {/* Summary Card */}
-            <Card className="border border-zinc-800 bg-zinc-900/50">
+            <Card className="border border-zinc-800 ">
               <CardContent className="pt-6">
                 <h3 className="text-sm font-semibold text-white mb-3">Summary</h3>
                 <p className="text-sm text-zinc-300 leading-relaxed">{insights.summary}</p>
