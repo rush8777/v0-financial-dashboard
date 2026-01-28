@@ -1,5 +1,5 @@
 import Layout from "@/components/kokonutui/layout"
-import YoutubeAnalytics from "@/components/kokonutui/youtube-analytics"
+import YoutubeAnalytics from "@/components/kokonutui/video-analytics"
 
 export default function YoutubePage() {
   return (
