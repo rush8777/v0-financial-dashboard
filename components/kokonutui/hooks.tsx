@@ -340,7 +340,7 @@ export default function Hooks() {
 
       {/* Floating Chat Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-none z-40" onClick={() => setIsModalOpen(false)} />
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-md z-40" onClick={() => setIsModalOpen(false)} />
       )}
 
       {isModalOpen && (
