@@ -28,7 +28,7 @@ const events = [
   { id: 14, title: "Meetup event", time: "3:00 PM", day: "Wed", color: "bg-yellow-900" },
 ]
 
-const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+const events = [
   { id: 1, title: "Monday standup", time: "9:00 AM", day: "Mon", color: "bg-zinc-800" },
   { id: 2, title: "Deep work", time: "9:00 AM", day: "Wed", color: "bg-blue-700", duration: 3 },
   { id: 3, title: "One-on-one with Eva", time: "10:00 AM", day: "Tue", color: "bg-pink-800" },
