@@ -8,48 +8,27 @@ import {
   ChevronLeft,
   ChevronRight,
   MoreVertical,
-  LayoutDashboard,
-  Store,
-  Users,
-  Palette,
-  Mail,
-  Clock,
-  Bell,
-  ShoppingBag,
-  User,
-  Grid3x3,
-  Settings,
-  HelpCircle,
-  Book,
-  ExternalLink,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const sidebarItems = [
-  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { id: "store", label: "Store", icon: Store },
-  { id: "customers", label: "Customers", icon: Users },
-  { id: "customize", label: "Customize", icon: Palette },
-  { id: "email", label: "Email", icon: Mail },
-  { id: "scheduling", label: "Scheduling", icon: Clock },
-  { id: "notifications", label: "Notifications", icon: Bell, badge: 4 },
-]
-
-const storeItems = [
-  { id: "my-store", label: "My store", icon: Store },
-  { id: "my-account", label: "My account", icon: User },
-  { id: "my-orders", label: "My orders", icon: ShoppingBag },
-  { id: "my-affiliates", label: "My affiliates", icon: Grid3x3 },
-]
-
-const bottomItems = [
-  { id: "settings", label: "Settings", icon: Settings },
-  { id: "support", label: "Support", icon: HelpCircle },
-  { id: "documentation", label: "Documentation", icon: Book },
-  { id: "open-browser", label: "Open in browser", icon: ExternalLink },
-]
-
 const events = [
+  { id: 1, title: "Monday standup", time: "9:00 AM", day: "Mon", color: "bg-zinc-800" },
+  { id: 2, title: "Deep work", time: "9:00 AM", day: "Wed", color: "bg-blue-700", duration: 3 },
+  { id: 3, title: "One-on-one with Eva", time: "10:00 AM", day: "Tue", color: "bg-pink-800" },
+  { id: 4, title: "Design sync", time: "10:30 AM", day: "Wed", color: "bg-blue-900" },
+  { id: 5, title: "Friday standup", time: "9:00 AM", day: "Fri", color: "bg-zinc-800" },
+  { id: 6, title: "Olivia x Riley", time: "10:00 AM", day: "Fri", color: "bg-purple-800" },
+  { id: 7, title: "Content planning", time: "11:00 AM", day: "Mon", color: "bg-blue-900" },
+  { id: 8, title: "House inspection", time: "11:00 AM", day: "Sat", color: "bg-red-900", hasIndicator: true },
+  { id: 9, title: "Lunch with Olivia", time: "12:00 PM", day: "Thu", color: "bg-green-800", hasIndicator: true },
+  { id: 10, title: "SEO planning", time: "1:30 PM", day: "Wed", color: "bg-purple-900" },
+  { id: 11, title: "Product demo", time: "1:30 PM", day: "Fri", color: "bg-purple-900", duration: 2 },
+  { id: 12, title: "Ava's engagement...", time: "9:00 AM", day: "Sun", color: "bg-purple-900", hasIndicator: true },
+  { id: 13, title: "Catch up w/ Alex", time: "3:30 PM", day: "Tue", color: "bg-purple-900" },
+  { id: 14, title: "Meetup event", time: "3:00 PM", day: "Wed", color: "bg-yellow-900" },
+]
+
+const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
   { id: 1, title: "Monday standup", time: "9:00 AM", day: "Mon", color: "bg-zinc-800" },
   { id: 2, title: "Deep work", time: "9:00 AM", day: "Wed", color: "bg-blue-700", duration: 3 },
   { id: 3, title: "One-on-one with Eva", time: "10:00 AM", day: "Tue", color: "bg-pink-800" },
@@ -81,88 +60,9 @@ export default function AICalendar() {
   const [currentTime] = useState("2:30 PM")
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 flex">
-
-        {/* Main Navigation */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-1">
-          {sidebarItems.map((item) => {
-            const Icon = item.icon
-            return (
-              <button
-                key={item.id}
-                className={cn(
-                  "w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
-                  item.id === "dashboard"
-                    ? "bg-zinc-800 text-white"
-                    : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
-                )}
-              >
-                <Icon className="h-4 w-4" />
-                <span className="flex-1 text-left">{item.label}</span>
-                {item.badge && (
-                  <span className="px-1.5 py-0.5 text-xs bg-zinc-700 text-zinc-300 rounded">
-                    {item.badge}
-                  </span>
-                )}
-              </button>
-            )
-          })}
-
-          {/* Store Section */}
-          <div className="pt-6">
-            <div className="flex items-center justify-between px-3 py-2">
-              <span className="text-xs font-semibold text-zinc-500 uppercase">
-                store.amelielaurent.co
-              </span>
-              <MoreVertical className="h-3 w-3 text-zinc-500" />
-            </div>
-            <div className="space-y-1 mt-2">
-              {storeItems.map((item) => {
-                const Icon = item.icon
-                return (
-                  <button
-                    key={item.id}
-                    className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50 transition-colors"
-                  >
-                    <Icon className="h-4 w-4" />
-                    <span className="flex-1 text-left">{item.label}</span>
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Navigation */}
-        <div className="border-t border-zinc-800 p-4 space-y-1">
-          {bottomItems.map((item) => {
-            const Icon = item.icon
-            return (
-              <button
-                key={item.id}
-                className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50 transition-colors"
-              >
-                <Icon className="h-4 w-4" />
-                <span className="flex-1 text-left">{item.label}</span>
-                {item.id === "open-browser" && <ExternalLink className="h-3 w-3" />}
-              </button>
-            )
-          })}
-
-          {/* User Profile */}
-          <div className="flex items-center gap-3 px-3 py-3 mt-4 rounded-lg hover:bg-zinc-800/50 cursor-pointer transition-colors">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-500" />
-            <div className="flex-1">
-              <p className="text-sm font-medium text-white">Amelie Laurent</p>
-              <p className="text-xs text-zinc-500">hello@amelielaurent.co</p>
-            </div>
-            <MoreVertical className="h-4 w-4 text-zinc-400" />
-          </div>
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950">
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex flex-col h-screen">
         {/* Header */}
         <div className="border-b border-zinc-800 bg-zinc-950/50 backdrop-blur-xl">
           <div className="p-6 flex items-center justify-between">
