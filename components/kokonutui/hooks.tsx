@@ -144,32 +144,32 @@ export default function Hooks() {
           </div>
         </div>
         {/* Tab Navigation */}
-      <div className="mb-8 max-w-4xl w-full overflow-x-auto">
-        <div className="flex items-center justify-center gap-1.5 flex-nowrap px-2">
-          {toptabs.map((toptab) => {
-            const Icon = toptab.icon
-            return (
-              <button
-                key={toptab.id}
-                className={cn(
-                  "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap flex-shrink-0",
-                  toptab.isActive
-                    ? "bg-zinc-800 text-white shadow-lg"
-                    : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
-                )}
-              >
-                <Icon className="h-3.5 w-3.5" />
-                {toptab.label}
-                {toptab.badge && (
-                  <span className="ml-0.5 px-1 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
-                    {toptab.badge}
-                  </span>
-                )}
-              </button>
-            )
-          })}
+        <div className="mb-8 max-w-4xl w-full overflow-x-auto">
+          <div className="flex items-center justify-center gap-1.5 flex-nowrap px-2">
+            {toptabs.map((toptab) => {
+              const Icon = toptab.icon
+              return (
+                <button
+                  key={toptab.id}
+                  className={cn(
+                    "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap flex-shrink-0",
+                    toptab.isActive
+                      ? "bg-zinc-800 text-white shadow-lg"
+                      : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
+                  )}
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                  {toptab.label}
+                  {toptab.badge && (
+                    <span className="ml-0.5 px-1 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
+                      {toptab.badge}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
         </div>
-      </div>
 
         {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
