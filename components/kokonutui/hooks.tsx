@@ -27,7 +27,7 @@ import {
 } from "lucide-react"
 import { ChartNoAxesColumnIncreasing } from "lucide-react"
 import { cn } from "@/lib/utils"
-import YoutubeAnalytics from "@/components/kokonutui/video-analytics"
+import YoutubeAnalytics from "@/components/kokonutui/youtube-analytics"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
