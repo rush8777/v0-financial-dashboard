@@ -24,10 +24,6 @@ import {
   Share2,
   MoreHorizontal,
   ArrowUp,
-  Eye,
-  ThumbsUp,
-  MessageSquare,
-  TrendingUp,
 } from "lucide-react"
 import { ChartNoAxesColumnIncreasing } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -72,7 +68,7 @@ const chatMessages = [
     avatar: "DP",
     time: "0:25",
     message:
-      "Hey Ashley, thanks for reaching out to us at Basepoint! Can you tell me a bit more about GreenLeaf and what you're hoping to get out of our platform?",
+      "Hey Ashley, thanks for reaching out to us at Basepoint! Can you tell me a bit more about GreenLeaf and what you\'re hoping to get out of our platform?",
   },
   {
     id: 3,
@@ -80,7 +76,7 @@ const chatMessages = [
     avatar: "AL",
     time: "0:37",
     message:
-      "Of course! So I'm Ashley, I lead GTM at GreenLeaf. We're building an AI-powered climate tech platform and just raised a Series A last month. We're looking for a CRM with integration and automation capabilities to accelerate our growth. I'll let Simon describe our use case in a little more depth.",
+      "Of course! So I\'m Ashley, I lead GTM at GreenLeaf. We\'re building an AI-powered climate tech platform and just raised a Series A last month. We\'re looking for a CRM with integration and automation capabilities to accelerate our growth. I\'ll let Simon describe our use case in a little more depth.",
   },
   {
     id: 4,
@@ -88,13 +84,13 @@ const chatMessages = [
     avatar: "SM",
     time: "1:04",
     message:
-      "Yes, so at the moment we're largely relying on spreadsheets to track our prospect and customer information. It's a lot of manual data entry, and everyone has their own system for working with the data. It's resulting in a lot of inconsistencies with prospect follow-ups, meaning we're missing some really good opportunities.",
+      "Yes, so at the moment we\'re largely relying on spreadsheets to track our prospect and customer information. It\'s a lot of manual data entry, and everyone has their own system for working with the data. It\'s resulting in a lot of inconsistencies with prospect follow-ups, meaning we\'re missing some really good opportunities.",
   },
 ]
 
 const insights = {
   summary:
-    "Ashley Lawson met with Dylan Parker to learn more about Basepoint. The GreenLeaf team is facing a number of inefficiencies due to their reliance on manual data entry and tools. They're looking for a scalable CRM with automation and integration functionality to accelerate their growth.",
+    "Ashley Lawson met with Dylan Parker to learn more about Basepoint. The GreenLeaf team is facing a number of inefficiencies due to their reliance on manual data entry and tools. They\'re looking for a scalable CRM with automation and integration functionality to accelerate their growth.",
   situation:
     "Ashley Lawson is the GTM Manager at GreenLeaf, a rapidly scaling tech startup that raised a Series A. The team currently uses spreadsheets to track prospect and customer information, which are poorly integrated with their other tools. They rely on manual processes for data management and follow-ups, which are creating bottlenecks.",
   pain: [
@@ -107,320 +103,14 @@ const insights = {
     "Building out a comprehensive GTM motion is important to help the team scale.",
   ],
   criticalEvent:
-    "GreenLeaf's next board meeting is in early June, and they're aiming to present a comprehensive summary of improvements to their GTM strategy by then. The team needs to have a new system fully implemented by the end of April.",
+    "GreenLeaf\'s next board meeting is in early June, and they\'re aiming to present a comprehensive summary of improvements to their GTM strategy by then. The team needs to have a new system fully implemented by the end of April.",
   decision:
     "Annual budget is approximately $10,000. Must-have features include strong integrations, automation capabilities, and Ashley appears to be the lead on this initiative and is overseeing a range of stakeholders.",
-}
-
-// YouTube Analytics Component
-function YoutubeAnalytic() {
-  return (
-    <div className="space-y-6">
-      {/* Page Header */}
-      <div>
-        <h2 className="text-2xl font-bold text-white mb-2">YouTube Analytics</h2>
-        <p className="text-sm text-zinc-400">Comprehensive video performance metrics and insights</p>
-      </div>
-
-      {/* Key Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="border border-zinc-800 bg-zinc-900/50">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs text-zinc-400 mb-1">Total Views</p>
-                <p className="text-2xl font-bold text-white">1,234,567</p>
-                <p className="text-xs text-green-400 mt-1 flex items-center gap-1">
-                  <TrendingUp className="h-3 w-3" />
-                  +12.5% vs last month
-                </p>
-              </div>
-              <div className="p-3 bg-purple-500/20 rounded-lg">
-                <Eye className="h-6 w-6 text-purple-400" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="border border-zinc-800 bg-zinc-900/50">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs text-zinc-400 mb-1">Watch Time</p>
-                <p className="text-2xl font-bold text-white">18,543h</p>
-                <p className="text-xs text-green-400 mt-1 flex items-center gap-1">
-                  <TrendingUp className="h-3 w-3" />
-                  +8.3% vs last month
-                </p>
-              </div>
-              <div className="p-3 bg-blue-500/20 rounded-lg">
-                <Clock className="h-6 w-6 text-blue-400" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="border border-zinc-800 bg-zinc-900/50">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs text-zinc-400 mb-1">Engagement</p>
-                <p className="text-2xl font-bold text-white">45,678</p>
-                <p className="text-xs text-green-400 mt-1 flex items-center gap-1">
-                  <TrendingUp className="h-3 w-3" />
-                  +15.2% vs last month
-                </p>
-              </div>
-              <div className="p-3 bg-pink-500/20 rounded-lg">
-                <ThumbsUp className="h-6 w-6 text-pink-400" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="border border-zinc-800 bg-zinc-900/50">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs text-zinc-400 mb-1">Comments</p>
-                <p className="text-2xl font-bold text-white">8,912</p>
-                <p className="text-xs text-green-400 mt-1 flex items-center gap-1">
-                  <TrendingUp className="h-3 w-3" />
-                  +23.1% vs last month
-                </p>
-              </div>
-              <div className="p-3 bg-cyan-500/20 rounded-lg">
-                <MessageSquare className="h-6 w-6 text-cyan-400" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Views Over Time */}
-        <Card className="border border-zinc-800 bg-zinc-900/50">
-          <CardContent className="pt-6">
-            <div className="mb-4">
-              <h3 className="text-sm font-semibold text-white mb-1">Views Over Time</h3>
-              <p className="text-xs text-zinc-400">Last 12 months performance</p>
-            </div>
-            <div className="h-64 flex items-end justify-between gap-2">
-              {[65, 45, 78, 52, 88, 95, 72, 68, 85, 92, 78, 85].map((height, idx) => (
-                <div
-                  key={idx}
-                  className="flex-1 bg-gradient-to-t from-purple-600 to-purple-400 rounded-t hover:opacity-80 transition-opacity cursor-pointer"
-                  style={{ height: `${height}%` }}
-                  title={`Month ${idx + 1}`}
-                />
-              ))}
-            </div>
-            <div className="flex justify-between mt-3 text-xs text-zinc-500">
-              <span>Jan</span>
-              <span>Mar</span>
-              <span>Jun</span>
-              <span>Sep</span>
-              <span>Dec</span>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Audience Retention */}
-        <Card className="border border-zinc-800 bg-zinc-900/50">
-          <CardContent className="pt-6">
-            <div className="mb-4">
-              <h3 className="text-sm font-semibold text-white mb-1">Audience Retention</h3>
-              <p className="text-xs text-zinc-400">Average retention across all videos</p>
-            </div>
-            <div className="h-64 flex items-end justify-between gap-1">
-              {[100, 98, 95, 92, 88, 85, 82, 78, 75, 72, 68, 65, 62, 58, 55, 52, 48, 45, 42, 38].map((height, idx) => (
-                <div
-                  key={idx}
-                  className="flex-1 bg-gradient-to-t from-blue-600 to-blue-400 rounded-t hover:opacity-80 transition-opacity cursor-pointer"
-                  style={{ height: `${height}%` }}
-                  title={`${height}%`}
-                />
-              ))}
-            </div>
-            <div className="flex justify-between mt-3 text-xs text-zinc-500">
-              <span>0:00</span>
-              <span>7:00</span>
-              <span>14:00</span>
-              <span>21:00</span>
-              <span>28:14</span>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Demographics and Traffic Sources */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Viewer Demographics */}
-        <Card className="border border-zinc-800 bg-zinc-900/50">
-          <CardContent className="pt-6">
-            <div className="mb-4">
-              <h3 className="text-sm font-semibold text-white mb-1">Viewer Demographics</h3>
-              <p className="text-xs text-zinc-400">Age distribution of your audience</p>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-zinc-300">Age 25-34</span>
-                  <span className="text-white font-semibold">45%</span>
-                </div>
-                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-purple-600 to-purple-400" style={{ width: '45%' }} />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-zinc-300">Age 35-44</span>
-                  <span className="text-white font-semibold">30%</span>
-                </div>
-                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-blue-600 to-blue-400" style={{ width: '30%' }} />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-zinc-300">Age 18-24</span>
-                  <span className="text-white font-semibold">15%</span>
-                </div>
-                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-pink-600 to-pink-400" style={{ width: '15%' }} />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-zinc-300">Age 45-54</span>
-                  <span className="text-white font-semibold">7%</span>
-                </div>
-                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-cyan-600 to-cyan-400" style={{ width: '7%' }} />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-zinc-300">Age 55+</span>
-                  <span className="text-white font-semibold">3%</span>
-                </div>
-                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-green-600 to-green-400" style={{ width: '3%' }} />
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Traffic Sources */}
-        <Card className="border border-zinc-800 bg-zinc-900/50">
-          <CardContent className="pt-6">
-            <div className="mb-4">
-              <h3 className="text-sm font-semibold text-white mb-1">Traffic Sources</h3>
-              <p className="text-xs text-zinc-400">Where your viewers are coming from</p>
-            </div>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-3 bg-zinc-800/50 rounded-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                    <Search className="h-5 w-5 text-purple-400" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-white">YouTube Search</p>
-                    <p className="text-xs text-zinc-400">Organic discovery</p>
-                  </div>
-                </div>
-                <span className="text-lg font-bold text-white">38%</span>
-              </div>
-              <div className="flex items-center justify-between p-3 bg-zinc-800/50 rounded-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                    <Play className="h-5 w-5 text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-white">Suggested Videos</p>
-                    <p className="text-xs text-zinc-400">Recommendations</p>
-                  </div>
-                </div>
-                <span className="text-lg font-bold text-white">27%</span>
-              </div>
-              <div className="flex items-center justify-between p-3 bg-zinc-800/50 rounded-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-pink-500/20 rounded-lg flex items-center justify-center">
-                    <Share2 className="h-5 w-5 text-pink-400" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-white">External Sources</p>
-                    <p className="text-xs text-zinc-400">Social media, websites</p>
-                  </div>
-                </div>
-                <span className="text-lg font-bold text-white">20%</span>
-              </div>
-              <div className="flex items-center justify-between p-3 bg-zinc-800/50 rounded-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
-                    <Users className="h-5 w-5 text-cyan-400" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-white">Direct/Unknown</p>
-                    <p className="text-xs text-zinc-400">Direct links</p>
-                  </div>
-                </div>
-                <span className="text-lg font-bold text-white">15%</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Top Performing Videos */}
-      <Card className="border border-zinc-800 bg-zinc-900/50">
-        <CardContent className="pt-6">
-          <div className="mb-4">
-            <h3 className="text-sm font-semibold text-white mb-1">Top Performing Videos</h3>
-            <p className="text-xs text-zinc-400">Your best content this month</p>
-          </div>
-          <div className="space-y-3">
-            {[
-              { title: "Getting Started with AI", views: "234K", engagement: "12.5K", duration: "15:24" },
-              { title: "Advanced Machine Learning", views: "189K", engagement: "9.8K", duration: "22:15" },
-              { title: "Web Development Tips", views: "156K", engagement: "8.2K", duration: "18:45" },
-              { title: "Product Design Masterclass", views: "142K", engagement: "7.5K", duration: "28:14" },
-            ].map((video, idx) => (
-              <div key={idx} className="flex items-center justify-between p-3 bg-zinc-800/50 rounded-lg hover:bg-zinc-800/70 transition-colors cursor-pointer">
-                <div className="flex items-center gap-3 flex-1">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Play className="h-5 w-5 text-white" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-white truncate">{video.title}</p>
-                    <p className="text-xs text-zinc-400">{video.duration}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-6 text-right">
-                  <div>
-                    <p className="text-sm font-semibold text-white">{video.views}</p>
-                    <p className="text-xs text-zinc-400">Views</p>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-white">{video.engagement}</p>
-                    <p className="text-xs text-zinc-400">Engagement</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  )
 }
 
 export default function Hooks() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [activeTab, setActiveTab] = useState("transcript")
-  const [activeTopTab, setActiveTopTab] = useState("video-chat")
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalInput, setModalInput] = useState("")
   const [modalMessages, setModalMessages] = useState<Array<{ id: number; text: string; isUser: boolean }>>([])
@@ -454,200 +144,188 @@ export default function Hooks() {
             </div>
           </div>
         </div>
-
         {/* Tab Navigation */}
         <div className="mb-8 max-w-4xl w-full overflow-x-auto">
           <div className="flex justify-center">
             <div className="flex items-center gap-1.5 px-2 w-max text-center justify-center">
-              {toptabs.map((toptab) => {
-                const Icon = toptab.icon
-                return (
-                  <button
-                    key={toptab.id}
-                    onClick={() => setActiveTopTab(toptab.id)}
-                    className={cn(
-                      "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap flex-shrink-0",
-                      activeTopTab === toptab.id
-                        ? "bg-zinc-800 text-white shadow-lg"
-                        : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
-                    )}
-                  >
-                    <Icon className="h-3.5 w-3.5" />
-                    {toptab.label}
-                    {toptab.badge && (
-                      <span className="ml-0.5 px-1 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
-                        {toptab.badge}
-                      </span>
-                    )}
-                  </button>
-                )
-              })}
+
+            {toptabs.map((toptab) => {
+              const Icon = toptab.icon
+              return (
+                <button
+                  key={toptab.id}
+                  className={cn(
+                    "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap flex-shrink-0",
+                    toptab.isActive
+                      ? "bg-zinc-800 text-white shadow-lg"
+                      : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
+                  )}
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                  {toptab.label}
+                  {toptab.badge && (
+                    <span className="ml-0.5 px-1 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
+                      {toptab.badge}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
             </div>
           </div>
         </div>
 
-        {/* Main Grid with Conditional Rendering */}
+        {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {activeTopTab === "statistics" ? (
-            // Statistics View - Full Width
-            <div className="lg:col-span-5">
-              <YoutubeAnalytic />
-            </div>
-          ) : (
-            // Video Chat View - Original Layout
-            <>
-              {/* Left & Center Content */}
-              <div className="lg:col-span-3 space-y-6">
-                {/* Video Player */}
-                <Card className="border border-zinc-800 bg-zinc-900/50 overflow-hidden">
-                  <div className="aspect-video bg-black relative group">
-                    <img
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-05-08%20133020-uW2aT2gPJBxE4qgHbSCJUjl8NVoSjR.png"
-                      alt="Video"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
-                      <button className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white">
-                        <Play className="h-6 w-6" />
-                      </button>
+          {/* Left & Center Content */}
+          <div className="lg:col-span-3 space-y-6">
+            {/* Video Player */}
+            <Card className="border border-zinc-800 bg-zinc-900/50 overflow-hidden">
+              <div className="aspect-video bg-black relative group">
+                <img
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-05-08%20133020-uW2aT2gPJBxE4qgHbSCJUjl8NVoSjR.png"
+                  alt="Video"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
+                  <button className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white">
+                    <Play className="h-6 w-6" />
+                  </button>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black via-black/50 to-transparent">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-xs text-zinc-400">09:18</span>
+                    <div className="flex-1 h-1 bg-zinc-700 rounded-full overflow-hidden">
+                      <div className="h-full w-1/3 bg-purple-600" />
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black via-black/50 to-transparent">
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="text-xs text-zinc-400">09:18</span>
-                        <div className="flex-1 h-1 bg-zinc-700 rounded-full overflow-hidden">
-                          <div className="h-full w-1/3 bg-purple-600" />
-                        </div>
-                        <span className="text-xs text-zinc-400">28:14</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <button className="p-1 hover:bg-white/10 rounded text-white">
-                          <Play className="h-4 w-4" />
-                        </button>
-                        <button className="p-1 hover:bg-white/10 rounded text-white">
-                          <Volume2 className="h-4 w-4" />
-                        </button>
-                        <button className="p-1 hover:bg-white/10 rounded text-white ml-auto">
-                          <Settings2 className="h-4 w-4" />
-                        </button>
-                      </div>
-                    </div>
+                    <span className="text-xs text-zinc-400">28:14</span>
                   </div>
-                </Card>
-
-                {/* Tabs */}
-                <div className="flex items-center gap-6 border-b border-zinc-800 px-0">
-                  {tabs.map((tab) => (
-                    <button
-                      key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
-                      className={cn(
-                        "pb-3 text-sm font-medium transition-colors border-b-2",
-                        activeTab === tab.id
-                          ? "text-white border-purple-600"
-                          : "text-zinc-400 border-transparent hover:text-zinc-300"
-                      )}
-                    >
-                      {tab.label}
+                  <div className="flex items-center gap-2">
+                    <button className="p-1 hover:bg-white/10 rounded text-white">
+                      <Play className="h-4 w-4" />
                     </button>
-                  ))}
-                </div>
-
-                {/* Transcript / Chat */}
-                <div className="space-y-4">
-                  {chatMessages.map((msg) => (
-                    <div key={msg.id} className="flex gap-4">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-sm font-semibold text-white">
-                        {msg.avatar}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="text-sm font-semibold text-white">{msg.author}</span>
-                          <span className="text-xs text-zinc-500">{msg.time}</span>
-                        </div>
-                        <p className="text-sm text-zinc-300 leading-relaxed">{msg.message}</p>
-                      </div>
-                    </div>
-                  ))}
+                    <button className="p-1 hover:bg-white/10 rounded text-white">
+                      <Volume2 className="h-4 w-4" />
+                    </button>
+                    <button className="p-1 hover:bg-white/10 rounded text-white ml-auto">
+                      <Settings2 className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
+            </Card>
+            
 
-              {/* Right Sidebar - Insights */}
-              <div className="lg:col-span-2 space-y-6">
-                {/* Summary Card */}
-                <Card className="border border-zinc-800 ">
-                  <CardContent className="pt-6">
-                    <h2 className="text-sm font-semibold text-white mb-3">Summary</h2>
-                    <p className="text-sm text-zinc-300 leading-relaxed">{insights.summary}</p>
-                  </CardContent>
-                </Card>
+            {/* Tabs */}
+            <div className="flex items-center gap-6 border-b border-zinc-800 px-0">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={cn(
+                    "pb-3 text-sm font-medium transition-colors border-b-2",
+                    activeTab === tab.id
+                      ? "text-white border-purple-600"
+                      : "text-zinc-400 border-transparent hover:text-zinc-300"
+                  )}
+                  >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
 
-                {/* Insights Section */}
-                <div className="space-y-4">
+            {/* Transcript / Chat */}
+            <div className="space-y-4">
+              {chatMessages.map((msg) => (
+                <div key={msg.id} className="flex gap-4">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-sm font-semibold text-white">
+                    {msg.avatar}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-sm font-semibold text-white">{msg.author}</span>
+                      <span className="text-xs text-zinc-500">{msg.time}</span>
+                    </div>
+                    <p className="text-sm text-zinc-300 leading-relaxed">{msg.message}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Sidebar - Insights */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Summary Card */}
+            <Card className="border border-zinc-800 ">
+              <CardContent className="pt-6">
+                <h2 className="text-sm font-semibold text-white mb-3">Summary</h2>
+                <p className="text-sm text-zinc-300 leading-relaxed">{insights.summary}</p>
+              </CardContent>
+            </Card>
+
+            {/* Insights Section */}
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-sm font-semibold text-white mb-3">Insights</h3>
+              </div>
+
+              <Card className="border border-zinc-800 bg-zinc-900/50">
+                <CardContent className="pt-6 space-y-6">
+                  {/* Situation */}
                   <div>
-                    <h3 className="text-sm font-semibold text-white mb-3">Insights</h3>
+                    <h4 className="text-sm font-semibold text-white mb-2">Situation</h4>
+                    <p className="text-xs text-zinc-300 leading-relaxed">{insights.situation}</p>
                   </div>
 
-                  <Card className="border border-zinc-800 bg-zinc-900/50">
-                    <CardContent className="pt-6 space-y-6">
-                      {/* Situation */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-white mb-2">Situation</h4>
-                        <p className="text-xs text-zinc-300 leading-relaxed">{insights.situation}</p>
-                      </div>
+                  {/* Pain */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-2">Pain</h4>
+                    <ul className="space-y-2">
+                      {insights.pain.map((item, idx) => (
+                        <li key={idx} className="text-xs text-zinc-300 flex gap-2">
+                          <span className="text-purple-400 flex-shrink-0">•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                      {/* Pain */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-white mb-2">Pain</h4>
-                        <ul className="space-y-2">
-                          {insights.pain.map((item, idx) => (
-                            <li key={idx} className="text-xs text-zinc-300 flex gap-2">
-                              <span className="text-purple-400 flex-shrink-0">•</span>
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                  {/* Impact */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-2">Impact</h4>
+                    <ul className="space-y-2">
+                      {insights.impact.map((item, idx) => (
+                        <li key={idx} className="text-xs text-zinc-300 flex gap-2">
+                          <span className="text-purple-400 flex-shrink-0">•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                      {/* Impact */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-white mb-2">Impact</h4>
-                        <ul className="space-y-2">
-                          {insights.impact.map((item, idx) => (
-                            <li key={idx} className="text-xs text-zinc-300 flex gap-2">
-                              <span className="text-purple-400 flex-shrink-0">•</span>
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                  {/* Critical Event */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-2">Critical Event</h4>
+                    <p className="text-xs text-zinc-300 leading-relaxed">{insights.criticalEvent}</p>
+                  </div>
 
-                      {/* Critical Event */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-white mb-2">Critical Event</h4>
-                        <p className="text-xs text-zinc-300 leading-relaxed">{insights.criticalEvent}</p>
-                      </div>
-
-                      {/* Decision */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-white mb-2">Decision</h4>
-                        <p className="text-xs text-zinc-300 leading-relaxed">{insights.decision}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </>
-          )}
+                  {/* Decision */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-2">Decision</h4>
+                    <p className="text-xs text-zinc-300 leading-relaxed">{insights.decision}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Floating Chatbar */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none">
         <div className="max-w-md mx-auto pointer-events-auto">
-          <div
-            className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 shadow-lg hover:bg-white/10 transition-colors cursor-pointer"
-            onClick={() => setIsModalOpen(true)}
-          >
+          <div className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 shadow-lg hover:bg-white/10 transition-colors cursor-pointer"
+            onClick={() => setIsModalOpen(true)}>
             <MessageCircle className="h-5 w-5 text-zinc-400 flex-shrink-0" />
             <input
               type="text"
