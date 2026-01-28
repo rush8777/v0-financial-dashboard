@@ -447,15 +447,7 @@ export default function Hooks() {
               ) : (
                 <>
                   {/* Expanded State - Active Input */}
-                  <button className="p-1 hover:bg-white/10 rounded-lg transition-colors">
-                    <Plus className="h-4 w-4 text-zinc-400" />
-                  </button>
-                  <button className="p-1 hover:bg-white/10 rounded-lg transition-colors">
-                    <Paperclip className="h-4 w-4 text-zinc-400" />
-                  </button>
-                  <button className="p-1 hover:bg-white/10 rounded-lg transition-colors">
-                    <ImageIcon className="h-4 w-4 text-zinc-400" />
-                  </button>
+                  
                   <input
                     type="text"
                     value={modalInput}
