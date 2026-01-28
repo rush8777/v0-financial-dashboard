@@ -145,7 +145,9 @@ export default function Hooks() {
         </div>
         {/* Tab Navigation */}
         <div className="mb-8 max-w-4xl w-full overflow-x-auto">
-          <div className="flex items-center justify-center gap-1.5 flex-nowrap px-2">
+          <div className="flex justify-center">
+            <div className="flex items-center gap-1.5 px-2 w-max">
+
             {toptabs.map((toptab) => {
               const Icon = toptab.icon
               return (
