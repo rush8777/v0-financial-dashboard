@@ -25,7 +25,6 @@ import {
   ArrowUp,
 } from "lucide-react"
 import { ChartSpline } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 
 const toptabs = [
