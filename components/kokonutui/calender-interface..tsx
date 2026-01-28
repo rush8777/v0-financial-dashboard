@@ -3,7 +3,7 @@
 import React from "react"
 
 import { useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import {
   MessageCircle,
   FileText,
