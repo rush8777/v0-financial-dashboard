@@ -109,9 +109,9 @@ export default function Hooks() {
         </div>
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Left & Center Content */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-3 space-y-6">
             {/* Video Player */}
             <Card className="border border-zinc-800 bg-zinc-900/50 overflow-hidden">
               <div className="aspect-video bg-black relative group">
@@ -186,7 +186,7 @@ export default function Hooks() {
           </div>
 
           {/* Right Sidebar - Insights */}
-          <div className="space-y-6">
+          <div className="lg:col-span-2 space-y-6">
             {/* Summary Card */}
             <Card className="border border-zinc-800 ">
               <CardContent className="pt-6">
