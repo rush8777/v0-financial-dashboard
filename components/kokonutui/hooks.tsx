@@ -194,7 +194,7 @@ export default function Hooks() {
                 <Card className="border border-zinc-800 bg-zinc-900/50 overflow-hidden">
                   <div className="aspect-video bg-black relative group">
                     <img
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-05-08%20133020-uW2aT2gPJBxE4qgHbSCJUjl8NVoSjR.png"
+                      src="/images/design-mode/Screenshot%202025-05-08%20133020(1).png"
                       alt="Video"
                       className="w-full h-full object-cover"
                     />
