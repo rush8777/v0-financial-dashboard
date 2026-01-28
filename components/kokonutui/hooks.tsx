@@ -459,7 +459,7 @@ export default function Hooks() {
                       }
                     }}
                     placeholder="Type something..."
-                    className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-sm"
+                    className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-sm h-5"
                     autoFocus
                   />
                   <button
