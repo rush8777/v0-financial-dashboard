@@ -6,7 +6,6 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   MessageCircle,
-  ChartSpline,
   FileText,
   Scissors,
   Megaphone,
@@ -25,6 +24,8 @@ import {
   MoreHorizontal,
   ArrowUp,
 } from "lucide-react"
+import { ChartSpline } from "lucide-react"
+
 import { cn } from "@/lib/utils"
 
 const toptabs = [
