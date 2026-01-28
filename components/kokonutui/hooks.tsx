@@ -271,7 +271,7 @@ export default function Hooks() {
 
       {/* Floating Chatbar */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none">
-        <div className="max-w-7xl mx-auto pointer-events-auto">
+        <div className="max-w-3xl mx-auto pointer-events-auto">
           <div className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 shadow-lg hover:bg-white/10 transition-colors cursor-pointer"
             onClick={() => setIsModalOpen(true)}>
             <MessageCircle className="h-5 w-5 text-zinc-400 flex-shrink-0" />
