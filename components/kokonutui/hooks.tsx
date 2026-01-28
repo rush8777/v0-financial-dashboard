@@ -170,6 +170,7 @@ export default function Hooks() {
                 </button>
               )
             })}
+            </div>
           </div>
         </div>
 
