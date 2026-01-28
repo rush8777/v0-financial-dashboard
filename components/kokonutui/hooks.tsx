@@ -440,7 +440,7 @@ export default function Hooks() {
                     placeholder="Ask a question..."
                     readOnly
                     onClick={() => setIsModalOpen(true)}
-                    className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-sm cursor-pointer"
+                    className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-sm"
                   />
                   <ArrowUp className="h-4 w-4 text-zinc-400 flex-shrink-0" />
                 </>
@@ -459,7 +459,7 @@ export default function Hooks() {
                       }
                     }}
                     placeholder="Type something..."
-                    className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-sm cursor-pointer"
+                    className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-sm"
                     autoFocus
                   />
                   <button
