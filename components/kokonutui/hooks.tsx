@@ -294,7 +294,7 @@ export default function Hooks() {
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
-          <Card className="bg-black/40 backdrop-blur-xl border border-white/10 w-full max-w-4xl max-h-[80vh] overflow-hidden shadow-2xl">
+          <Card className="backdrop-blur-xl border border-white/10 w-full max-w-4xl max-h-[80vh] overflow-hidden shadow-2xl">
             {/* Modal Header */}
             <div className="p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
