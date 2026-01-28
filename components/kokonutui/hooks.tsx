@@ -25,7 +25,9 @@ import {
   MoreHorizontal,
   ArrowUp,
 } from "lucide-react"
-import { ChartNoAxesColumnIncreasing } from "lucide-react"
+
+import { YoutubeAnalytics } from "@/app/page"
+
 import { cn } from "@/lib/utils"
 
 const toptabs = [
@@ -108,6 +110,8 @@ const insights = {
     "Annual budget is approximately $10,000. Must-have features include strong integrations, automation capabilities, and Ashley appears to be the lead on this initiative and is overseeing a range of stakeholders.",
 }
 
+const [activeTopTab, setActiveTopTab] = useState("video-chat")
+
 export default function Hooks() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [activeTab, setActiveTab] = useState("transcript")
@@ -154,9 +158,10 @@ export default function Hooks() {
               return (
                 <button
                   key={toptab.id}
+                  onClick={() => setActiveTab(toptab.id)}
                   className={cn(
                     "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap flex-shrink-0",
-                    toptab.isActive
+                    activeTab === toptab.id
                       ? "bg-zinc-800 text-white shadow-lg"
                       : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
                   )}
@@ -177,6 +182,8 @@ export default function Hooks() {
 
         {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          {/* Statistics Tab */}
+          
           {/* Left & Center Content */}
           <div className="lg:col-span-3 space-y-6">
             {/* Video Player */}
