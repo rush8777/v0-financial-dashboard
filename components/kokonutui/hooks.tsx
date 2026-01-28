@@ -27,7 +27,7 @@ import {
 } from "lucide-react"
 import { ChartNoAxesColumnIncreasing } from "lucide-react"
 import { cn } from "@/lib/utils"
-import YoutubeAnalytics from "@/components/kokonutui/youtube-analytics"
+import VideoAnalytics from "@/components/kokonutui/video-analytics"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
@@ -183,7 +183,7 @@ export default function Hooks() {
           {activeTopTab === "statistics" ? (
             // Statistics View - Full Width
             <div className="lg:col-span-5">
-              <YoutubeAnalytics />
+              <VideoAnalytics />
             </div>
           ) : (
             // Video Chat View - Original Layout
