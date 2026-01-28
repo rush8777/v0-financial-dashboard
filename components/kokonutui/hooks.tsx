@@ -27,7 +27,7 @@ import {
 } from "lucide-react"
 import { ChartNoAxesColumnIncreasing } from "lucide-react"
 import { cn } from "@/lib/utils"
-import YoutubeAnalytics from "@/components/kokonutui/video-analytics"
+import YoutubeAnalytics from "@/components/kokonutui/youtube-analytics"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
@@ -194,7 +194,7 @@ export default function Hooks() {
                 <Card className="border border-zinc-800 bg-zinc-900/50 overflow-hidden">
                   <div className="aspect-video bg-black relative group">
                     <img
-                      src="/images/design-mode/Screenshot%202025-05-08%20133020.png"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-05-08%20133020-uW2aT2gPJBxE4qgHbSCJUjl8NVoSjR.png"
                       alt="Video"
                       className="w-full h-full object-cover"
                     />

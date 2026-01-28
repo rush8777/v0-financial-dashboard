@@ -95,7 +95,7 @@ const emotionConfig = {
   A: { label: "Sentiment Level", color: "hsl(262 80% 50%)" },
 }
 
-export default function YoutubeAnalytics() {
+export default function VideoAnalytics() {
   return (
     <div className="space-y-6">
       {/* Metrics Grid */}
