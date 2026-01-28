@@ -27,6 +27,7 @@ import {
 } from "lucide-react"
 import { ChartNoAxesColumnIncreasing } from "lucide-react"
 import { cn } from "@/lib/utils"
+import YoutubeAnalytics from "@/components/kokonutui/youtube-analytics"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
@@ -68,7 +69,7 @@ const chatMessages = [
     avatar: "DP",
     time: "0:25",
     message:
-      "Hey Ashley, thanks for reaching out to us at Basepoint! Can you tell me a bit more about GreenLeaf and what you\'re hoping to get out of our platform?",
+      "Hey Ashley, thanks for reaching out to us at Basepoint! Can you tell me a bit more about GreenLeaf and what you're hoping to get out of our platform?",
   },
   {
     id: 3,
@@ -76,7 +77,7 @@ const chatMessages = [
     avatar: "AL",
     time: "0:37",
     message:
-      "Of course! So I\'m Ashley, I lead GTM at GreenLeaf. We\'re building an AI-powered climate tech platform and just raised a Series A last month. We\'re looking for a CRM with integration and automation capabilities to accelerate our growth. I\'ll let Simon describe our use case in a little more depth.",
+      "Of course! So I'm Ashley, I lead GTM at GreenLeaf. We're building an AI-powered climate tech platform and just raised a Series A last month. We're looking for a CRM with integration and automation capabilities to accelerate our growth. I'll let Simon describe our use case in a little more depth.",
   },
   {
     id: 4,
@@ -84,13 +85,13 @@ const chatMessages = [
     avatar: "SM",
     time: "1:04",
     message:
-      "Yes, so at the moment we\'re largely relying on spreadsheets to track our prospect and customer information. It\'s a lot of manual data entry, and everyone has their own system for working with the data. It\'s resulting in a lot of inconsistencies with prospect follow-ups, meaning we\'re missing some really good opportunities.",
+      "Yes, so at the moment we're largely relying on spreadsheets to track our prospect and customer information. It's a lot of manual data entry, and everyone has their own system for working with the data. It's resulting in a lot of inconsistencies with prospect follow-ups, meaning we're missing some really good opportunities.",
   },
 ]
 
 const insights = {
   summary:
-    "Ashley Lawson met with Dylan Parker to learn more about Basepoint. The GreenLeaf team is facing a number of inefficiencies due to their reliance on manual data entry and tools. They\'re looking for a scalable CRM with automation and integration functionality to accelerate their growth.",
+    "Ashley Lawson met with Dylan Parker to learn more about Basepoint. The GreenLeaf team is facing a number of inefficiencies due to their reliance on manual data entry and tools. They're looking for a scalable CRM with automation and integration functionality to accelerate their growth.",
   situation:
     "Ashley Lawson is the GTM Manager at GreenLeaf, a rapidly scaling tech startup that raised a Series A. The team currently uses spreadsheets to track prospect and customer information, which are poorly integrated with their other tools. They rely on manual processes for data management and follow-ups, which are creating bottlenecks.",
   pain: [
@@ -103,7 +104,7 @@ const insights = {
     "Building out a comprehensive GTM motion is important to help the team scale.",
   ],
   criticalEvent:
-    "GreenLeaf\'s next board meeting is in early June, and they\'re aiming to present a comprehensive summary of improvements to their GTM strategy by then. The team needs to have a new system fully implemented by the end of April.",
+    "GreenLeaf's next board meeting is in early June, and they're aiming to present a comprehensive summary of improvements to their GTM strategy by then. The team needs to have a new system fully implemented by the end of April.",
   decision:
     "Annual budget is approximately $10,000. Must-have features include strong integrations, automation capabilities, and Ashley appears to be the lead on this initiative and is overseeing a range of stakeholders.",
 }
@@ -111,6 +112,7 @@ const insights = {
 export default function Hooks() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [activeTab, setActiveTab] = useState("transcript")
+  const [activeTopTab, setActiveTopTab] = useState("video-chat")
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalInput, setModalInput] = useState("")
   const [modalMessages, setModalMessages] = useState<Array<{ id: number; text: string; isUser: boolean }>>([])
@@ -144,188 +146,200 @@ export default function Hooks() {
             </div>
           </div>
         </div>
+
         {/* Tab Navigation */}
         <div className="mb-8 max-w-4xl w-full overflow-x-auto">
           <div className="flex justify-center">
             <div className="flex items-center gap-1.5 px-2 w-max text-center justify-center">
-
-            {toptabs.map((toptab) => {
-              const Icon = toptab.icon
-              return (
-                <button
-                  key={toptab.id}
-                  className={cn(
-                    "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap flex-shrink-0",
-                    toptab.isActive
-                      ? "bg-zinc-800 text-white shadow-lg"
-                      : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
-                  )}
-                >
-                  <Icon className="h-3.5 w-3.5" />
-                  {toptab.label}
-                  {toptab.badge && (
-                    <span className="ml-0.5 px-1 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
-                      {toptab.badge}
-                    </span>
-                  )}
-                </button>
-              )
-            })}
+              {toptabs.map((toptab) => {
+                const Icon = toptab.icon
+                return (
+                  <button
+                    key={toptab.id}
+                    onClick={() => setActiveTopTab(toptab.id)}
+                    className={cn(
+                      "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap flex-shrink-0",
+                      activeTopTab === toptab.id
+                        ? "bg-zinc-800 text-white shadow-lg"
+                        : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
+                    )}
+                  >
+                    <Icon className="h-3.5 w-3.5" />
+                    {toptab.label}
+                    {toptab.badge && (
+                      <span className="ml-0.5 px-1 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
+                        {toptab.badge}
+                      </span>
+                    )}
+                  </button>
+                )
+              })}
             </div>
           </div>
         </div>
 
-        {/* Main Grid */}
+        {/* Main Grid with Conditional Rendering */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Left & Center Content */}
-          <div className="lg:col-span-3 space-y-6">
-            {/* Video Player */}
-            <Card className="border border-zinc-800 bg-zinc-900/50 overflow-hidden">
-              <div className="aspect-video bg-black relative group">
-                <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-05-08%20133020-uW2aT2gPJBxE4qgHbSCJUjl8NVoSjR.png"
-                  alt="Video"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
-                  <button className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white">
-                    <Play className="h-6 w-6" />
-                  </button>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black via-black/50 to-transparent">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xs text-zinc-400">09:18</span>
-                    <div className="flex-1 h-1 bg-zinc-700 rounded-full overflow-hidden">
-                      <div className="h-full w-1/3 bg-purple-600" />
+          {activeTopTab === "statistics" ? (
+            // Statistics View - Full Width
+            <div className="lg:col-span-5">
+              <YoutubeAnalytics />
+            </div>
+          ) : (
+            // Video Chat View - Original Layout
+            <>
+              {/* Left & Center Content */}
+              <div className="lg:col-span-3 space-y-6">
+                {/* Video Player */}
+                <Card className="border border-zinc-800 bg-zinc-900/50 overflow-hidden">
+                  <div className="aspect-video bg-black relative group">
+                    <img
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-05-08%20133020-uW2aT2gPJBxE4qgHbSCJUjl8NVoSjR.png"
+                      alt="Video"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
+                      <button className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white">
+                        <Play className="h-6 w-6" />
+                      </button>
                     </div>
-                    <span className="text-xs text-zinc-400">28:14</span>
+                    <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black via-black/50 to-transparent">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-xs text-zinc-400">09:18</span>
+                        <div className="flex-1 h-1 bg-zinc-700 rounded-full overflow-hidden">
+                          <div className="h-full w-1/3 bg-purple-600" />
+                        </div>
+                        <span className="text-xs text-zinc-400">28:14</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button className="p-1 hover:bg-white/10 rounded text-white">
+                          <Play className="h-4 w-4" />
+                        </button>
+                        <button className="p-1 hover:bg-white/10 rounded text-white">
+                          <Volume2 className="h-4 w-4" />
+                        </button>
+                        <button className="p-1 hover:bg-white/10 rounded text-white ml-auto">
+                          <Settings2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <button className="p-1 hover:bg-white/10 rounded text-white">
-                      <Play className="h-4 w-4" />
+                </Card>
+
+                {/* Tabs */}
+                <div className="flex items-center gap-6 border-b border-zinc-800 px-0">
+                  {tabs.map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={cn(
+                        "pb-3 text-sm font-medium transition-colors border-b-2",
+                        activeTab === tab.id
+                          ? "text-white border-purple-600"
+                          : "text-zinc-400 border-transparent hover:text-zinc-300"
+                      )}
+                    >
+                      {tab.label}
                     </button>
-                    <button className="p-1 hover:bg-white/10 rounded text-white">
-                      <Volume2 className="h-4 w-4" />
-                    </button>
-                    <button className="p-1 hover:bg-white/10 rounded text-white ml-auto">
-                      <Settings2 className="h-4 w-4" />
-                    </button>
-                  </div>
+                  ))}
+                </div>
+
+                {/* Transcript / Chat */}
+                <div className="space-y-4">
+                  {chatMessages.map((msg) => (
+                    <div key={msg.id} className="flex gap-4">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-sm font-semibold text-white">
+                        {msg.avatar}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-sm font-semibold text-white">{msg.author}</span>
+                          <span className="text-xs text-zinc-500">{msg.time}</span>
+                        </div>
+                        <p className="text-sm text-zinc-300 leading-relaxed">{msg.message}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </Card>
-            
 
-            {/* Tabs */}
-            <div className="flex items-center gap-6 border-b border-zinc-800 px-0">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={cn(
-                    "pb-3 text-sm font-medium transition-colors border-b-2",
-                    activeTab === tab.id
-                      ? "text-white border-purple-600"
-                      : "text-zinc-400 border-transparent hover:text-zinc-300"
-                  )}
-                  >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
+              {/* Right Sidebar - Insights */}
+              <div className="lg:col-span-2 space-y-6">
+                {/* Summary Card */}
+                <Card className="border border-zinc-800 ">
+                  <CardContent className="pt-6">
+                    <h2 className="text-sm font-semibold text-white mb-3">Summary</h2>
+                    <p className="text-sm text-zinc-300 leading-relaxed">{insights.summary}</p>
+                  </CardContent>
+                </Card>
 
-            {/* Transcript / Chat */}
-            <div className="space-y-4">
-              {chatMessages.map((msg) => (
-                <div key={msg.id} className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 text-sm font-semibold text-white">
-                    {msg.avatar}
+                {/* Insights Section */}
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-sm font-semibold text-white mb-3">Insights</h3>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-sm font-semibold text-white">{msg.author}</span>
-                      <span className="text-xs text-zinc-500">{msg.time}</span>
-                    </div>
-                    <p className="text-sm text-zinc-300 leading-relaxed">{msg.message}</p>
-                  </div>
+
+                  <Card className="border border-zinc-800 bg-zinc-900/50">
+                    <CardContent className="pt-6 space-y-6">
+                      {/* Situation */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-white mb-2">Situation</h4>
+                        <p className="text-xs text-zinc-300 leading-relaxed">{insights.situation}</p>
+                      </div>
+
+                      {/* Pain */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-white mb-2">Pain</h4>
+                        <ul className="space-y-2">
+                          {insights.pain.map((item, idx) => (
+                            <li key={idx} className="text-xs text-zinc-300 flex gap-2">
+                              <span className="text-purple-400 flex-shrink-0">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Impact */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-white mb-2">Impact</h4>
+                        <ul className="space-y-2">
+                          {insights.impact.map((item, idx) => (
+                            <li key={idx} className="text-xs text-zinc-300 flex gap-2">
+                              <span className="text-purple-400 flex-shrink-0">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Critical Event */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-white mb-2">Critical Event</h4>
+                        <p className="text-xs text-zinc-300 leading-relaxed">{insights.criticalEvent}</p>
+                      </div>
+
+                      {/* Decision */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-white mb-2">Decision</h4>
+                        <p className="text-xs text-zinc-300 leading-relaxed">{insights.decision}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Sidebar - Insights */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Summary Card */}
-            <Card className="border border-zinc-800 ">
-              <CardContent className="pt-6">
-                <h2 className="text-sm font-semibold text-white mb-3">Summary</h2>
-                <p className="text-sm text-zinc-300 leading-relaxed">{insights.summary}</p>
-              </CardContent>
-            </Card>
-
-            {/* Insights Section */}
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-sm font-semibold text-white mb-3">Insights</h3>
               </div>
-
-              <Card className="border border-zinc-800 bg-zinc-900/50">
-                <CardContent className="pt-6 space-y-6">
-                  {/* Situation */}
-                  <div>
-                    <h4 className="text-sm font-semibold text-white mb-2">Situation</h4>
-                    <p className="text-xs text-zinc-300 leading-relaxed">{insights.situation}</p>
-                  </div>
-
-                  {/* Pain */}
-                  <div>
-                    <h4 className="text-sm font-semibold text-white mb-2">Pain</h4>
-                    <ul className="space-y-2">
-                      {insights.pain.map((item, idx) => (
-                        <li key={idx} className="text-xs text-zinc-300 flex gap-2">
-                          <span className="text-purple-400 flex-shrink-0">•</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Impact */}
-                  <div>
-                    <h4 className="text-sm font-semibold text-white mb-2">Impact</h4>
-                    <ul className="space-y-2">
-                      {insights.impact.map((item, idx) => (
-                        <li key={idx} className="text-xs text-zinc-300 flex gap-2">
-                          <span className="text-purple-400 flex-shrink-0">•</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Critical Event */}
-                  <div>
-                    <h4 className="text-sm font-semibold text-white mb-2">Critical Event</h4>
-                    <p className="text-xs text-zinc-300 leading-relaxed">{insights.criticalEvent}</p>
-                  </div>
-
-                  {/* Decision */}
-                  <div>
-                    <h4 className="text-sm font-semibold text-white mb-2">Decision</h4>
-                    <p className="text-xs text-zinc-300 leading-relaxed">{insights.decision}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
 
       {/* Floating Chatbar */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none">
         <div className="max-w-md mx-auto pointer-events-auto">
-          <div className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 shadow-lg hover:bg-white/10 transition-colors cursor-pointer"
-            onClick={() => setIsModalOpen(true)}>
+          <div
+            className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 shadow-lg hover:bg-white/10 transition-colors cursor-pointer"
+            onClick={() => setIsModalOpen(true)}
+          >
             <MessageCircle className="h-5 w-5 text-zinc-400 flex-shrink-0" />
             <input
               type="text"
