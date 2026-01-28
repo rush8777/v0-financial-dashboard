@@ -27,6 +27,26 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
+const toptabs = [
+  { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
+  { id: "clip-search", label: "Clip Search", icon: Search, isActive: false },
+  {
+    id: "transcription",
+    label: "Video Transcription",
+    icon: FileText,
+    isActive: false,
+  },
+  { id: "editor", label: "Video Editor", icon: Scissors, isActive: false },
+  {
+    id: "marketer",
+    label: "Video Marketer",
+    icon: Megaphone,
+    isActive: false,
+    badge: "Agent",
+  },
+  { id: "hardware", label: "AI Hardware", icon: Cpu, isActive: false, badge: "Agent" },
+]
+
 const tabs = [
   { id: "transcript", label: "Transcript", icon: FileText, isActive: true },
   { id: "speakers", label: "Speakers", icon: Users, isActive: false },
@@ -123,6 +143,33 @@ export default function Hooks() {
             </div>
           </div>
         </div>
+        {/* Tab Navigation */}
+      <div className="mb-8 max-w-4xl w-full overflow-x-auto">
+        <div className="flex items-center justify-center gap-1.5 flex-nowrap px-2">
+          {toptabs.map((toptab) => {
+            const Icon = toptab.icon
+            return (
+              <button
+                key={toptab.id}
+                className={cn(
+                  "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap flex-shrink-0",
+                  toptab.isActive
+                    ? "bg-zinc-800 text-white shadow-lg"
+                    : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
+                )}
+              >
+                <Icon className="h-3.5 w-3.5" />
+                {toptab.label}
+                {toptab.badge && (
+                  <span className="ml-0.5 px-1 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
+                    {toptab.badge}
+                  </span>
+                )}
+              </button>
+            )
+          })}
+        </div>
+      </div>
 
         {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
