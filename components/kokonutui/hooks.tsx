@@ -24,12 +24,12 @@ import {
   MoreHorizontal,
   ArrowUp,
 } from "lucide-react"
-import { ChartSpline } from "lucide-react"
+import { ChartNoAxesColumnIncreasing } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
-  { id: "statistics", label: "Statistics", icon: ChartSpline, isActive: false },
+  { id: "statistics", label: "Statistics", icon: ChartNoAxesColumnIncreasing, isActive: false },
   {
     id: "transcription",
     label: "Video Transcription",
