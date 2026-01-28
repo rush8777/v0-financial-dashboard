@@ -195,63 +195,57 @@ export default function Hooks() {
               </CardContent>
             </Card>
 
-            {/* Insights Sections */}
+            {/* Insights Section */}
             <div className="space-y-4">
               <div>
                 <h3 className="text-sm font-semibold text-white mb-3">Insights</h3>
               </div>
 
-              {/* Situation */}
               <Card className="border border-zinc-800 bg-zinc-900/50">
-                <CardContent className="pt-6">
-                  <h4 className="text-sm font-semibold text-white mb-2">Situation</h4>
-                  <p className="text-xs text-zinc-300 leading-relaxed">{insights.situation}</p>
-                </CardContent>
-              </Card>
+                <CardContent className="pt-6 space-y-6">
+                  {/* Situation */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-2">Situation</h4>
+                    <p className="text-xs text-zinc-300 leading-relaxed">{insights.situation}</p>
+                  </div>
 
-              {/* Pain */}
-              <Card className="border border-zinc-800 bg-zinc-900/50">
-                <CardContent className="pt-6">
-                  <h4 className="text-sm font-semibold text-white mb-2">Pain</h4>
-                  <ul className="space-y-2">
-                    {insights.pain.map((item, idx) => (
-                      <li key={idx} className="text-xs text-zinc-300 flex gap-2">
-                        <span className="text-purple-400 flex-shrink-0">•</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+                  {/* Pain */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-2">Pain</h4>
+                    <ul className="space-y-2">
+                      {insights.pain.map((item, idx) => (
+                        <li key={idx} className="text-xs text-zinc-300 flex gap-2">
+                          <span className="text-purple-400 flex-shrink-0">•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-              {/* Impact */}
-              <Card className="border border-zinc-800 bg-zinc-900/50">
-                <CardContent className="pt-6">
-                  <h4 className="text-sm font-semibold text-white mb-2">Impact</h4>
-                  <ul className="space-y-2">
-                    {insights.impact.map((item, idx) => (
-                      <li key={idx} className="text-xs text-zinc-300 flex gap-2">
-                        <span className="text-purple-400 flex-shrink-0">•</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+                  {/* Impact */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-2">Impact</h4>
+                    <ul className="space-y-2">
+                      {insights.impact.map((item, idx) => (
+                        <li key={idx} className="text-xs text-zinc-300 flex gap-2">
+                          <span className="text-purple-400 flex-shrink-0">•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-              {/* Critical Event */}
-              <Card className="border border-zinc-800 bg-zinc-900/50">
-                <CardContent className="pt-6">
-                  <h4 className="text-sm font-semibold text-white mb-2">Critical Event</h4>
-                  <p className="text-xs text-zinc-300 leading-relaxed">{insights.criticalEvent}</p>
-                </CardContent>
-              </Card>
+                  {/* Critical Event */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-2">Critical Event</h4>
+                    <p className="text-xs text-zinc-300 leading-relaxed">{insights.criticalEvent}</p>
+                  </div>
 
-              {/* Decision */}
-              <Card className="border border-zinc-800 bg-zinc-900/50">
-                <CardContent className="pt-6">
-                  <h4 className="text-sm font-semibold text-white mb-2">Decision</h4>
-                  <p className="text-xs text-zinc-300 leading-relaxed">{insights.decision}</p>
+                  {/* Decision */}
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-2">Decision</h4>
+                    <p className="text-xs text-zinc-300 leading-relaxed">{insights.decision}</p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
