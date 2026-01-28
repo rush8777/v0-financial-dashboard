@@ -86,7 +86,7 @@ export default function Hooks() {
   const [activeTab, setActiveTab] = useState("transcript")
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 py-6 px-4">
+    <div className="min-h-screen py-6 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-6 space-y-4">
