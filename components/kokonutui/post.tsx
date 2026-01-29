@@ -14,7 +14,7 @@ import {
   Edit2,
   Megaphone,
   Clock,
-  ChartNoAxesColumnIncreasing
+  BarChart3
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -27,7 +27,7 @@ interface Message {
 
 const toptabs = [
   { id: "post-chat", label: "Post Chat", icon: MessageCircle, isActive: true },
-  { id: "statistics", label: "Statistics", icon: ChartNoAxesColumnIncreasing, isActive: false },
+  { id: "statistics", label: "Statistics", icon: BarChart3, isActive: false },
   { id: "content-analysis", label: "Content Analysis", icon: FileText, isActive: false },
   { id: "editor", label: "Post Editor", icon: Edit2, isActive: false },
   { id: "marketer", label: "Social Marketer", icon: Megaphone, isActive: false, badge: "Agent" },
