@@ -51,7 +51,7 @@ export default function Post() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] p-6">
+    <div className="min-h-screen p-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Instagram-Style Card - Left Side */}
