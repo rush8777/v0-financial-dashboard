@@ -180,33 +180,31 @@ export default function Hooks() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="mb-8 max-w-4xl w-full overflow-x-auto">
-          <div className="flex justify-center">
-            <div className="flex items-center gap-1.5 px-2 w-max text-center justify-center">
-              {toptabs.map((toptab) => {
-                const Icon = toptab.icon
-                return (
-                  <button
-                    key={toptab.id}
-                    onClick={() => setActiveTopTab(toptab.id)}
-                    className={cn(
-                      "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap flex-shrink-0",
-                      activeTopTab === toptab.id
-                        ? "bg-zinc-800 text-white shadow-lg"
-                        : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
-                    )}
-                  >
-                    <Icon className="h-3.5 w-3.5" />
-                    {toptab.label}
-                    {toptab.badge && (
-                      <span className="ml-0.5 px-1 py-0.5 text-xs rounded bg-purple-500/30 text-purple-300">
-                        {toptab.badge}
-                      </span>
-                    )}
-                  </button>
-                )
-              })}
-            </div>
+        <div className="mb-8 flex justify-center">
+          <div className="inline-flex items-center gap-1.5 bg-secondary/10 p-1 rounded-lg border border-border/50">
+            {toptabs.map((toptab) => {
+              const Icon = toptab.icon
+              return (
+                <button
+                  key={toptab.id}
+                  onClick={() => setActiveTopTab(toptab.id)}
+                  className={cn(
+                    "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap",
+                    activeTopTab === toptab.id
+                      ? "bg-zinc-800 text-white shadow-lg"
+                      : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
+                  )}
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                  {toptab.label}
+                  {toptab.badge && (
+                    <span className="ml-0.5 px-1.5 py-0.5 text-[10px] rounded-md bg-purple-500/30 text-purple-300 font-semibold">
+                      {toptab.badge}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
           </div>
         </div>
 
