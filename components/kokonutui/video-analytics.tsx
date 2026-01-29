@@ -254,44 +254,44 @@ export default function VideoAnalytics() {
           </button>
         </div>
 
-        {/* Bubble Visualization */}
-        <div className="flex items-center justify-center gap-12 mb-12 min-h-64">
-          {/* Likes Bubble */}
-          <div className="flex flex-col items-center">
-            <div className="relative w-36 h-36 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mb-4 shadow-lg">
+        {/* Bubble Visualization - Organic Layout */}
+        <div className="relative min-h-[400px] mb-12 flex items-center justify-center">
+          {/* Likes Bubble - Largest (Bottom Left) */}
+          <div className="absolute left-8 top-1/2 -translate-y-1/2">
+            <div className="relative w-48 h-48 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-lg">
               <div className="text-center">
-                <div className="text-3xl font-bold text-white">48%</div>
-                <div className="text-xs text-blue-100 mt-1">Likes</div>
+                <div className="text-4xl font-bold text-white">48%</div>
+                <div className="text-sm text-blue-100 mt-2">Likes</div>
               </div>
             </div>
           </div>
 
-          {/* Comments Bubble */}
-          <div className="flex flex-col items-center">
-            <div className="relative w-28 h-28 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center mb-3 shadow-md">
+          {/* Comments Bubble - Second Largest (Top Right) */}
+          <div className="absolute right-20 top-8">
+            <div className="relative w-40 h-40 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-lg">
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">32%</div>
-                <div className="text-xs text-emerald-100 mt-1">Comments</div>
+                <div className="text-3xl font-bold text-white">32%</div>
+                <div className="text-sm text-emerald-100 mt-1">Food & Drink</div>
               </div>
             </div>
           </div>
 
-          {/* Shares Bubble */}
-          <div className="flex flex-col items-center">
-            <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-pink-300 to-pink-500 flex items-center justify-center mb-2 shadow-md">
+          {/* Shares Bubble - Medium (Bottom Right) */}
+          <div className="absolute right-32 bottom-16">
+            <div className="relative w-32 h-32 rounded-full bg-gradient-to-br from-pink-300 to-pink-500 flex items-center justify-center shadow-md">
               <div className="text-center">
-                <div className="text-xl font-bold text-white">13%</div>
-                <div className="text-xs text-pink-100">Shares</div>
+                <div className="text-2xl font-bold text-white">13%</div>
+                <div className="text-sm text-pink-100 mt-1">Shopping</div>
               </div>
             </div>
           </div>
 
-          {/* Views Bubble */}
-          <div className="flex flex-col items-center">
-            <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-md">
+          {/* Views Bubble - Smallest (Far Right) */}
+          <div className="absolute right-8 top-1/2 -translate-y-1/2 translate-y-8">
+            <div className="relative w-24 h-24 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-md">
               <div className="text-center">
-                <div className="text-lg font-bold text-white">7%</div>
-                <div className="text-xs text-amber-100 mt-0.5">Views</div>
+                <div className="text-xl font-bold text-white">7%</div>
+                <div className="text-xs text-amber-100 mt-1">Transport</div>
               </div>
             </div>
           </div>
@@ -303,28 +303,28 @@ export default function VideoAnalytics() {
             <div className="w-3 h-3 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />
             <div>
               <p className="text-sm font-medium text-zinc-900 dark:text-white">Likes</p>
-              <p className="text-xs text-zinc-600 dark:text-zinc-400">12,847 reactions</p>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">$758.20</p>
             </div>
           </div>
           <div className="flex items-start gap-3">
             <div className="w-3 h-3 rounded-full bg-emerald-500 flex-shrink-0 mt-1.5" />
             <div>
-              <p className="text-sm font-medium text-zinc-900 dark:text-white">Comments</p>
-              <p className="text-xs text-zinc-600 dark:text-zinc-400">8,234 messages</p>
+              <p className="text-sm font-medium text-zinc-900 dark:text-white">Food & Drink</p>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">$758.20</p>
             </div>
           </div>
           <div className="flex items-start gap-3">
             <div className="w-3 h-3 rounded-full bg-pink-500 flex-shrink-0 mt-1.5" />
             <div>
-              <p className="text-sm font-medium text-zinc-900 dark:text-white">Shares</p>
-              <p className="text-xs text-zinc-600 dark:text-zinc-400">3,456 times</p>
+              <p className="text-sm font-medium text-zinc-900 dark:text-white">Shopping</p>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">$758.20</p>
             </div>
           </div>
           <div className="flex items-start gap-3">
             <div className="w-3 h-3 rounded-full bg-amber-500 flex-shrink-0 mt-1.5" />
             <div>
-              <p className="text-sm font-medium text-zinc-900 dark:text-white">Views</p>
-              <p className="text-xs text-zinc-600 dark:text-zinc-400">1,789 incremental</p>
+              <p className="text-sm font-medium text-zinc-900 dark:text-white">Transportation</p>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">$758.20</p>
             </div>
           </div>
         </div>
