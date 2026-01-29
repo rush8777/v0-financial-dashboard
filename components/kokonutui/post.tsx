@@ -1,7 +1,21 @@
 'use client'
 
 import { useState } from 'react'
-import { Send, Heart, MessageCircle, Share2, MoreHorizontal, Bookmark } from 'lucide-react'
+import { 
+  Send, 
+  Heart, 
+  MessageCircle, 
+  Share2, 
+  MoreHorizontal, 
+  Bookmark,
+  Calendar,
+  Users,
+  FileText,
+  Edit2,
+  Megaphone,
+  Clock,
+  ChartNoAxesColumnIncreasing
+} from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface Message {
@@ -10,6 +24,15 @@ interface Message {
   isUser: boolean
   timestamp: string
 }
+
+const toptabs = [
+  { id: "post-chat", label: "Post Chat", icon: MessageCircle, isActive: true },
+  { id: "statistics", label: "Statistics", icon: ChartNoAxesColumnIncreasing, isActive: false },
+  { id: "content-analysis", label: "Content Analysis", icon: FileText, isActive: false },
+  { id: "editor", label: "Post Editor", icon: Edit2, isActive: false },
+  { id: "marketer", label: "Social Marketer", icon: Megaphone, isActive: false, badge: "Agent" },
+  { id: "scheduler", label: "Post Scheduler", icon: Clock, isActive: false, badge: "Agent" },
+]
 
 export default function Post() {
   const [messages, setMessages] = useState<Message[]>([
@@ -34,6 +57,7 @@ export default function Post() {
   ])
   const [inputValue, setInputValue] = useState('')
   const [isLiked, setIsLiked] = useState(false)
+  const [activeTopTab, setActiveTopTab] = useState("post-chat")
 
   const handleSend = () => {
     if (inputValue.trim()) {
@@ -53,6 +77,56 @@ export default function Post() {
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="mb-6 space-y-4">
+          <div className="flex items-center gap-3">
+            <h1 className="text-2xl font-bold text-white">Design System Campaign</h1>
+            <span className="px-2 py-1 text-xs font-medium bg-zinc-800 text-zinc-400 rounded">
+              ★
+            </span>
+          </div>
+          <div className="flex items-center gap-4 text-sm text-zinc-400">
+            <div className="flex items-center gap-1">
+              <Calendar className="h-4 w-4" />
+              <span>Jan 15</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Users className="h-4 w-4" />
+              <span>2.4K engagements</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Tab Navigation */}
+        <div className="mb-8 flex justify-center">
+          <div className="inline-flex items-center gap-1.5 p-1 rounded-lg">
+            {toptabs.map((toptab) => {
+              const Icon = toptab.icon
+              return (
+                <button
+                  key={toptab.id}
+                  onClick={() => setActiveTopTab(toptab.id)}
+                  className={cn(
+                    "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap",
+                    activeTopTab === toptab.id
+                      ? "bg-zinc-800 text-white shadow-lg"
+                      : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
+                  )}
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                  {toptab.label}
+                  {toptab.badge && (
+                    <span className="ml-0.5 px-1.5 py-0.5 text-[10px] rounded-md bg-purple-500/30 text-purple-300 font-semibold">
+                      {toptab.badge}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Instagram-Style Card - Left Side */}
           <div className="lg:col-span-2">
