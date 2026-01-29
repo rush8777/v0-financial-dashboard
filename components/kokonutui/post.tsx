@@ -146,9 +146,9 @@ export default function Post() {
 
           {/* Chat Interface - Right Side */}
           <div className="lg:col-span-3">
-            <div className="border border-zinc-800 bg-zinc-900/50 rounded-2xl overflow-hidden h-full flex flex-col">
+            <div className="rounded-2xl overflow-hidden h-full flex flex-col">
               {/* Chat Header */}
-              <div className="border-b border-zinc-800 p-4 flex items-center justify-between">
+              <div className="p-4 flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-semibold text-white">Comments</h3>
                   <p className="text-xs text-zinc-400">{messages.length} messages</p>
