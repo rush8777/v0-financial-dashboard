@@ -182,9 +182,9 @@ export default function Post() {
           </div>
 
           {/* Insights Accordion - Right Side */}
-          <div className="lg:col-span-3">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 h-full flex items-center justify-center">
-              <div className="w-full max-w-md">
+          <div className="lg:col-span-3 flex items-center justify-center">
+            <div className="w-full max-w-md">
+              <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
                 <div className="mb-4 text-center">
                   <h3 className="text-base font-semibold text-white">Post Insights</h3>
                   <p className="text-xs text-zinc-400 mt-1">AI-generated analysis</p>
