@@ -17,13 +17,12 @@ import {
   BarChart3
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-interface Message {
-  id: number
-  text: string
-  isUser: boolean
-  timestamp: string
-}
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const toptabs = [
   { id: "post-chat", label: "Post Chat", icon: MessageCircle, isActive: true },
@@ -35,44 +34,8 @@ const toptabs = [
 ]
 
 export default function Post() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1,
-      text: 'This design system is amazing! Love the components.',
-      isUser: false,
-      timestamp: '10:32 AM',
-    },
-    {
-      id: 2,
-      text: 'Thank you! We put a lot of effort into making it intuitive.',
-      isUser: true,
-      timestamp: '10:35 AM',
-    },
-    {
-      id: 3,
-      text: 'Can you share more about the color tokens?',
-      isUser: false,
-      timestamp: '10:38 AM',
-    },
-  ])
-  const [inputValue, setInputValue] = useState('')
   const [isLiked, setIsLiked] = useState(false)
   const [activeTopTab, setActiveTopTab] = useState("post-chat")
-
-  const handleSend = () => {
-    if (inputValue.trim()) {
-      setMessages([
-        ...messages,
-        {
-          id: messages.length + 1,
-          text: inputValue,
-          isUser: true,
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        },
-      ])
-      setInputValue('')
-    }
-  }
 
   return (
     <div className="min-h-screen p-6">
@@ -218,69 +181,109 @@ export default function Post() {
             </div>
           </div>
 
-          {/* Chat Interface - Right Side */}
+          {/* Insights Accordion - Right Side */}
           <div className="lg:col-span-3">
-            <div className="rounded-2xl overflow-hidden h-full flex flex-col">
-              {/* Chat Header */}
-              <div className="p-4 flex items-center justify-between">
-                <div>
-                  <h3 className="text-sm font-semibold text-white">Comments</h3>
-                  <p className="text-xs text-zinc-400">{messages.length} messages</p>
-                </div>
-                <button className="p-2 hover:bg-zinc-800 rounded-lg transition-colors">
-                  <MoreHorizontal className="h-4 w-4 text-zinc-400" />
-                </button>
+            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+              <div className="mb-4">
+                <h3 className="text-lg font-semibold text-white">Post Insights</h3>
+                <p className="text-xs text-zinc-400 mt-1">AI-generated analysis of post performance</p>
               </div>
+              
+              <Accordion
+                type="single"
+                collapsible
+                defaultValue="summary"
+                className="w-full"
+              >
+                <AccordionItem value="summary" className="border-zinc-800">
+                  <AccordionTrigger className="text-sm font-medium text-white hover:text-purple-400 py-3">
+                    Summary
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-4">
+                    This promotional post for a design system received strong engagement with 2.4K interactions. 
+                    The bold typography and clean messaging resonated well with the creative community, driving 
+                    significant comment activity and shares.
+                  </AccordionContent>
+                </AccordionItem>
 
-              {/* Messages Area */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                {messages.map((message) => (
-                  <div
-                    key={message.id}
-                    className={cn('flex', message.isUser ? 'justify-end' : 'justify-start')}
-                  >
-                    <div
-                      className={cn(
-                        'max-w-xs lg:max-w-sm px-4 py-2.5 rounded-lg',
-                        message.isUser
-                          ? 'bg-purple-600 text-white rounded-br-none'
-                          : 'bg-zinc-800 text-white rounded-bl-none'
-                      )}
-                    >
-                      <p className="text-sm">{message.text}</p>
-                      <span className={cn(
-                        'text-xs mt-1 block',
-                        message.isUser ? 'text-purple-200' : 'text-zinc-400'
-                      )}>
-                        {message.timestamp}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                <AccordionItem value="audience" className="border-zinc-800">
+                  <AccordionTrigger className="text-sm font-medium text-white hover:text-purple-400 py-3">
+                    Audience Insights
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-4">
+                    Primary engagement from designers and creative professionals aged 25-40. High save rate 
+                    indicates strong intent to reference later. Geographic concentration in US (45%), EU (30%), 
+                    and Asia (25%).
+                  </AccordionContent>
+                </AccordionItem>
 
-              {/* Input Area */}
-              <div className="border-t border-zinc-800 p-4 space-y-3">
-                <div className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') handleSend()
-                    }}
-                    placeholder="Add a comment..."
-                    className="flex-1 bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
-                  />
-                  <button
-                    onClick={handleSend}
-                    className="p-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors flex-shrink-0"
-                  >
-                    <Send className="h-4 w-4" />
-                  </button>
-                </div>
-                <p className="text-xs text-zinc-400">Press Enter to send</p>
-              </div>
+                <AccordionItem value="performance" className="border-zinc-800">
+                  <AccordionTrigger className="text-sm font-medium text-white hover:text-purple-400 py-3">
+                    Content Performance
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-zinc-300 pb-4">
+                    <ul className="space-y-2">
+                      <li className="flex gap-2">
+                        <span className="text-purple-400">•</span>
+                        <span>Strong visual hierarchy with bold typography drove 40% higher engagement than average</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-purple-400">•</span>
+                        <span>Purple gradient background aligned with brand recognition, increasing shares by 25%</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-purple-400">•</span>
+                        <span>Call-to-action clarity resulted in 18% higher click-through rate</span>
+                      </li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="engagement" className="border-zinc-800">
+                  <AccordionTrigger className="text-sm font-medium text-white hover:text-purple-400 py-3">
+                    Engagement Metrics
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-zinc-300 pb-4">
+                    <ul className="space-y-2">
+                      <li className="flex gap-2">
+                        <span className="text-purple-400">•</span>
+                        <span>Comments focused on design quality and component requests (78% positive)</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-purple-400">•</span>
+                        <span>High bookmark rate (18%) suggests professional use case</span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span className="text-purple-400">•</span>
+                        <span>Peak engagement in first 2 hours, indicating strong follower base</span>
+                      </li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="sentiment" className="border-zinc-800">
+                  <AccordionTrigger className="text-sm font-medium text-white hover:text-purple-400 py-3">
+                    Sentiment Analysis
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-4">
+                    92% positive sentiment in comments. Main themes: appreciation for design quality, requests 
+                    for more information, interest in collaboration. Minimal negative feedback focused on pricing 
+                    inquiries rather than product criticism.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="recommendations" className="border-zinc-800">
+                  <AccordionTrigger className="text-sm font-medium text-white hover:text-purple-400 py-3">
+                    Recommendations
+                  </AccordionTrigger>
+                  <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-4">
+                    The bold headline format and clean aesthetic performed exceptionally well. Consider A/B testing 
+                    similar layouts with different color schemes. The 'sponsored' tag didn't negatively impact 
+                    engagement - maintain transparency in future campaigns. Optimal posting time appears to be 
+                    10-11 AM EST for maximum reach.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           </div>
         </div>
