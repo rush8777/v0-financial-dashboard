@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Layout from '@/components/kokonutui/layout'
 import Post from '@/components/kokonutui/post'
 
 export const metadata: Metadata = {
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function PostPage() {
-  return <Post />
+  return (
+    <Layout>
+      <Post />
+    </Layout>
+  )
 }
