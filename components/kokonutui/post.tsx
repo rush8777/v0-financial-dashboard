@@ -183,107 +183,92 @@ export default function Post() {
 
           {/* Insights Accordion - Right Side */}
           <div className="lg:col-span-3">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-              <div className="mb-4">
-                <h3 className="text-lg font-semibold text-white">Post Insights</h3>
-                <p className="text-xs text-zinc-400 mt-1">AI-generated analysis of post performance</p>
+            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 h-full flex items-center justify-center">
+              <div className="w-full max-w-md">
+                <div className="mb-4 text-center">
+                  <h3 className="text-base font-semibold text-white">Post Insights</h3>
+                  <p className="text-xs text-zinc-400 mt-1">AI-generated analysis</p>
+                </div>
+                
+                <Accordion
+                  type="single"
+                  collapsible
+                  defaultValue="summary"
+                  className="w-full"
+                >
+                  <AccordionItem value="summary" className="border-zinc-800">
+                    <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
+                      Summary
+                    </AccordionTrigger>
+                    <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-3">
+                      Strong engagement with 2.4K interactions. Bold typography and clean messaging resonated well with the creative community.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="audience" className="border-zinc-800">
+                    <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
+                      Audience Insights
+                    </AccordionTrigger>
+                    <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-3">
+                      Primary engagement from designers aged 25-40. High save rate indicates professional intent.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="performance" className="border-zinc-800">
+                    <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
+                      Content Performance
+                    </AccordionTrigger>
+                    <AccordionContent className="text-xs text-zinc-300 pb-3">
+                      <ul className="space-y-1.5">
+                        <li className="flex gap-2">
+                          <span className="text-purple-400">•</span>
+                          <span>40% higher engagement from bold typography</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-purple-400">•</span>
+                          <span>25% increase in shares from brand alignment</span>
+                        </li>
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="engagement" className="border-zinc-800">
+                    <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
+                      Engagement Metrics
+                    </AccordionTrigger>
+                    <AccordionContent className="text-xs text-zinc-300 pb-3">
+                      <ul className="space-y-1.5">
+                        <li className="flex gap-2">
+                          <span className="text-purple-400">•</span>
+                          <span>78% positive comments on design quality</span>
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="text-purple-400">•</span>
+                          <span>18% bookmark rate for professional use</span>
+                        </li>
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="sentiment" className="border-zinc-800">
+                    <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
+                      Sentiment Analysis
+                    </AccordionTrigger>
+                    <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-3">
+                      92% positive sentiment. Main themes: design appreciation, collaboration interest.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="recommendations" className="border-zinc-800">
+                    <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
+                      Recommendations
+                    </AccordionTrigger>
+                    <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-3">
+                      A/B test color schemes. Post at 10-11 AM EST for maximum reach.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </div>
-              
-              <Accordion
-                type="single"
-                collapsible
-                defaultValue="summary"
-                className="w-full"
-              >
-                <AccordionItem value="summary" className="border-zinc-800">
-                  <AccordionTrigger className="text-sm font-medium text-white hover:text-purple-400 py-3">
-                    Summary
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-4">
-                    This promotional post for a design system received strong engagement with 2.4K interactions. 
-                    The bold typography and clean messaging resonated well with the creative community, driving 
-                    significant comment activity and shares.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="audience" className="border-zinc-800">
-                  <AccordionTrigger className="text-sm font-medium text-white hover:text-purple-400 py-3">
-                    Audience Insights
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-4">
-                    Primary engagement from designers and creative professionals aged 25-40. High save rate 
-                    indicates strong intent to reference later. Geographic concentration in US (45%), EU (30%), 
-                    and Asia (25%).
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="performance" className="border-zinc-800">
-                  <AccordionTrigger className="text-sm font-medium text-white hover:text-purple-400 py-3">
-                    Content Performance
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs text-zinc-300 pb-4">
-                    <ul className="space-y-2">
-                      <li className="flex gap-2">
-                        <span className="text-purple-400">•</span>
-                        <span>Strong visual hierarchy with bold typography drove 40% higher engagement than average</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-purple-400">•</span>
-                        <span>Purple gradient background aligned with brand recognition, increasing shares by 25%</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-purple-400">•</span>
-                        <span>Call-to-action clarity resulted in 18% higher click-through rate</span>
-                      </li>
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="engagement" className="border-zinc-800">
-                  <AccordionTrigger className="text-sm font-medium text-white hover:text-purple-400 py-3">
-                    Engagement Metrics
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs text-zinc-300 pb-4">
-                    <ul className="space-y-2">
-                      <li className="flex gap-2">
-                        <span className="text-purple-400">•</span>
-                        <span>Comments focused on design quality and component requests (78% positive)</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-purple-400">•</span>
-                        <span>High bookmark rate (18%) suggests professional use case</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="text-purple-400">•</span>
-                        <span>Peak engagement in first 2 hours, indicating strong follower base</span>
-                      </li>
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="sentiment" className="border-zinc-800">
-                  <AccordionTrigger className="text-sm font-medium text-white hover:text-purple-400 py-3">
-                    Sentiment Analysis
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-4">
-                    92% positive sentiment in comments. Main themes: appreciation for design quality, requests 
-                    for more information, interest in collaboration. Minimal negative feedback focused on pricing 
-                    inquiries rather than product criticism.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="recommendations" className="border-zinc-800">
-                  <AccordionTrigger className="text-sm font-medium text-white hover:text-purple-400 py-3">
-                    Recommendations
-                  </AccordionTrigger>
-                  <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-4">
-                    The bold headline format and clean aesthetic performed exceptionally well. Consider A/B testing 
-                    similar layouts with different color schemes. The 'sponsored' tag didn't negatively impact 
-                    engagement - maintain transparency in future campaigns. Optimal posting time appears to be 
-                    10-11 AM EST for maximum reach.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
             </div>
           </div>
         </div>
