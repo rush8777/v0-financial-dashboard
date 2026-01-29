@@ -81,7 +81,7 @@ export default function Post() {
               </div>
 
               {/* Post Content - Main Image Area */}
-              <div className="relative bg-gradient-to-br from-purple-600 via-purple-600 to-purple-600 aspect-square flex flex-col items-center justify-center p-8">
+              <div className="relative bg-gradient-to-br from-purple-600 via-purple-600 to-purple-600 h-[400px] flex flex-col items-center justify-center p-8">
                 {/* Geometric Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute top-0 left-0 w-full h-full">
