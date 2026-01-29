@@ -181,7 +181,7 @@ export default function Hooks() {
 
         {/* Tab Navigation */}
         <div className="mb-8 flex justify-center">
-          <div className="inline-flex items-center gap-1.5 bg-secondary/10 p-1 rounded-lg border border-border/50">
+          <div className="inline-flex items-center gap-1.5  p-1 rounded-lg">
             {toptabs.map((toptab) => {
               const Icon = toptab.icon
               return (
