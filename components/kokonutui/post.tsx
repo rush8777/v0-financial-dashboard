@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Card, CardContent } from '@/components/ui/card'
-import { Send, Heart, MessageCircle, Share2, MoreHorizontal } from 'lucide-react'
+import { Send, Heart, MessageCircle, Share2, MoreHorizontal, Bookmark } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface Message {
@@ -34,6 +33,7 @@ export default function Post() {
     },
   ])
   const [inputValue, setInputValue] = useState('')
+  const [isLiked, setIsLiked] = useState(false)
 
   const handleSend = () => {
     if (inputValue.trim()) {
@@ -51,57 +51,110 @@ export default function Post() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900 p-6">
+    <div className="min-h-screen bg-[#0a0a0a] p-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Image Card - Left Side */}
+          {/* Instagram-Style Card - Left Side */}
           <div className="lg:col-span-2">
-            <Card className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 overflow-hidden h-full flex flex-col">
-              <div className="relative overflow-hidden bg-gradient-to-br from-purple-400 to-blue-500 aspect-square">
-                <img
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=600&fit=crop"
-                  alt="Design System"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors" />
-                <button className="absolute top-4 right-4 p-2 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-full transition-colors">
-                  <Heart className="h-5 w-5 text-white fill-white" />
-                </button>
+            <div className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300">
+              {/* Instagram Header */}
+              <div className="bg-zinc-900/50 px-4 py-3 flex items-center justify-between border-b border-zinc-800/50">
+                <div className="flex items-center gap-3">
+                  {/* Brand Icon */}
+                  <div className="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">D</span>
+                  </div>
+                  {/* Brand Info */}
+                  <div>
+                    <div className="text-sm font-semibold text-white">Design System</div>
+                    <div className="text-xs text-zinc-400">Promoted by sponsor</div>
+                  </div>
+                </div>
+                {/* Menu Dots */}
+                <div className="text-white">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <circle cx="10" cy="4" r="1.5" />
+                    <circle cx="10" cy="10" r="1.5" />
+                    <circle cx="10" cy="16" r="1.5" />
+                  </svg>
+                </div>
               </div>
-              <CardContent className="flex-1 flex flex-col p-4">
-                <h2 className="text-lg font-semibold text-zinc-900 dark:text-white mb-2">Design System Components</h2>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 flex-1 mb-4">
-                  Comprehensive collection of reusable components and design tokens for building consistent, modern interfaces across your projects.
-                </p>
-                <div className="flex items-center gap-3 pt-4 border-t border-zinc-200 dark:border-zinc-800">
-                  <button className="flex-1 flex items-center justify-center gap-2 p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors">
-                    <Heart className="h-4 w-4 text-zinc-600 dark:text-zinc-400" />
-                    <span className="text-xs text-zinc-600 dark:text-zinc-400">247</span>
+
+              {/* Post Content - Main Image Area */}
+              <div className="relative bg-gradient-to-br from-purple-600 via-purple-600 to-purple-600 aspect-square flex flex-col items-center justify-center p-8">
+                {/* Geometric Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-0 left-0 w-full h-full">
+                    {[...Array(6)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute border-white/20"
+                        style={{
+                          width: '200%',
+                          height: '200%',
+                          border: '1px solid',
+                          transform: `rotate(${i * 30}deg)`,
+                          left: '-50%',
+                          top: '-50%'
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Headline Text */}
+                <div className="relative z-10 text-center mb-8">
+                  <h3 className="text-5xl sm:text-6xl font-black text-white leading-tight whitespace-pre-line">
+                    {'HELLO\nCREATORS,\nGOODBYE\nCHAOS!'}
+                  </h3>
+                </div>
+
+                {/* Subtext */}
+                <div className="relative z-10 text-center">
+                  <p className="text-base sm:text-lg font-medium text-white/90 whitespace-pre-line">
+                    {'The best analytics\nplatform for content'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Instagram Footer - Action Buttons */}
+              <div className="bg-zinc-900/50 px-4 py-3 flex items-center justify-between border-t border-zinc-800/50">
+                <div className="flex items-center gap-4">
+                  {/* Heart */}
+                  <button 
+                    onClick={() => setIsLiked(!isLiked)}
+                    className="text-white hover:text-zinc-300 transition-colors"
+                  >
+                    <Heart className={cn("h-6 w-6", isLiked && "fill-red-500 text-red-500")} />
                   </button>
-                  <button className="flex-1 flex items-center justify-center gap-2 p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors">
-                    <MessageCircle className="h-4 w-4 text-zinc-600 dark:text-zinc-400" />
-                    <span className="text-xs text-zinc-600 dark:text-zinc-400">89</span>
+                  {/* Comment */}
+                  <button className="text-white hover:text-zinc-300 transition-colors">
+                    <MessageCircle className="h-6 w-6" />
                   </button>
-                  <button className="flex-1 flex items-center justify-center gap-2 p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors">
-                    <Share2 className="h-4 w-4 text-zinc-600 dark:text-zinc-400" />
-                    <span className="text-xs text-zinc-600 dark:text-zinc-400">34</span>
+                  {/* Share */}
+                  <button className="text-white hover:text-zinc-300 transition-colors">
+                    <Share2 className="h-6 w-6" />
                   </button>
                 </div>
-              </CardContent>
-            </Card>
+                {/* Bookmark */}
+                <button className="text-white hover:text-zinc-300 transition-colors">
+                  <Bookmark className="h-6 w-6" />
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Chat Interface - Right Side */}
           <div className="lg:col-span-3">
-            <Card className="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 overflow-hidden h-full flex flex-col">
+            <div className="border border-zinc-800 bg-zinc-900/50 rounded-2xl overflow-hidden h-full flex flex-col">
               {/* Chat Header */}
-              <div className="border-b border-zinc-200 dark:border-zinc-800 p-4 flex items-center justify-between">
+              <div className="border-b border-zinc-800 p-4 flex items-center justify-between">
                 <div>
-                  <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">Comments</h3>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">{messages.length} messages</p>
+                  <h3 className="text-sm font-semibold text-white">Comments</h3>
+                  <p className="text-xs text-zinc-400">{messages.length} messages</p>
                 </div>
-                <button className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors">
-                  <MoreHorizontal className="h-4 w-4 text-zinc-600 dark:text-zinc-400" />
+                <button className="p-2 hover:bg-zinc-800 rounded-lg transition-colors">
+                  <MoreHorizontal className="h-4 w-4 text-zinc-400" />
                 </button>
               </div>
 
@@ -117,13 +170,13 @@ export default function Post() {
                         'max-w-xs lg:max-w-sm px-4 py-2.5 rounded-lg',
                         message.isUser
                           ? 'bg-purple-600 text-white rounded-br-none'
-                          : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white rounded-bl-none'
+                          : 'bg-zinc-800 text-white rounded-bl-none'
                       )}
                     >
                       <p className="text-sm">{message.text}</p>
                       <span className={cn(
                         'text-xs mt-1 block',
-                        message.isUser ? 'text-purple-200' : 'text-zinc-500 dark:text-zinc-400'
+                        message.isUser ? 'text-purple-200' : 'text-zinc-400'
                       )}>
                         {message.timestamp}
                       </span>
@@ -133,7 +186,7 @@ export default function Post() {
               </div>
 
               {/* Input Area */}
-              <div className="border-t border-zinc-200 dark:border-zinc-800 p-4 space-y-3">
+              <div className="border-t border-zinc-800 p-4 space-y-3">
                 <div className="flex items-center gap-2">
                   <input
                     type="text"
@@ -143,18 +196,18 @@ export default function Post() {
                       if (e.key === 'Enter') handleSend()
                     }}
                     placeholder="Add a comment..."
-                    className="flex-1 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg px-4 py-2.5 text-sm text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 transition-all"
+                    className="flex-1 bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2.5 text-sm text-white placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
                   />
                   <button
                     onClick={handleSend}
-                    className="p-2.5 bg-purple-600 hover:bg-purple-700 dark:hover:bg-purple-500 text-white rounded-lg transition-colors flex-shrink-0"
+                    className="p-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors flex-shrink-0"
                   >
                     <Send className="h-4 w-4" />
                   </button>
                 </div>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">Press Enter to send</p>
+                <p className="text-xs text-zinc-400">Press Enter to send</p>
               </div>
-            </Card>
+            </div>
           </div>
         </div>
       </div>
