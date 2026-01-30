@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import ChatMessage from "@/components/kokonutui/lovablechat";
 import ChatInput from "@/components/kokonutui/lovablechatinput";
 
+
 interface Message {
   id: number;
   content: string;
@@ -102,8 +103,8 @@ const Index = () => {
   return (
     <div className="flex flex-col h-screen bg-black">
       {/* Chat Messages Area */}
-      <div className="flex-1 overflow-y-auto scrollbar-thin px-4 py-8">
-        <div className="max-w-3xl mx-auto">
+      <div className="flex-1 overflow-y-auto scrollbar-thin px-3 py-4">
+        <div className="max-w-2xl mx-auto">
           {messages.map((message, index) => (
             <ChatMessage
               key={message.id}
@@ -117,7 +118,7 @@ const Index = () => {
       </div>
 
       {/* Chat Input Area */}
-      <div className="sticky bottom-0 bg-black pb-6 pt-4 px-4 border-t border-zinc-800/50">
+      <div className="sticky bottom-0 bg-black pb-3 pt-2 px-3 border-t border-zinc-800/50">
         <ChatInput onSend={handleSend} />
       </div>
     </div>
