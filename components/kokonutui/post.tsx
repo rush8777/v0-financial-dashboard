@@ -23,6 +23,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import InstagramPostShowcase from '@/components/kokonutui/search-sim' // Import the component
 
 const toptabs = [
   { id: "post-chat", label: "Post Chat", icon: MessageCircle, isActive: true },
@@ -89,189 +90,205 @@ export default function Post() {
           </div>
         </div>
 
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Instagram-Style Card - Left Side */}
-          <div className="lg:col-span-2">
-            <div className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300">
-              {/* Instagram Header */}
-              <div className="bg-zinc-900/50 px-4 py-3 flex items-center justify-between border-b border-zinc-800/50">
-                <div className="flex items-center gap-3">
-                  {/* Brand Icon */}
-                  <div className="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center">
-                    <span className="text-white font-bold text-lg">D</span>
+        {/* Conditional Content Based on Active Tab */}
+        {activeTopTab === "post-chat" && (
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+            {/* Instagram-Style Card - Left Side */}
+            <div className="lg:col-span-2">
+              <div className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300">
+                {/* Instagram Header */}
+                <div className="bg-zinc-900/50 px-4 py-3 flex items-center justify-between border-b border-zinc-800/50">
+                  <div className="flex items-center gap-3">
+                    {/* Brand Icon */}
+                    <div className="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">D</span>
+                    </div>
+                    {/* Brand Info */}
+                    <div>
+                      <div className="text-sm font-semibold text-white">Design System</div>
+                      <div className="text-xs text-zinc-400">Promoted by sponsor</div>
+                    </div>
                   </div>
-                  {/* Brand Info */}
-                  <div>
-                    <div className="text-sm font-semibold text-white">Design System</div>
-                    <div className="text-xs text-zinc-400">Promoted by sponsor</div>
+                  {/* Menu Dots */}
+                  <div className="text-white">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                      <circle cx="10" cy="4" r="1.5" />
+                      <circle cx="10" cy="10" r="1.5" />
+                      <circle cx="10" cy="16" r="1.5" />
+                    </svg>
                   </div>
                 </div>
-                {/* Menu Dots */}
-                <div className="text-white">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                    <circle cx="10" cy="4" r="1.5" />
-                    <circle cx="10" cy="10" r="1.5" />
-                    <circle cx="10" cy="16" r="1.5" />
-                  </svg>
+
+                {/* Post Content - Main Image Area */}
+                <div className="relative bg-gradient-to-br from-purple-600 via-purple-600 to-purple-600 h-[400px] flex flex-col items-center justify-center p-8">
+                  {/* Geometric Background Pattern */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-0 left-0 w-full h-full">
+                      {[...Array(6)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="absolute border-white/20"
+                          style={{
+                            width: '200%',
+                            height: '200%',
+                            border: '1px solid',
+                            transform: `rotate(${i * 30}deg)`,
+                            left: '-50%',
+                            top: '-50%'
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Headline Text */}
+                  <div className="relative z-10 text-center mb-8">
+                    <h3 className="text-5xl sm:text-6xl font-black text-white leading-tight whitespace-pre-line">
+                      {'HELLO\nCREATORS,\nGOODBYE\nCHAOS!'}
+                    </h3>
+                  </div>
+
+                  {/* Subtext */}
+                  <div className="relative z-10 text-center">
+                    <p className="text-base sm:text-lg font-medium text-white/90 whitespace-pre-line">
+                      {'The best analytics\nplatform for content'}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Instagram Footer - Action Buttons */}
+                <div className="bg-zinc-900/50 px-4 py-3 flex items-center justify-between border-t border-zinc-800/50">
+                  <div className="flex items-center gap-4">
+                    {/* Heart */}
+                    <button 
+                      onClick={() => setIsLiked(!isLiked)}
+                      className="text-white hover:text-zinc-300 transition-colors"
+                    >
+                      <Heart className={cn("h-6 w-6", isLiked && "fill-red-500 text-red-500")} />
+                    </button>
+                    {/* Comment */}
+                    <button className="text-white hover:text-zinc-300 transition-colors">
+                      <MessageCircle className="h-6 w-6" />
+                    </button>
+                    {/* Share */}
+                    <button className="text-white hover:text-zinc-300 transition-colors">
+                      <Share2 className="h-6 w-6" />
+                    </button>
+                  </div>
+                  {/* Bookmark */}
+                  <button className="text-white hover:text-zinc-300 transition-colors">
+                    <Bookmark className="h-6 w-6" />
+                  </button>
                 </div>
               </div>
+            </div>
 
-              {/* Post Content - Main Image Area */}
-              <div className="relative bg-gradient-to-br from-purple-600 via-purple-600 to-purple-600 h-[400px] flex flex-col items-center justify-center p-8">
-                {/* Geometric Background Pattern */}
-                <div className="absolute inset-0 opacity-10">
-                  <div className="absolute top-0 left-0 w-full h-full">
-                    {[...Array(6)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute border-white/20"
-                        style={{
-                          width: '200%',
-                          height: '200%',
-                          border: '1px solid',
-                          transform: `rotate(${i * 30}deg)`,
-                          left: '-50%',
-                          top: '-50%'
-                        }}
-                      />
-                    ))}
+            {/* Insights Accordion - Right Side */}
+            <div className="lg:col-span-3 flex items-center justify-center">
+              <div className="w-full max-w-md">
+                <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+                  <div className="mb-4 text-center">
+                    <h3 className="text-base font-semibold text-white">Post Insights</h3>
+                    <p className="text-xs text-zinc-400 mt-1">AI-generated analysis</p>
                   </div>
-                </div>
-
-                {/* Headline Text */}
-                <div className="relative z-10 text-center mb-8">
-                  <h3 className="text-5xl sm:text-6xl font-black text-white leading-tight whitespace-pre-line">
-                    {'HELLO\nCREATORS,\nGOODBYE\nCHAOS!'}
-                  </h3>
-                </div>
-
-                {/* Subtext */}
-                <div className="relative z-10 text-center">
-                  <p className="text-base sm:text-lg font-medium text-white/90 whitespace-pre-line">
-                    {'The best analytics\nplatform for content'}
-                  </p>
-                </div>
-              </div>
-
-              {/* Instagram Footer - Action Buttons */}
-              <div className="bg-zinc-900/50 px-4 py-3 flex items-center justify-between border-t border-zinc-800/50">
-                <div className="flex items-center gap-4">
-                  {/* Heart */}
-                  <button 
-                    onClick={() => setIsLiked(!isLiked)}
-                    className="text-white hover:text-zinc-300 transition-colors"
+                  
+                  <Accordion
+                    type="single"
+                    collapsible
+                    defaultValue="summary"
+                    className="w-full"
                   >
-                    <Heart className={cn("h-6 w-6", isLiked && "fill-red-500 text-red-500")} />
-                  </button>
-                  {/* Comment */}
-                  <button className="text-white hover:text-zinc-300 transition-colors">
-                    <MessageCircle className="h-6 w-6" />
-                  </button>
-                  {/* Share */}
-                  <button className="text-white hover:text-zinc-300 transition-colors">
-                    <Share2 className="h-6 w-6" />
-                  </button>
+                    <AccordionItem value="summary" className="border-zinc-800">
+                      <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
+                        Summary
+                      </AccordionTrigger>
+                      <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-3">
+                        Strong engagement with 2.4K interactions. Bold typography and clean messaging resonated well with the creative community.
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="audience" className="border-zinc-800">
+                      <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
+                        Audience Insights
+                      </AccordionTrigger>
+                      <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-3">
+                        Primary engagement from designers aged 25-40. High save rate indicates professional intent.
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="performance" className="border-zinc-800">
+                      <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
+                        Content Performance
+                      </AccordionTrigger>
+                      <AccordionContent className="text-xs text-zinc-300 pb-3">
+                        <ul className="space-y-1.5">
+                          <li className="flex gap-2">
+                            <span className="text-purple-400">•</span>
+                            <span>40% higher engagement from bold typography</span>
+                          </li>
+                          <li className="flex gap-2">
+                            <span className="text-purple-400">•</span>
+                            <span>25% increase in shares from brand alignment</span>
+                          </li>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="engagement" className="border-zinc-800">
+                      <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
+                        Engagement Metrics
+                      </AccordionTrigger>
+                      <AccordionContent className="text-xs text-zinc-300 pb-3">
+                        <ul className="space-y-1.5">
+                          <li className="flex gap-2">
+                            <span className="text-purple-400">•</span>
+                            <span>78% positive comments on design quality</span>
+                          </li>
+                          <li className="flex gap-2">
+                            <span className="text-purple-400">•</span>
+                            <span>18% bookmark rate for professional use</span>
+                          </li>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="sentiment" className="border-zinc-800">
+                      <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
+                        Sentiment Analysis
+                      </AccordionTrigger>
+                      <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-3">
+                        92% positive sentiment. Main themes: design appreciation, collaboration interest.
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    <AccordionItem value="recommendations" className="border-zinc-800">
+                      <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
+                        Recommendations
+                      </AccordionTrigger>
+                      <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-3">
+                        A/B test color schemes. Post at 10-11 AM EST for maximum reach.
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
                 </div>
-                {/* Bookmark */}
-                <button className="text-white hover:text-zinc-300 transition-colors">
-                  <Bookmark className="h-6 w-6" />
-                </button>
               </div>
             </div>
           </div>
+        )}
 
-          {/* Insights Accordion - Right Side */}
-          <div className="lg:col-span-3 flex items-center justify-center">
-            <div className="w-full max-w-md">
-              <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-                <div className="mb-4 text-center">
-                  <h3 className="text-base font-semibold text-white">Post Insights</h3>
-                  <p className="text-xs text-zinc-400 mt-1">AI-generated analysis</p>
-                </div>
-                
-                <Accordion
-                  type="single"
-                  collapsible
-                  defaultValue="summary"
-                  className="w-full"
-                >
-                  <AccordionItem value="summary" className="border-zinc-800">
-                    <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
-                      Summary
-                    </AccordionTrigger>
-                    <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-3">
-                      Strong engagement with 2.4K interactions. Bold typography and clean messaging resonated well with the creative community.
-                    </AccordionContent>
-                  </AccordionItem>
+        {/* Content Analysis Tab */}
+        {activeTopTab === "content-analysis" && (
+          <InstagramPostShowcase />
+        )}
 
-                  <AccordionItem value="audience" className="border-zinc-800">
-                    <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
-                      Audience Insights
-                    </AccordionTrigger>
-                    <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-3">
-                      Primary engagement from designers aged 25-40. High save rate indicates professional intent.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="performance" className="border-zinc-800">
-                    <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
-                      Content Performance
-                    </AccordionTrigger>
-                    <AccordionContent className="text-xs text-zinc-300 pb-3">
-                      <ul className="space-y-1.5">
-                        <li className="flex gap-2">
-                          <span className="text-purple-400">•</span>
-                          <span>40% higher engagement from bold typography</span>
-                        </li>
-                        <li className="flex gap-2">
-                          <span className="text-purple-400">•</span>
-                          <span>25% increase in shares from brand alignment</span>
-                        </li>
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="engagement" className="border-zinc-800">
-                    <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
-                      Engagement Metrics
-                    </AccordionTrigger>
-                    <AccordionContent className="text-xs text-zinc-300 pb-3">
-                      <ul className="space-y-1.5">
-                        <li className="flex gap-2">
-                          <span className="text-purple-400">•</span>
-                          <span>78% positive comments on design quality</span>
-                        </li>
-                        <li className="flex gap-2">
-                          <span className="text-purple-400">•</span>
-                          <span>18% bookmark rate for professional use</span>
-                        </li>
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="sentiment" className="border-zinc-800">
-                    <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
-                      Sentiment Analysis
-                    </AccordionTrigger>
-                    <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-3">
-                      92% positive sentiment. Main themes: design appreciation, collaboration interest.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="recommendations" className="border-zinc-800">
-                    <AccordionTrigger className="text-xs font-medium text-white hover:text-purple-400 py-2">
-                      Recommendations
-                    </AccordionTrigger>
-                    <AccordionContent className="text-xs text-zinc-300 leading-relaxed pb-3">
-                      A/B test color schemes. Post at 10-11 AM EST for maximum reach.
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-            </div>
+        {/* Placeholder for other tabs */}
+        {activeTopTab !== "post-chat" && activeTopTab !== "content-analysis" && (
+          <div className="text-center py-20">
+            <p className="text-zinc-400 text-lg">
+              {toptabs.find(t => t.id === activeTopTab)?.label} - Coming Soon
+            </p>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )
