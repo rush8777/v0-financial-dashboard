@@ -1,4 +1,4 @@
-import InstagramPostShowcase from '@/components/social'
+import InstagramPostShowcase from '@/components/search-sim'
 
 export default function ShowcasePage() {
   return (
