@@ -24,6 +24,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import InstagramPostShowcase from '@/components/kokonutui/search-sim' // Import the component
+import FloatingVideoChat from "@/components/kokonutui/floating-chat-bar"
+
 
 const toptabs = [
   { id: "post-chat", label: "Post Chat", icon: MessageCircle, isActive: true },
@@ -293,3 +295,18 @@ export default function Post() {
     </div>
   )
 }
+
+<FloatingVideoChat
+  initialMessages={[
+    {
+      id: 1,
+      text: "What were the main pain points discussed in this meeting?",
+      isUser: true,
+    },
+    {
+      id: 2,
+      text: "Disconnected tools, manual processes, and inconsistent follow-ups.",
+      isUser: false,
+    },
+  ]}
+/>
