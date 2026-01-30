@@ -28,50 +28,47 @@ const ChatInput = ({ onSend }: ChatInputProps) => {
   return (
     <div className="w-full max-w-2xl mx-auto">
       <form onSubmit={handleSubmit}>
-        <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-2">
-          <textarea
+        {/* Floating Chatbar */}
+        <div className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 shadow-lg">
+          <Paperclip className="w-4 h-4 text-zinc-400 cursor-pointer hover:text-zinc-300 transition-colors" />
+          <input
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask anything"
-            className="w-full bg-transparent text-white placeholder:text-zinc-500 resize-none outline-none text-xs px-2 py-1.5 min-h-[20px] max-h-24"
-            rows={1}
+            placeholder="Ask anything..."
+            className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-xs"
           />
-          <div className="flex items-center justify-between mt-1.5 px-0.5">
-            <div className="flex items-center gap-0.5">
-              <button
-                type="button"
-                className="p-1.5 rounded-lg hover:bg-zinc-800/50 transition-colors"
-              >
-                <Paperclip className="w-4 h-4 text-zinc-400" />
-              </button>
-              <button
-                type="button"
-                className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-zinc-800/50 hover:bg-zinc-800 transition-colors"
-              >
-                <Globe className="w-3.5 h-3.5 text-zinc-400" />
-                <span className="text-xs text-zinc-400">Deep Search</span>
-              </button>
-              <button
-                type="button"
-                className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-zinc-800/50 hover:bg-zinc-800 transition-colors"
-              >
-                <Lightbulb className="w-3.5 h-3.5 text-zinc-400" />
-                <span className="text-xs text-zinc-400">Reason</span>
-              </button>
-              <button
-                type="button"
-                className="p-1.5 rounded-lg hover:bg-zinc-800/50 transition-colors"
-              >
-                <MoreHorizontal className="w-4 h-4 text-zinc-400" />
-              </button>
-            </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-zinc-800/50 hover:bg-zinc-800 transition-colors"
+            >
+              <Globe className="w-3.5 h-3.5 text-zinc-400" />
+              <span className="text-xs text-zinc-400">Search</span>
+            </button>
+            <button
+              type="button"
+              className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-zinc-800/50 hover:bg-zinc-800 transition-colors"
+            >
+              <Lightbulb className="w-3.5 h-3.5 text-zinc-400" />
+              <span className="text-xs text-zinc-400">Reason</span>
+            </button>
+            <button
+              type="button"
+              className="p-1.5 rounded-full hover:bg-zinc-800/50 transition-colors"
+            >
+              <MoreHorizontal className="w-4 h-4 text-zinc-400" />
+            </button>
             <button
               type="submit"
               disabled={!message.trim()}
-              className="w-8 h-8 rounded-full bg-purple-600 hover:bg-purple-700 flex items-center justify-center transition-all disabled:opacity-30 disabled:hover:bg-purple-600"
+              className={`p-2 rounded-full transition-colors ${
+                message.trim()
+                  ? "bg-purple-600 hover:bg-purple-700 text-white"
+                  : "bg-zinc-800/50 text-zinc-600 cursor-not-allowed"
+              }`}
             >
-              <ArrowUp className="w-4 h-4 text-white" />
+              <ArrowUp className="w-4 h-4" />
             </button>
           </div>
         </div>
