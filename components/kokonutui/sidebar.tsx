@@ -63,7 +63,7 @@ export default function Sidebar() {
         <button
           onClick={() => toggleApp(appId)}
           className={`w-full flex items-center rounded-md transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#1F1F23] ${
-            isSidebarExpanded ? "justify-between px-2 py-1" : "justify-center px-0 py-1"
+            isSidebarExpanded ? "justify-between px-2 py-1" : "justify-center px-2 py-1"
           }`}
           title={isSidebarExpanded ? "" : label}
         >
@@ -111,7 +111,7 @@ export default function Sidebar() {
         href={href}
         onClick={handleNavigation}
         className={`flex items-center rounded-md transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#1F1F23] ${
-          isSidebarExpanded ? "px-2 py-1 justify-start" : "px-0 py-1 justify-center"
+          isSidebarExpanded ? "px-2 py-1 justify-start" : "px-2 py-1 justify-center"
         }`}
         title={isSidebarExpanded ? "" : children?.toString()}
       >
