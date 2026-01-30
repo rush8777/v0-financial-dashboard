@@ -52,6 +52,15 @@ const connectedApps: AppConnection[] = [
     connected: false,
     contactPerson: "Community Manager",
   },
+  {
+    id: "tiktok",
+    name: "TikTok",
+    description: "Connect your TikTok account for video content",
+    icon: "🎵",
+    color: "bg-black dark:bg-zinc-800",
+    connected: false,
+    contactPerson: "Content Creator",
+  },
 ]
 
 const statusConfig = {
