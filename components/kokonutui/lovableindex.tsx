@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react";
-import ChatMessage from "@/components/chat/ChatMessage";
-import ChatInput from "@/components/chat/ChatInput";
+import ChatMessage from "@/components/kokonutui/lovablechat";
+import ChatInput from "@/components/kokonutui/lovablechatinput";
 
 interface Message {
   id: number;
