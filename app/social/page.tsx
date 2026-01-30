@@ -1,4 +1,4 @@
-import InstagramPostShowcase from '@/components/search-sim'
+import InstagramPostShowcase from '@/components/kokonutui/search-sim'
 
 export default function ShowcasePage() {
   return (
