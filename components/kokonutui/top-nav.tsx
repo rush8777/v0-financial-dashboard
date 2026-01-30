@@ -19,7 +19,7 @@ export default function TopNav() {
   ]
 
   return (
-    <nav className="px-3 sm:px-4 flex items-center justify-between bg-white dark:bg-[#0F0F12] h-13 min-h-13 border-b border-gray-200 dark:border-[#1F1F23]">
+    <nav className="px-3 sm:px-4 flex items-center justify-between bg-white dark:bg-[#0F0F12] h-12 min-h-12 border-b border-gray-200 dark:border-[#1F1F23]">
       <div className="font-medium text-xs hidden sm:flex items-center space-x-0.5 truncate max-w-[300px]">
         {breadcrumbs.map((item, index) => (
           <div key={item.label} className="flex items-center">
