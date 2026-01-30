@@ -153,8 +153,8 @@ export default function Sidebar() {
                   <NavItem href="/streamline" icon={Facebook}>
                     Streamline
                   </NavItem>
-                  <NavItem href="#" icon={Instagram}>
-                    Post Analysis
+                  <NavItem href="/feedsense" icon={Instagram}>
+                    FeedSense
                   </NavItem>
                   <NavItem href="#" icon={Youtube}>
                     Comments Analysis
