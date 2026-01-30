@@ -33,6 +33,26 @@ export default function () {
       trend: "+15%",
       trendUp: true
     },
+    { 
+      id: 4, 
+      title: "Marketing", 
+      watched: 4, 
+      total: 10, 
+      icon: "📊",
+      percentage: 40,
+      trend: "+10%",
+      trendUp: true
+    },
+    { 
+      id: 5, 
+      title: "Photography", 
+      watched: 5, 
+      total: 9, 
+      icon: "📷",
+      percentage: 56,
+      trend: "+18%",
+      trendUp: true
+    },
   ]
 
   const continueCourses = [
@@ -90,36 +110,28 @@ export default function () {
         </div>
       </div>
 
-      {/* Course Progress Cards - New Design */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Course Progress Cards - Compact Design */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
         {courses.map((course) => (
           <div 
             key={course.id} 
-            className="p-4 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl"
+            className="p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl"
           >
-            <div className="flex items-start justify-between mb-3">
+            <div className="flex items-start justify-between mb-2">
               <div>
-                <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-1">{course.title}</p>
-                <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white">{course.percentage}%</h3>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-0.5">{course.title}</p>
+                <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">{course.percentage}%</h3>
               </div>
-              <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900/30">
-                <span className="text-2xl">{course.icon}</span>
-              </div>
-            </div>
-            <div className="mb-2">
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-1">
-                {course.watched} of {course.total} watched
-              </p>
-              <div className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-full h-1.5">
-                <div
-                  className="bg-purple-600 h-1.5 rounded-full transition-all duration-300"
-                  style={{ width: `${course.percentage}%` }}
-                />
+              <div className="p-1.5 rounded-lg bg-purple-100 dark:bg-purple-900/30">
+                <span className="text-lg">{course.icon}</span>
               </div>
             </div>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-1.5">
+              {course.watched}/{course.total} watched
+            </p>
             <p className="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
               <TrendingUp className="w-3 h-3" />
-              {course.trend} vs last week
+              {course.trend}
             </p>
           </div>
         ))}
