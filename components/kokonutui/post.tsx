@@ -293,20 +293,20 @@ export default function Post() {
         )}
       </div>
     </div>
+    <FloatingVideoChat
+      initialMessages={[
+        {
+          id: 1,
+          text: "What were the main pain points discussed in this meeting?",
+          isUser: true,
+        },
+        {
+          id: 2,
+          text: "Disconnected tools, manual processes, and inconsistent follow-ups.",
+          isUser: false,
+        },
+      ]}
+    />
+
   )
 }
-
-<FloatingVideoChat
-  initialMessages={[
-    {
-      id: 1,
-      text: "What were the main pain points discussed in this meeting?",
-      isUser: true,
-    },
-    {
-      id: 2,
-      text: "Disconnected tools, manual processes, and inconsistent follow-ups.",
-      isUser: false,
-    },
-  ]}
-/>
