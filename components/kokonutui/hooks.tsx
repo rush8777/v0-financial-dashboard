@@ -117,31 +117,7 @@ export default function Hooks() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [activeTab, setActiveTab] = useState("transcript")
   const [activeTopTab, setActiveTopTab] = useState("video-chat")
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [modalInput, setModalInput] = useState("")
-  const [modalMessages, setModalMessages] = useState(mockModalMessages)
 
-  const handleSendModalMessage = () => {
-    if (modalInput.trim()) {
-      setModalMessages([
-        ...modalMessages,
-        { id: Date.now(), text: modalInput, isUser: true },
-      ])
-      setModalInput("")
-      
-      // Simulate AI response
-      setTimeout(() => {
-        setModalMessages((prev) => [
-          ...prev,
-          {
-            id: Date.now(),
-            text: "I'm analyzing the video content to answer your question...",
-            isUser: false,
-          },
-        ])
-      }, 1000)
-    }
-  }
 
   return (
     <div className="min-h-screen py-6 px-4">
@@ -364,6 +340,9 @@ export default function Hooks() {
           },
         ]}
       />
+      </div>
+      )
+    }
 
 
 function Calendar(props: React.SVGProps<SVGSVGElement>) {
