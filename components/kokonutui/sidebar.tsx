@@ -150,8 +150,8 @@ export default function Sidebar() {
                   </div>
                 )}
                 <div className="space-y-0.5">
-                  <NavItem href="#" icon={Facebook}>
-                    Video Analysis
+                  <NavItem href="/streamline" icon={Facebook}>
+                    Streamline
                   </NavItem>
                   <NavItem href="#" icon={Instagram}>
                     Post Analysis
