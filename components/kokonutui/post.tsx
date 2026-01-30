@@ -95,7 +95,7 @@ export default function Post() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
             {/* Instagram-Style Card - Left Side */}
             <div className="lg:col-span-2">
-              <div className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300">
+              <div className="w-full border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300">
                 {/* Instagram Header */}
                 <div className="bg-zinc-900/50 px-4 py-3 flex items-center justify-between border-b border-zinc-800/50">
                   <div className="flex items-center gap-3">
