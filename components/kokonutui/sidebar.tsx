@@ -17,7 +17,6 @@ import {
   Settings,
   HelpCircle,
   Menu,
-  ChevronDown,
   ChevronLeft,
 } from "lucide-react"
 
@@ -29,72 +28,9 @@ import Image from "next/image"
 export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true)
-  const [expandedApps, setExpandedApps] = useState<Record<string, boolean>>({
-    facebook: false,
-    instagram: false,
-    youtube: false,
-  })
 
   function handleNavigation() {
     setIsMobileMenuOpen(false)
-  }
-
-  function toggleApp(appId: string) {
-    setExpandedApps((prev) => ({
-      ...prev,
-      [appId]: !prev[appId],
-    }))
-  }
-
-  function AppItem({
-    appId,
-    icon: Icon,
-    label,
-  }: {
-    appId: string
-    icon: any
-    label: string
-  }) {
-    const isExpanded = expandedApps[appId]
-    const subsections = ["Hooks", "Comments", "Reach"]
-
-    return (
-      <div className="space-y-0">
-        <button
-          onClick={() => toggleApp(appId)}
-          className={`w-full flex items-center rounded-md transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#1F1F23] ${
-            isSidebarExpanded ? "justify-between px-2 py-1" : "justify-center px-2 py-1"
-          }`}
-          title={isSidebarExpanded ? "" : label}
-        >
-          <div className={`flex items-center ${isSidebarExpanded ? "" : "flex-col"}`}>
-            <Icon className="h-3.5 w-3.5 flex-shrink-0" />
-            {isSidebarExpanded && <span className="ml-2 text-xs">{label}</span>}
-          </div>
-          {isSidebarExpanded && (
-            <ChevronDown
-              className={`h-3.5 w-3.5 transition-transform duration-200 ${
-                isExpanded ? "rotate-180" : ""
-              }`}
-            />
-          )}
-        </button>
-        {isExpanded && isSidebarExpanded && (
-          <div className="pl-5 space-y-0.5 py-0.5">
-            {subsections.map((subsection) => (
-              <Link
-                key={subsection}
-                href={subsection === "Hooks" ? "/hooks" : subsection === "Comments" ? "/yt-comments" : "#"}
-                onClick={handleNavigation}
-                className="w-full text-left block px-2 py-1 text-xs rounded-md transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-[#1F1F23]"
-              >
-                {subsection}
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
-    )
   }
 
   function NavItem({
@@ -213,10 +149,16 @@ export default function Sidebar() {
                     TOOLS
                   </div>
                 )}
-                <div className="space-y-0">
-                  <AppItem appId="facebook" icon={Facebook} label="Facebook" />
-                  <AppItem appId="instagram" icon={Instagram} label="Instagram" />
-                  <AppItem appId="youtube" icon={Youtube} label="Youtube" />
+                <div className="space-y-0.5">
+                  <NavItem href="#" icon={Facebook}>
+                    Facebook
+                  </NavItem>
+                  <NavItem href="#" icon={Instagram}>
+                    Instagram
+                  </NavItem>
+                  <NavItem href="#" icon={Youtube}>
+                    Youtube
+                  </NavItem>
                 </div>
               </div>
 
