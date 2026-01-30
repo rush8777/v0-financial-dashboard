@@ -11,8 +11,8 @@ interface ChatMessageProps {
 const ChatMessage = ({ content, isUser, showActions = false }: ChatMessageProps) => {
   if (isUser) {
     return (
-      <div className="flex justify-end mb-6">
-        <div className="bg-zinc-800 text-white px-5 py-3 rounded-3xl max-w-md text-sm leading-relaxed">
+      <div className="flex justify-end mb-4">
+        <div className="bg-zinc-800 text-white px-3 py-2 rounded-2xl max-w-sm text-xs leading-relaxed">
           {content}
         </div>
       </div>
@@ -20,26 +20,26 @@ const ChatMessage = ({ content, isUser, showActions = false }: ChatMessageProps)
   }
 
   return (
-    <div className="mb-6">
-      <div className="text-zinc-300 text-sm leading-[1.75] max-w-2xl">
+    <div className="mb-4">
+      <div className="text-zinc-300 text-xs leading-[1.6] max-w-xl">
         {content}
       </div>
       {showActions && (
-        <div className="flex items-center gap-1 mt-3">
-          <button className="p-2 rounded-lg hover:bg-zinc-800/50 transition-colors">
-            <Copy className="w-4 h-4 text-zinc-400" />
+        <div className="flex items-center gap-0.5 mt-2">
+          <button className="p-1.5 rounded-md hover:bg-zinc-800/50 transition-colors">
+            <Copy className="w-3.5 h-3.5 text-zinc-400" />
           </button>
-          <button className="p-2 rounded-lg hover:bg-zinc-800/50 transition-colors">
-            <ThumbsUp className="w-4 h-4 text-zinc-400" />
+          <button className="p-1.5 rounded-md hover:bg-zinc-800/50 transition-colors">
+            <ThumbsUp className="w-3.5 h-3.5 text-zinc-400" />
           </button>
-          <button className="p-2 rounded-lg hover:bg-zinc-800/50 transition-colors">
-            <ThumbsDown className="w-4 h-4 text-zinc-400" />
+          <button className="p-1.5 rounded-md hover:bg-zinc-800/50 transition-colors">
+            <ThumbsDown className="w-3.5 h-3.5 text-zinc-400" />
           </button>
-          <button className="p-2 rounded-lg hover:bg-zinc-800/50 transition-colors">
-            <RotateCcw className="w-4 h-4 text-zinc-400" />
+          <button className="p-1.5 rounded-md hover:bg-zinc-800/50 transition-colors">
+            <RotateCcw className="w-3.5 h-3.5 text-zinc-400" />
           </button>
-          <button className="p-2 rounded-lg hover:bg-zinc-800/50 transition-colors">
-            <Share2 className="w-4 h-4 text-zinc-400" />
+          <button className="p-1.5 rounded-md hover:bg-zinc-800/50 transition-colors">
+            <Share2 className="w-3.5 h-3.5 text-zinc-400" />
           </button>
         </div>
       )}
