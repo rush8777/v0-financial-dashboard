@@ -31,6 +31,7 @@ import {
 import { ChartNoAxesColumnIncreasing } from "lucide-react"
 import { cn } from "@/lib/utils"
 import VideoAnalytics from "@/components/kokonutui/video-analytics"
+import FloatingVideoChat from "@/components/kokonutui/floating-chat-bar"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
@@ -111,20 +112,6 @@ const insights = {
   decision:
     "Annual budget is approximately $10,000. Must-have features include strong integrations, automation capabilities, and Ashley appears to be the lead on this initiative and is overseeing a range of stakeholders.",
 }
-
-// Mock chat messages for the modal
-const mockModalMessages = [
-  {
-    id: 1,
-    text: "What were the main pain points discussed in this meeting?",
-    isUser: true,
-  },
-  {
-    id: 2,
-    text: "Based on the conversation, the main pain points include disconnected tools leading to data silos, manual data entry processes, and inconsistent follow-ups resulting in lost opportunities. The team is struggling with their current spreadsheet-based system.",
-    isUser: false,
-  },
-]
 
 export default function Hooks() {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -363,124 +350,21 @@ export default function Hooks() {
         </div>
       </div>
 
-      {/* Floating Chatbar with Expandable Modal */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent pointer-events-none">
-        <div className="max-w-md mx-auto pointer-events-auto">
-          <div className="relative">
-            {/* Expanded Chat Modal - appears above chatbar */}
-            {isModalOpen && (
-              <div className="absolute bottom-full left-0 right-0 mb-3 animate-in slide-in-from-bottom-2 duration-200 origin-bottom">
-                <div className="bg-zinc-900/95 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl flex flex-col overflow-hidden">
-                  {/* Modal Header */}
-                  <div className="flex items-center justify-between p-4 border-b border-zinc-800">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
-                        <MessageCircle className="h-4 w-4 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-sm font-semibold text-white">Video Assistant</h3>
-                        <p className="text-xs text-zinc-400">Active now</p>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => setIsModalOpen(false)}
-                      className="p-2 hover:bg-zinc-800 rounded-lg transition-colors"
-                    >
-                      <X className="h-4 w-4 text-zinc-400" />
-                    </button>
-                  </div>
+      <FloatingVideoChat
+        initialMessages={[
+          {
+            id: 1,
+            text: "What were the main pain points discussed in this meeting?",
+            isUser: true,
+          },
+          {
+            id: 2,
+            text: "Disconnected tools, manual processes, and inconsistent follow-ups.",
+            isUser: false,
+          },
+        ]}
+      />
 
-                  {/* Messages Container */}
-                  <div className="h-[400px] overflow-y-auto p-4 space-y-4 bg-transparent">
-                    {modalMessages.map((msg) => (
-                      <div
-                        key={msg.id}
-                        className={cn(
-                          "flex gap-3",
-                          msg.isUser ? "justify-end" : "justify-start"
-                        )}
-                      >
-                        {!msg.isUser && (
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
-                            <MessageCircle className="h-4 w-4 text-white" />
-                          </div>
-                        )}
-                        <div
-                          className={cn(
-                            "max-w-[75%] rounded-2xl px-4 py-2.5 text-sm",
-                            msg.isUser
-                              ? "bg-purple-600 text-white rounded-br-sm"
-                              : "bg-zinc-800 text-zinc-100 rounded-bl-sm"
-                          )}
-                        >
-                          {msg.text}
-                        </div>
-                        {msg.isUser && (
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 text-xs font-semibold text-white">
-                            You
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Single Chatbar - transforms based on state */}
-            <div className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 shadow-lg hover:bg-white/10 transition-colors">
-              {!isModalOpen ? (
-                <>
-                  {/* Collapsed State */}
-                  <MessageCircle className="h-5 w-5 text-zinc-400 flex-shrink-0" />
-                  <input
-                    type="text"
-                    placeholder="Ask a question..."
-                    readOnly
-                    onClick={() => setIsModalOpen(true)}
-                    className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-sm"
-                  />
-                  <ArrowUp className="h-4 w-4 text-zinc-400 flex-shrink-0" />
-                </>
-              ) : (
-                <>
-                  {/* Expanded State - Active Input */}
-                  
-                  <input
-                    type="text"
-                    value={modalInput}
-                    onChange={(e) => setModalInput(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.preventDefault()
-                        handleSendModalMessage()
-                      }
-                    }}
-                    placeholder="Type something..."
-                    className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none text-sm"
-                    autoFocus
-                  />
-                  <button
-                    onClick={handleSendModalMessage}
-                    disabled={!modalInput.trim()}
-                    className={cn(
-                      "transition-all",
-                      modalInput.trim()
-                        ? "text-purple-600 hover:text-purple-700"
-                        : "opacity-50 cursor-not-allowed"
-                    )}
-                  >
-                    <ArrowUp className="h-4 w-4" />
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 function Calendar(props: React.SVGProps<SVGSVGElement>) {
   return (
