@@ -151,13 +151,16 @@ export default function Sidebar() {
                 )}
                 <div className="space-y-0.5">
                   <NavItem href="#" icon={Facebook}>
-                    Facebook
+                    Video Analysis
                   </NavItem>
                   <NavItem href="#" icon={Instagram}>
-                    Instagram
+                    Post Analysis
                   </NavItem>
                   <NavItem href="#" icon={Youtube}>
-                    Youtube
+                    Comments Analysis
+                  </NavItem>
+                  <NavItem href="#" icon={Youtube}>
+                    Idea Validation
                   </NavItem>
                 </div>
               </div>
