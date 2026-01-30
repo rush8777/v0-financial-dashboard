@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import ChatMessage from "@/components/kokonutui/lovablechat";
 import ChatInput from "@/components/kokonutui/lovablechatinput";
-import { ChevronDown, Sparkles, MoreHorizontal, X } from "lucide-react";
 
 interface Message {
   id: number;
@@ -101,49 +100,25 @@ const Index = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-zinc-950 p-6">
-      {/* Floating Chat Container */}
-      <div className="w-full max-w-4xl h-[90vh] bg-zinc-900/95 backdrop-blur-xl border border-zinc-800/50 rounded-[32px] shadow-2xl flex flex-col overflow-hidden">
-        
-        {/* Header */}
-        <div className="flex items-center justify-between px-5 py-3.5 border-b border-zinc-800/50">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-purple-400" />
-              <span className="text-sm font-medium text-white">New AI chat</span>
-            </div>
-            <ChevronDown className="w-4 h-4 text-zinc-400 cursor-pointer" />
-          </div>
-          
-          <div className="flex items-center gap-1">
-            <button className="p-2 hover:bg-zinc-800/50 rounded-lg transition-colors">
-              <MoreHorizontal className="w-4 h-4 text-zinc-400" />
-            </button>
-            <button className="p-2 hover:bg-zinc-800/50 rounded-lg transition-colors">
-              <X className="w-4 h-4 text-zinc-400" />
-            </button>
-          </div>
+    <div className="flex flex-col h-screen bg-black">
+      {/* Chat Messages Area */}
+      <div className="flex-1 overflow-y-auto scrollbar-thin px-3 py-4">
+        <div className="max-w-2xl mx-auto">
+          {messages.map((message, index) => (
+            <ChatMessage
+              key={message.id}
+              content={message.content}
+              isUser={message.isUser}
+              showActions={!message.isUser && index === messages.length - 1}
+            />
+          ))}
+          <div ref={messagesEndRef} />
         </div>
+      </div>
 
-        {/* Chat Messages Area */}
-        <div className="flex-1 overflow-y-auto scrollbar-thin px-5 py-4">
-          <div className="max-w-2xl mx-auto">
-            {messages.map((message, index) => (
-              <ChatMessage
-                key={message.id}
-                content={message.content}
-                isUser={message.isUser}
-                showActions={!message.isUser && index === messages.length - 1}
-              />
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
-        </div>
-
-        {/* Chat Input Area */}
-        <div className="px-5 pb-5 pt-3">
-          <ChatInput onSend={handleSend} />
-        </div>
+      {/* Chat Input Area */}
+      <div className="sticky bottom-0 bg-black pb-3 pt-2 px-3 border-t border-zinc-800/50">
+        <ChatInput onSend={handleSend} />
       </div>
     </div>
   );
