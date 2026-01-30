@@ -63,30 +63,30 @@ export default function Sidebar() {
         <button
           onClick={() => toggleApp(appId)}
           className={`w-full flex items-center rounded-md transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#1F1F23] ${
-            isSidebarExpanded ? "justify-between px-3 py-2" : "justify-center px-0 py-2"
+            isSidebarExpanded ? "justify-between px-2 py-1" : "justify-center px-0 py-1"
           }`}
           title={isSidebarExpanded ? "" : label}
         >
           <div className={`flex items-center ${isSidebarExpanded ? "" : "flex-col"}`}>
-            <Icon className="h-4 w-4 flex-shrink-0" />
-            {isSidebarExpanded && <span className="ml-3 text-sm">{label}</span>}
+            <Icon className="h-3.5 w-3.5 flex-shrink-0" />
+            {isSidebarExpanded && <span className="ml-2 text-xs">{label}</span>}
           </div>
           {isSidebarExpanded && (
             <ChevronDown
-              className={`h-4 w-4 transition-transform duration-200 ${
+              className={`h-3.5 w-3.5 transition-transform duration-200 ${
                 isExpanded ? "rotate-180" : ""
               }`}
             />
           )}
         </button>
         {isExpanded && isSidebarExpanded && (
-          <div className="pl-6 space-y-1 py-1">
+          <div className="pl-5 space-y-0.5 py-0.5">
             {subsections.map((subsection) => (
               <Link
                 key={subsection}
                 href={subsection === "Hooks" ? "/hooks" : subsection === "Comments" ? "/yt-comments" : "#"}
                 onClick={handleNavigation}
-                className="w-full text-left block px-3 py-1.5 text-sm rounded-md transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-[#1F1F23]"
+                className="w-full text-left block px-2 py-1 text-xs rounded-md transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-[#1F1F23]"
               >
                 {subsection}
               </Link>
@@ -111,12 +111,12 @@ export default function Sidebar() {
         href={href}
         onClick={handleNavigation}
         className={`flex items-center rounded-md transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-[#1F1F23] ${
-          isSidebarExpanded ? "px-3 py-2 justify-start" : "px-0 py-2 justify-center"
+          isSidebarExpanded ? "px-2 py-1 justify-start" : "px-0 py-1 justify-center"
         }`}
         title={isSidebarExpanded ? "" : children?.toString()}
       >
-        <Icon className="h-4 w-4 flex-shrink-0" />
-        {isSidebarExpanded && <span className="ml-3 text-sm">{children}</span>}
+        <Icon className="h-3.5 w-3.5 flex-shrink-0" />
+        {isSidebarExpanded && <span className="ml-2 text-xs">{children}</span>}
       </Link>
     )
   }
@@ -134,34 +134,34 @@ export default function Sidebar() {
         className={`
                 fixed inset-y-0 left-0 z-[70] bg-white dark:bg-[#0F0F12] transform transition-all duration-200 ease-in-out
                 lg:translate-x-0 lg:static border-r border-gray-200 dark:border-[#1F1F23]
-                ${isMobileMenuOpen ? "translate-x-0 w-64" : "-translate-x-full w-64"}
-                ${isSidebarExpanded ? "lg:w-64" : "lg:w-20"}
+                ${isMobileMenuOpen ? "translate-x-0 w-56" : "-translate-x-full w-56"}
+                ${isSidebarExpanded ? "lg:w-56" : "lg:w-16"}
             `}
       >
         <div className="h-full flex flex-col">
-          <div className={`flex items-center justify-between border-b border-gray-200 dark:border-[#1F1F23] ${isSidebarExpanded ? "h-16 px-6" : "h-16 px-2"}`}>
+          <div className={`flex items-center justify-between border-b border-gray-200 dark:border-[#1F1F23] ${isSidebarExpanded ? "h-12 px-4" : "h-12 px-2"}`}>
             {isSidebarExpanded && (
               <Link
                 href="https://kokonutui.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 flex-1"
+                className="flex items-center gap-2 flex-1"
               >
                 <Image
                   src="https://kokonutui.com/logo.svg"
                   alt="Logo"
-                  width={32}
-                  height={32}
+                  width={24}
+                  height={24}
                   className="flex-shrink-0 hidden dark:block"
                 />
                 <Image
                   src="https://kokonutui.com/logo-black.svg"
                   alt="Logo"
-                  width={32}
-                  height={32}
+                  width={24}
+                  height={24}
                   className="flex-shrink-0 block dark:hidden"
                 />
-                <span className="text-lg font-semibold text-gray-900 dark:text-white">
+                <span className="text-sm font-semibold text-gray-900 dark:text-white">
                   KokonutUI
                 </span>
               </Link>
@@ -170,8 +170,8 @@ export default function Sidebar() {
               <Image
                 src="https://kokonutui.com/logo.svg"
                 alt="Logo"
-                width={24}
-                height={24}
+                width={20}
+                height={20}
                 className="flex-shrink-0 hidden dark:block mx-auto"
               />
             )}
@@ -179,19 +179,19 @@ export default function Sidebar() {
               onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}
               className="p-1 hover:bg-gray-100 dark:hover:bg-[#1F1F23] rounded-md transition-colors text-gray-600 dark:text-gray-400 hidden lg:flex flex-shrink-0"
             >
-              <ChevronLeft className={`h-4 w-4 transition-transform ${!isSidebarExpanded ? "rotate-180" : ""}`} />
+              <ChevronLeft className={`h-3.5 w-3.5 transition-transform ${!isSidebarExpanded ? "rotate-180" : ""}`} />
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto py-4">
-            <div className={`space-y-6 ${isSidebarExpanded ? "px-4" : "px-2"}`}>
+          <div className="flex-1 overflow-y-auto py-3">
+            <div className={`space-y-4 ${isSidebarExpanded ? "px-3" : "px-2"}`}>
               <div>
                 {isSidebarExpanded && (
-                  <div className="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                  <div className="px-2 mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                     Overview
                   </div>
                 )}
-                <div className="space-y-1">
+                <div className="space-y-0.5">
                   <NavItem href="#" icon={Home}>
                     Home
                   </NavItem>
@@ -209,7 +209,7 @@ export default function Sidebar() {
 
               <div>
                 {isSidebarExpanded && (
-                  <div className="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                  <div className="px-2 mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                     APPS
                   </div>
                 )}
@@ -222,11 +222,11 @@ export default function Sidebar() {
 
               <div>
                 {isSidebarExpanded && (
-                  <div className="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                  <div className="px-2 mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                     Team
                   </div>
                 )}
-                <div className="space-y-1">
+                <div className="space-y-0.5">
                   <NavItem href="#" icon={Users2}>
                     Members
                   </NavItem>
@@ -244,8 +244,8 @@ export default function Sidebar() {
             </div>
           </div>
 
-          <div className={`border-t border-gray-200 dark:border-[#1F1F23] ${isSidebarExpanded ? "px-4 py-4" : "px-2 py-4"}`}>
-            <div className="space-y-1">
+          <div className={`border-t border-gray-200 dark:border-[#1F1F23] ${isSidebarExpanded ? "px-3 py-3" : "px-2 py-3"}`}>
+            <div className="space-y-0.5">
               <NavItem href="#" icon={Settings}>
                 Settings
               </NavItem>
