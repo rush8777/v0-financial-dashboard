@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Layout from '@/components/kokonutui/layout'
-import Post from '@/components/kokonutui/post'
+import Post from '@/components/kokonutui/feedsense'
 
 export const metadata: Metadata = {
   title: 'Post',
