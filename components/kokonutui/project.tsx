@@ -132,7 +132,7 @@ export default function Project() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">My Task</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Projects</h1>
 
         {/* Tab Navigation */}
         <div className="flex items-center gap-8 border-b border-gray-200 dark:border-[#1F1F23] overflow-x-auto pb-4">
