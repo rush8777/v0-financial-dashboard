@@ -141,9 +141,7 @@ export default function Sidebar() {
                   <NavItem href="/project" icon={Folder}>
                     Projects
                   </NavItem>
-                  <NavItem href="/streamline" icon={Zap}>
-                    Streamline
-                  </NavItem>
+                  
                 </div>
               </div>
 
