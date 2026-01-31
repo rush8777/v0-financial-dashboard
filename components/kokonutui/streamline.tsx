@@ -148,7 +148,7 @@ export default function Streamline() {
     
     return (
       <div 
-        className="fixed top-0 bottom-0 right-0 flex items-center justify-center p-4 bg-gradient-to-br from-zinc-900 via-zinc-900 to-black z-50 lg:left-auto hidden lg:flex"
+        className="fixed top-0 bottom-0 right-0 flex items-center justify-center p-4 lg:left-auto hidden lg:flex"
         style={{ left: `${sidebarWidth}px` }}
       >
         <div className="w-full max-w-3xl">
