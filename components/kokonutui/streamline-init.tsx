@@ -39,7 +39,7 @@ export default function StreamlineInit({ onProjectSelect, onCreateNew }: Streaml
   const [showMore, setShowMore] = useState(false)
 
   return (
-    <div className="min-h-screen bg-[#2B2B2B] flex items-center justify-center p-4">
+    <div className="min-h-screen  flex items-center justify-center p-4">
       {/* Centered Card */}
       <div className="w-full max-w-3xl bg-[#252526] rounded-lg border border-[#3E3E42] p-8">
         {/* Header */}
