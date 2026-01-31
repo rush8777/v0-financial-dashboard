@@ -30,16 +30,13 @@ const recentProjects: RecentProject[] = [
   },
 ]
 
-export default function VideoProjectInit() {
+interface StreamlineInitProps {
+  onProjectSelect: (projectId: string) => void
+  onCreateNew: () => void
+}
+
+export default function StreamlineInit({ onProjectSelect, onCreateNew }: StreamlineInitProps) {
   const [showMore, setShowMore] = useState(false)
-
-  const handleImportVideo = () => {
-    console.log("Import video clicked")
-  }
-
-  const handleOpenProject = (projectId: string) => {
-    console.log("Opening project:", projectId)
-  }
 
   return (
     <div className="min-h-screen bg-[#2B2B2B] flex items-center justify-center p-4">
@@ -48,7 +45,7 @@ export default function VideoProjectInit() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-2xl font-normal text-[#CCCCCC] mb-2">
-            Windsurf
+            Streamline
           </h1>
         </div>
 
@@ -61,9 +58,17 @@ export default function VideoProjectInit() {
             </h2>
             
             <div className="space-y-3">
+              {/* Create New Streamline Button */}
+              <button
+                onClick={onCreateNew}
+                className="w-full text-left px-4 py-3 bg-[#0E639C] hover:bg-[#1177BB] text-white text-sm rounded transition-colors flex items-center gap-3"
+              >
+                <span className="text-lg">✨</span>
+                <span>Create New Streamline</span>
+              </button>
               {/* Import Video Button */}
               <button
-                onClick={handleImportVideo}
+                onClick={() => console.log("Import video clicked")}
                 className="w-full text-left px-4 py-3 bg-[#0E639C] hover:bg-[#1177BB] text-white text-sm rounded transition-colors flex items-center gap-3"
               >
                 <span className="text-lg">📁</span>
@@ -92,7 +97,7 @@ export default function VideoProjectInit() {
               {recentProjects.slice(0, showMore ? recentProjects.length : 3).map((project) => (
                 <button
                   key={project.id}
-                  onClick={() => handleOpenProject(project.id)}
+                  onClick={() => onProjectSelect(project.id)}
                   className="w-full text-left px-2 py-2 hover:bg-[#2A2D2E] rounded transition-colors"
                 >
                   <div className="flex items-center justify-between">

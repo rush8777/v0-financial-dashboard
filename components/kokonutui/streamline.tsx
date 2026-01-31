@@ -33,6 +33,12 @@ import { CarTaxiFrontIcon as ChartNoAxesColumnIncreasing } from "lucide-react"
 import { cn } from "@/lib/utils"
 import VideoAnalytics from "@/components/kokonutui/video-analytics"
 import FloatingVideoChat from "@/components/kokonutui/floating-chat-bar"
+import StreamlineInit from "@/components/kokonutui/streamline-init"
+
+const recentProjects = [
+  { id: "1", name: "Project Alpha", duration: "1h 30m", lastModified: "2023-10-01" },
+  { id: "2", name: "Project Beta", duration: "2h", lastModified: "2023-09-30" },
+]
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
@@ -114,34 +120,6 @@ const insights = {
     "Annual budget is approximately $10,000. Must-have features include strong integrations, automation capabilities, and Ashley appears to be the lead on this initiative and is overseeing a range of stakeholders.",
 }
 
-interface RecentProject {
-  id: string
-  name: string
-  duration: string
-  lastModified: string
-}
-
-const recentProjects: RecentProject[] = [
-  {
-    id: "1",
-    name: "GreenLeaf // Basepoint",
-    duration: "28min",
-    lastModified: "Apr 2"
-  },
-  {
-    id: "2",
-    name: "Acme Corp Onboarding",
-    duration: "15min",
-    lastModified: "Mar 28"
-  },
-  {
-    id: "3",
-    name: "TechFlow Sales Pitch",
-    duration: "42min",
-    lastModified: "Mar 15"
-  },
-]
-
 export default function Streamline() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [activeTab, setActiveTab] = useState("transcript")
@@ -164,69 +142,10 @@ export default function Streamline() {
   // Initial Selector View
   if (!selectedProject) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-zinc-900 via-zinc-900 to-black flex items-center justify-center p-4">
-        <div className="w-full max-w-4xl">
-          {/* Header */}
-          <div className="mb-12 text-center">
-            <h1 className="text-4xl font-bold text-white mb-2">Streamline</h1>
-            <p className="text-zinc-400">Select a recent project or create a new streamline</p>
-          </div>
-
-          {/* Main Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Left Section - Create New */}
-            <div>
-              <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-4">
-                Start New
-              </h2>
-              
-              <button
-                onClick={() => handleProjectSelect("new")}
-                className="w-full group relative px-6 py-8 bg-gradient-to-br from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-              >
-                <div className="flex flex-col items-center gap-3">
-                  <Plus className="h-8 w-8" />
-                  <div>
-                    <p className="font-semibold">Create New Streamline</p>
-                    <p className="text-xs text-purple-200 mt-1">Start a fresh project</p>
-                  </div>
-                </div>
-              </button>
-            </div>
-
-            {/* Right Section - Recent Projects */}
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">
-                  Recent Projects
-                </h2>
-              </div>
-
-              <div className="space-y-2">
-                {recentProjects.map((project) => (
-                  <button
-                    key={project.id}
-                    onClick={() => handleProjectSelect(project.id)}
-                    className="w-full text-left px-4 py-4 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 hover:border-purple-500/50 rounded-lg transition-all duration-200 group"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-white group-hover:text-purple-400 transition-colors truncate">
-                          {project.name}
-                        </p>
-                        <p className="text-xs text-zinc-500 mt-1">
-                          {project.duration} • {project.lastModified}
-                        </p>
-                      </div>
-                      <ArrowRight className="h-4 w-4 text-zinc-500 group-hover:text-purple-400 transition-colors flex-shrink-0 ml-2" />
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <StreamlineInit 
+        onProjectSelect={handleProjectSelect}
+        onCreateNew={() => handleProjectSelect("new")}
+      />
     )
   }
 
