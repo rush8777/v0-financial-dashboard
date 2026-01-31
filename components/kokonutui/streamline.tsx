@@ -1,10 +1,10 @@
 "use client"
 
-import React from "react"
+import { Calendar, CalendarIcon } from "@/components/ui/calendar"
 
+import React from "react"
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { useSidebarContext } from "./layout"
 import {
   MessageCircle,
   FileText,
@@ -24,22 +24,17 @@ import {
   Copy,
   Share2,
   MoreHorizontal,
-  ArrowUp,
+  ArrowRight,
   Paperclip,
   ImageIcon,
-  Plus,
-  ArrowRight,
 } from "lucide-react"
 import { CarTaxiFrontIcon as ChartNoAxesColumnIncreasing } from "lucide-react"
 import { cn } from "@/lib/utils"
 import VideoAnalytics from "@/components/kokonutui/video-analytics"
 import FloatingVideoChat from "@/components/kokonutui/floating-chat-bar"
 import StreamlineInit from "@/components/kokonutui/streamline-init"
-
-const recentProjects = [
-  { id: "1", name: "Project Alpha", duration: "1h 30m", lastModified: "2023-10-01" },
-  { id: "2", name: "Project Beta", duration: "2h", lastModified: "2023-09-30" },
-]
+import { useSidebarContext } from "@/context/sidebar-context"
+import { recentProjects } from "@/data/projects"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
@@ -121,67 +116,30 @@ const insights = {
     "Annual budget is approximately $10,000. Must-have features include strong integrations, automation capabilities, and Ashley appears to be the lead on this initiative and is overseeing a range of stakeholders.",
 }
 
+function handleBackToSelector() {
+  // Implementation for handleBackToSelector
+}
+
+const currentProject = {
+  name: "GreenLeaf Project",
+  lastModified: "2023-10-01",
+  duration: "28:14",
+};
+
 export default function Streamline() {
-  const { isSidebarExpanded } = useSidebarContext()
   const [isPlaying, setIsPlaying] = useState(false)
   const [activeTab, setActiveTab] = useState("transcript")
   const [activeTopTab, setActiveTopTab] = useState("video-chat")
-  const [selectedProject, setSelectedProject] = useState<string | null>(null)
-  const [showProjectList, setShowProjectList] = useState(false)
 
-  const currentProject = selectedProject 
-    ? recentProjects.find(p => p.id === selectedProject) || recentProjects[0]
-    : null
-
-  const handleProjectSelect = (projectId: string) => {
-    setSelectedProject(projectId)
-  }
-
-  const handleBackToSelector = () => {
-    setSelectedProject(null)
-  }
-
-  // Initial Selector View
-  if (!selectedProject) {
-    // Calculate left offset based on sidebar expansion state
-    const sidebarWidth = isSidebarExpanded ? 224 : 64 // 56 = 14rem (224px), 16 = 4rem (64px)
-    
-    return (
-      <div 
-        className="fixed top-0 bottom-0 right-0 flex items-center justify-center p-4 lg:left-auto hidden lg:flex"
-        style={{ left: `${sidebarWidth}px` }}
-      >
-        <div className="w-full max-w-3xl">
-          <StreamlineInit 
-            onProjectSelect={handleProjectSelect}
-            onCreateNew={() => handleProjectSelect("new")}
-          />
-        </div>
-      </div>
-    )
-  }
-
-  // Project Interface View
   return (
     <div className="min-h-screen py-6 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header with Back Button */}
+        {/* Header */}
         <div className="mb-8 space-y-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={handleBackToSelector}
-                className="p-2 hover:bg-zinc-800 rounded-lg transition-colors text-zinc-400 hover:text-white"
-                title="Back to project selector"
-              >
-                <ArrowRight className="h-5 w-5 rotate-180" />
-              </button>
-              <div>
-                <h1 className="text-2xl font-bold text-white">
-                  {currentProject?.name}
-                </h1>
-              </div>
-            </div>
+            <h1 className="text-2xl font-bold text-white">
+              GreenLeaf // Basepoint
+            </h1>
             <button className="px-3 py-1 text-xs font-medium bg-zinc-800 text-zinc-400 rounded hover:bg-zinc-700 transition-colors">
               ★
             </button>
@@ -189,7 +147,7 @@ export default function Streamline() {
 
           <div className="flex items-center gap-4 text-sm text-zinc-400">
             <div className="flex items-center gap-1">
-              <Calendar className="h-4 w-4" />
+              <CalendarIcon className="h-4 w-4" />
               <span>{currentProject?.lastModified}</span>
             </div>
             <div className="flex items-center gap-1">
@@ -398,13 +356,5 @@ export default function Streamline() {
         ]}
       />
     </div>
-  )
-}
-
-function Calendar(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg {...props} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-    </svg>
   )
 }
