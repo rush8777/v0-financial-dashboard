@@ -9,10 +9,6 @@ const tabs = [
   { id: "overview", label: "Overview", icon: Grid3x3 },
   { id: "board", label: "Board", icon: LayoutList },
   { id: "list", label: "List", icon: LayoutList },
-  { id: "calendar", label: "Calendar", icon: Calendar },
-  { id: "timeline", label: "Time-line", icon: Timeline },
-  { id: "workload", label: "Workload", icon: Users },
-  { id: "message", label: "Message", icon: MessageSquare },
 ]
 
 const tasks = [
