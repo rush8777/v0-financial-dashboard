@@ -1,10 +1,39 @@
-import { ArrowRight, ChevronLeft, ChevronRight, Heart, MapPin, TrendingUp, TrendingDown } from "lucide-react"
+import { ArrowRight, ChevronLeft, ChevronRight, Heart, TrendingUp } from "lucide-react"
 import { useState } from "react"
+import CreateProjectModal from "@/components/kokonutui/create-project"
 
-export default function () {
-  const [selectedCourse, setSelectedCourse] = useState(null)
+interface Course {
+  id: number
+  title: string
+  watched: number
+  total: number
+  icon: string
+  percentage: number
+  trend: string
+  trendUp: boolean
+}
 
-  const courses = [
+interface ContinueCourse {
+  id: number
+  title: string
+  category: string
+  mentor: string
+  image: string
+}
+
+interface Lesson {
+  id: number
+  mentor: string
+  date: string
+  type: string
+  description: string
+}
+
+export default function CoursePage() {
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const courses: Course[] = [
     { 
       id: 1, 
       title: "UI/UX Design", 
@@ -57,7 +86,7 @@ export default function () {
     },
   ]
 
-  const continueCourses = [
+  const continueCourses: ContinueCourse[] = [
     {
       id: 1,
       title: "Beginner's Guide to Becoming a Professional Front-End Developer",
@@ -81,7 +110,7 @@ export default function () {
     },
   ]
 
-  const lessons = [
+  const lessons: Lesson[] = [
     {
       id: 1,
       mentor: "Padhang Satrio",
@@ -91,11 +120,14 @@ export default function () {
     },
   ]
 
-  const handleCourseClick = (course) => {
+  const handleCourseClick = (course: Course) => {
     setSelectedCourse(course)
-    // You can add navigation logic here, e.g.:
-    // window.location.href = `/course/${course.id}`
-    // or with Next.js router: router.push(`/course/${course.id}`)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedCourse(null)
   }
 
   return (
@@ -119,49 +151,20 @@ export default function () {
         </div>
       </div>
 
-      {/* Selected Course Indicator */}
-      {selectedCourse && (
-        <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="text-2xl">{selectedCourse.icon}</span>
-              <div>
-                <p className="text-sm font-semibold text-purple-900 dark:text-purple-100">Now viewing:</p>
-                <p className="text-lg font-bold text-purple-600 dark:text-purple-400">{selectedCourse.title}</p>
-              </div>
-            </div>
-            <button 
-              onClick={() => setSelectedCourse(null)}
-              className="text-sm text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 font-medium"
-            >
-              Clear selection
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Course Progress Cards - Now Clickable */}
+      {/* Course Progress Cards - Clickable */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
         {courses.map((course) => (
           <button
             key={course.id}
             onClick={() => handleCourseClick(course)}
-            className={`p-3 rounded-lg bg-white dark:bg-zinc-900/70 border shadow-sm backdrop-blur-xl text-left transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95 ${
-              selectedCourse?.id === course.id
-                ? 'border-purple-500 dark:border-purple-400 ring-2 ring-purple-500/20'
-                : 'border-zinc-100 dark:border-zinc-800 hover:border-purple-300 dark:hover:border-purple-700'
-            }`}
+            className="p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:border-purple-300 dark:hover:border-purple-700 active:scale-95"
           >
             <div className="flex items-start justify-between mb-2">
               <div>
                 <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-0.5">{course.title}</p>
                 <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">{course.percentage}%</h3>
               </div>
-              <div className={`p-1.5 rounded-lg transition-colors ${
-                selectedCourse?.id === course.id
-                  ? 'bg-purple-200 dark:bg-purple-800/50'
-                  : 'bg-purple-100 dark:bg-purple-900/30'
-              }`}>
+              <div className="p-1.5 rounded-lg bg-purple-100 dark:bg-purple-900/30">
                 <span className="text-lg">{course.icon}</span>
               </div>
             </div>
@@ -278,6 +281,13 @@ export default function () {
           </table>
         </div>
       </div>
+
+      {/* Create Project Modal */}
+      <CreateProjectModal 
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        course={selectedCourse}
+      />
     </div>
   )
 }
