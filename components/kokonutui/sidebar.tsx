@@ -18,6 +18,7 @@ import {
   HelpCircle,
   Menu,
   ChevronLeft,
+  Zap,
 } from "lucide-react"
 
 import { Home } from "lucide-react"
@@ -139,6 +140,9 @@ export default function Sidebar() {
                   </NavItem>
                   <NavItem href="/project" icon={Folder}>
                     Projects
+                  </NavItem>
+                  <NavItem href="/streamline" icon={Zap}>
+                    Streamline
                   </NavItem>
                 </div>
               </div>
