@@ -87,33 +87,33 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-2xl bg-[#2A2A2E] rounded-3xl shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-lg bg-[#2A2A2E] rounded-2xl shadow-2xl animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-start gap-4 p-8 pb-6">
-          <div className="p-3 bg-[#3A3A3E] rounded-xl">
-            <FolderOpen className="w-6 h-6 text-white" />
+        <div className="flex items-start gap-3 p-6 pb-4">
+          <div className="p-2 bg-[#3A3A3E] rounded-lg">
+            <FolderOpen className="w-5 h-5 text-white" />
           </div>
           <div className="flex-1">
-            <h2 className="text-2xl font-bold text-white mb-1">
+            <h2 className="text-xl font-bold text-white mb-0.5">
               Create New Project
             </h2>
-            <p className="text-sm text-gray-400">
+            <p className="text-xs text-gray-400">
               Create a project to structure your team's workflow.
             </p>
           </div>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="px-8 pb-8 space-y-6">
+        <form onSubmit={handleSubmit} className="px-6 pb-6 space-y-4">
           {/* Project Name & Category */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
+              <label className="block text-xs font-medium text-white mb-1.5">
                 Project name<span className="text-red-500">*</span>
               </label>
               <input
@@ -121,19 +121,19 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
                 placeholder="Type here"
                 value={formData.projectName}
                 onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
-                className="w-full px-4 py-3 bg-[#3A3A3E] border border-[#4A4A4E] rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+                className="w-full px-3 py-2 text-sm bg-[#3A3A3E] border border-[#4A4A4E] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
+              <label className="block text-xs font-medium text-white mb-1.5">
                 Project category<span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <select
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#3A3A3E] border border-[#4A4A4E] rounded-xl text-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors appearance-none cursor-pointer"
+                  className="w-full px-3 py-2 text-sm bg-[#3A3A3E] border border-[#4A4A4E] rounded-lg text-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors appearance-none cursor-pointer"
                   required
                 >
                   <option value="">Choose category</option>
@@ -143,15 +143,15 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
                   <option value="Marketing">Marketing</option>
                   <option value="Photography">Photography</option>
                 </select>
-                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
             </div>
           </div>
 
           {/* Start & End Date */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
+              <label className="block text-xs font-medium text-white mb-1.5">
                 Start Date<span className="text-red-500">*</span>
               </label>
               <div className="relative">
@@ -160,14 +160,14 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
                   value={formData.startDate}
                   onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
                   placeholder="Select"
-                  className="w-full px-4 py-3 bg-[#3A3A3E] border border-[#4A4A4E] rounded-xl text-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors appearance-none cursor-pointer"
+                  className="w-full px-3 py-2 text-sm bg-[#3A3A3E] border border-[#4A4A4E] rounded-lg text-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors appearance-none cursor-pointer"
                   required
                 />
-                <Calendar className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
+              <label className="block text-xs font-medium text-white mb-1.5">
                 End Date<span className="text-red-500">*</span>
               </label>
               <div className="relative">
@@ -176,34 +176,34 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
                   value={formData.endDate}
                   onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
                   placeholder="Select"
-                  className="w-full px-4 py-3 bg-[#3A3A3E] border border-[#4A4A4E] rounded-xl text-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors appearance-none cursor-pointer"
+                  className="w-full px-3 py-2 text-sm bg-[#3A3A3E] border border-[#4A4A4E] rounded-lg text-gray-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors appearance-none cursor-pointer"
                   required
                 />
-                <Calendar className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
             </div>
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-white mb-2">
+            <label className="block text-xs font-medium text-white mb-1.5">
               Description
             </label>
             <textarea
               placeholder="Enter the goals and scope for your project here"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              rows={4}
-              className="w-full px-4 py-3 bg-[#3A3A3E] border border-[#4A4A4E] rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors resize-none"
+              rows={3}
+              className="w-full px-3 py-2 text-sm bg-[#3A3A3E] border border-[#4A4A4E] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors resize-none"
             />
           </div>
 
           {/* Upload Documents */}
           <div>
-            <label className="block text-sm font-medium text-white mb-2">
+            <label className="block text-xs font-medium text-white mb-1.5">
               Upload Documents
             </label>
-            <p className="text-sm text-gray-400 mb-3">
+            <p className="text-xs text-gray-400 mb-2">
               Drop your project documents here to continue.
             </p>
             
@@ -211,7 +211,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
-              className={`relative border-2 border-dashed rounded-xl p-8 transition-all ${
+              className={`relative border-2 border-dashed rounded-lg p-6 transition-all ${
                 isDragging 
                   ? 'border-purple-500 bg-purple-500/10' 
                   : 'border-[#4A4A4E] bg-[#35353A]'
@@ -226,13 +226,13 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
               />
               
               <div className="flex flex-col items-center justify-center text-center">
-                <div className="w-16 h-16 bg-[#4A4A4E] rounded-full flex items-center justify-center mb-4">
-                  <Upload className="w-8 h-8 text-gray-400" />
+                <div className="w-12 h-12 bg-[#4A4A4E] rounded-full flex items-center justify-center mb-3">
+                  <Upload className="w-6 h-6 text-gray-400" />
                 </div>
-                <p className="text-white font-medium mb-1">
+                <p className="text-sm text-white font-medium mb-0.5">
                   Choose a file or drag and drop it here.
                 </p>
-                <p className="text-sm text-gray-400">
+                <p className="text-xs text-gray-400">
                   JGP, or PDF file - up to 100MB
                 </p>
               </div>
@@ -240,19 +240,19 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
 
             {/* File List */}
             {formData.documents.length > 0 && (
-              <div className="mt-3 space-y-2">
+              <div className="mt-2 space-y-2">
                 {formData.documents.map((file, index) => (
                   <div 
                     key={index}
-                    className="flex items-center justify-between p-3 bg-[#3A3A3E] rounded-lg"
+                    className="flex items-center justify-between p-2 bg-[#3A3A3E] rounded-lg"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-purple-500/20 rounded flex items-center justify-center">
-                        <Upload className="w-4 h-4 text-purple-400" />
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 bg-purple-500/20 rounded flex items-center justify-center">
+                        <Upload className="w-3.5 h-3.5 text-purple-400" />
                       </div>
                       <div>
-                        <p className="text-sm text-white font-medium">{file.name}</p>
-                        <p className="text-xs text-gray-400">
+                        <p className="text-xs text-white font-medium">{file.name}</p>
+                        <p className="text-[10px] text-gray-400">
                           {(file.size / 1024 / 1024).toFixed(2)} MB
                         </p>
                       </div>
@@ -262,7 +262,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
                       onClick={() => removeFile(index)}
                       className="p-1 hover:bg-[#4A4A4E] rounded transition-colors"
                     >
-                      <X className="w-4 h-4 text-gray-400" />
+                      <X className="w-3.5 h-3.5 text-gray-400" />
                     </button>
                   </div>
                 ))}
@@ -271,25 +271,25 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
           </div>
 
           {/* Footer Buttons */}
-          <div className="flex items-center justify-between pt-4">
+          <div className="flex items-center justify-between pt-3 border-t border-[#3A3A3E]">
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-3 text-white hover:bg-[#3A3A3E] rounded-xl font-medium transition-colors"
+              className="px-4 py-2 text-sm text-white hover:bg-[#3A3A3E] rounded-lg font-medium transition-colors"
             >
               Cancel
             </button>
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <button
                 type="button"
                 onClick={handleSaveDraft}
-                className="px-6 py-3 text-white hover:bg-[#3A3A3E] rounded-xl font-medium transition-colors"
+                className="px-4 py-2 text-sm text-white hover:bg-[#3A3A3E] rounded-lg font-medium transition-colors"
               >
                 Save as Draft
               </button>
               <button
                 type="submit"
-                className="px-6 py-3 bg-white text-gray-900 hover:bg-gray-100 rounded-xl font-semibold transition-colors"
+                className="px-4 py-2 text-sm bg-white text-gray-900 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
               >
                 Save Project
               </button>
