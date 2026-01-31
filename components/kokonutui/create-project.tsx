@@ -93,8 +93,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
       />
       
       {/* Modal */}
-      
-      <div className="relative w-full max-w-md animate-in fade-in zoom-in-95 duration-200 max-h-[85vh] overflow-y-auto p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl">
+      <div className="relative w-full max-w-md bg-[#2A2A2E] rounded-xl shadow-2xl animate-in fade-in zoom-in-95 duration-200 max-h-[85vh] overflow-y-auto">
         {/* Header */}
         <div className="flex items-start gap-2.5 p-4 pb-2">
           <div className="p-1.5 bg-[#3A3A3E] rounded-lg">
@@ -267,12 +266,54 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
           )}
 
           {activeTab === 'import' && (
-            <div className="py-8 text-center">
-              <div className="w-12 h-12 bg-[#3A3A3E] rounded-full flex items-center justify-center mx-auto mb-3">
-                <Upload className="w-6 h-6 text-gray-400" />
+            <div>
+              <label className="block text-[11px] font-medium text-white mb-1">
+                Import Documents
+              </label>
+              <p className="text-[10px] text-gray-400 mb-1.5">
+                Select files from your recent documents to import.
+              </p>
+              
+              {/* File List */}
+              <div className="space-y-1">
+                {/* Sample files - replace with actual file data */}
+                {[
+                  { name: 'WorldFoodsDealSheet.pdf', size: '8.8 mb', owner: 'Kristin Watson', color: 'bg-emerald-500' },
+                  { name: 'promo432432.pdf', size: '3.6 mb', owner: 'Devon Lane', color: 'bg-pink-500' },
+                  { name: 'pop0315021.xlsx', size: '4.1 mb', owner: 'Ronald Richards', color: 'bg-red-500' },
+                  { name: 'DealSheet032021.xlsx', size: '3.9 mb', owner: 'Bessie Cooper', color: 'bg-purple-500' },
+                  { name: 'Verkoopfactuur 5L200472.pdf', size: '8.4 mb', owner: 'Jenny Wilson', color: 'bg-cyan-500' },
+                  { name: 'Invoice for YAAAS Queen.pdf', size: '337 kb', owner: 'Cameron Williamson', color: 'bg-emerald-500' },
+                ].map((file, index) => (
+                  <div 
+                    key={index}
+                    className="flex items-center justify-between p-2 hover:bg-[#35353A] rounded-lg transition-colors group"
+                  >
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-blue-400 font-medium truncate">{file.name}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 flex-shrink-0">
+                      <span className="text-[10px] text-gray-400">{file.size}</span>
+                      <div className="flex items-center gap-1.5">
+                        <div className={`w-5 h-5 rounded-full ${file.color} flex items-center justify-center`}>
+                          <span className="text-[9px] text-white font-semibold">
+                            {file.owner.split(' ').map(n => n[0]).join('')}
+                          </span>
+                        </div>
+                        <span className="text-[10px] text-gray-400 hidden sm:block">{file.owner}</span>
+                      </div>
+                      <button
+                        type="button"
+                        className="text-xs text-blue-500 hover:text-blue-400 font-medium"
+                      >
+                        Select
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <p className="text-sm text-white font-medium mb-1">Import from external source</p>
-              <p className="text-xs text-gray-400">Connect to your cloud storage or import from URL</p>
             </div>
           )}
 
