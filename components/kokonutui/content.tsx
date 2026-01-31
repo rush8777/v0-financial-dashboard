@@ -1,7 +1,9 @@
 import { ArrowRight, ChevronLeft, ChevronRight, Heart, MapPin, TrendingUp, TrendingDown } from "lucide-react"
-import Image from "next/image"
+import { useState } from "react"
 
 export default function () {
+  const [selectedCourse, setSelectedCourse] = useState(null)
+
   const courses = [
     { 
       id: 1, 
@@ -89,6 +91,13 @@ export default function () {
     },
   ]
 
+  const handleCourseClick = (course) => {
+    setSelectedCourse(course)
+    // You can add navigation logic here, e.g.:
+    // window.location.href = `/course/${course.id}`
+    // or with Next.js router: router.push(`/course/${course.id}`)
+  }
+
   return (
     <div className="space-y-8">
       {/* Course Banner */}
@@ -110,19 +119,49 @@ export default function () {
         </div>
       </div>
 
-      {/* Course Progress Cards - Compact Design */}
+      {/* Selected Course Indicator */}
+      {selectedCourse && (
+        <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">{selectedCourse.icon}</span>
+              <div>
+                <p className="text-sm font-semibold text-purple-900 dark:text-purple-100">Now viewing:</p>
+                <p className="text-lg font-bold text-purple-600 dark:text-purple-400">{selectedCourse.title}</p>
+              </div>
+            </div>
+            <button 
+              onClick={() => setSelectedCourse(null)}
+              className="text-sm text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 font-medium"
+            >
+              Clear selection
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Course Progress Cards - Now Clickable */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
         {courses.map((course) => (
-          <div 
-            key={course.id} 
-            className="p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl"
+          <button
+            key={course.id}
+            onClick={() => handleCourseClick(course)}
+            className={`p-3 rounded-lg bg-white dark:bg-zinc-900/70 border shadow-sm backdrop-blur-xl text-left transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95 ${
+              selectedCourse?.id === course.id
+                ? 'border-purple-500 dark:border-purple-400 ring-2 ring-purple-500/20'
+                : 'border-zinc-100 dark:border-zinc-800 hover:border-purple-300 dark:hover:border-purple-700'
+            }`}
           >
             <div className="flex items-start justify-between mb-2">
               <div>
                 <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-0.5">{course.title}</p>
                 <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">{course.percentage}%</h3>
               </div>
-              <div className="p-1.5 rounded-lg bg-purple-100 dark:bg-purple-900/30">
+              <div className={`p-1.5 rounded-lg transition-colors ${
+                selectedCourse?.id === course.id
+                  ? 'bg-purple-200 dark:bg-purple-800/50'
+                  : 'bg-purple-100 dark:bg-purple-900/30'
+              }`}>
                 <span className="text-lg">{course.icon}</span>
               </div>
             </div>
@@ -133,7 +172,7 @@ export default function () {
               <TrendingUp className="w-3 h-3" />
               {course.trend}
             </p>
-          </div>
+          </button>
         ))}
       </div>
 
