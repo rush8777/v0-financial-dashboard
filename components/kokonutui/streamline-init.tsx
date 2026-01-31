@@ -40,7 +40,7 @@ export default function StreamlineInit({ onProjectSelect, onCreateNew }: Streaml
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       {/* Centered Card */}
-      <div className="p-6 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl text-left active:scale-95 min-h-[350px]">
+      <div className="p-6 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl text-left active:scale-95 min-h-[350px] flex flex-col justify-center">
         {/* Header */}
         <div className="mb-4">
           <h1 className="text-xl font-normal text-[#CCCCCC] mb-1">
