@@ -190,8 +190,6 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
 
           {/* Tab Content */}
           {activeTab === 'local' && (
-          {/* Tab Content */}
-          {activeTab === 'local' && (
             <>
               {/* Upload Documents */}
               <div>
