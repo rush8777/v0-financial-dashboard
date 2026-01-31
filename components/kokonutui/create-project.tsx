@@ -93,7 +93,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-md bg-[#2A2A2E] rounded-xl shadow-2xl animate-in fade-in zoom-in-95 duration-200 max-h-[85vh] overflow-y-auto">
+      <div className="relative w-full max-w-md animate-in fade-in zoom-in-95 duration-200 max-h-[85vh] overflow-y-auto p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl">
         {/* Header */}
         <div className="flex items-start gap-2.5 p-4 pb-2">
           <div className="p-1.5 bg-[#3A3A3E] rounded-lg">
