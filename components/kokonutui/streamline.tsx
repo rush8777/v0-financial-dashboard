@@ -27,6 +27,7 @@ import {
   Paperclip,
   ImageIcon,
   Plus,
+  ArrowRight,
 } from "lucide-react"
 import { CarTaxiFrontIcon as ChartNoAxesColumnIncreasing } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -141,88 +142,128 @@ const recentProjects: RecentProject[] = [
   },
 ]
 
-export default function Hooks() {
+export default function Streamline() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [activeTab, setActiveTab] = useState("transcript")
   const [activeTopTab, setActiveTopTab] = useState("video-chat")
-  const [selectedProject, setSelectedProject] = useState<string>("1")
+  const [selectedProject, setSelectedProject] = useState<string | null>(null)
   const [showProjectList, setShowProjectList] = useState(false)
 
-
-  const currentProject = recentProjects.find(p => p.id === selectedProject) || recentProjects[0]
+  const currentProject = selectedProject 
+    ? recentProjects.find(p => p.id === selectedProject) || recentProjects[0]
+    : null
 
   const handleProjectSelect = (projectId: string) => {
     setSelectedProject(projectId)
-    setShowProjectList(false)
   }
 
+  const handleBackToSelector = () => {
+    setSelectedProject(null)
+  }
+
+  // Initial Selector View
+  if (!selectedProject) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-zinc-900 via-zinc-900 to-black flex items-center justify-center p-4">
+        <div className="w-full max-w-4xl">
+          {/* Header */}
+          <div className="mb-12 text-center">
+            <h1 className="text-4xl font-bold text-white mb-2">Streamline</h1>
+            <p className="text-zinc-400">Select a recent project or create a new streamline</p>
+          </div>
+
+          {/* Main Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Left Section - Create New */}
+            <div>
+              <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-4">
+                Start New
+              </h2>
+              
+              <button
+                onClick={() => handleProjectSelect("new")}
+                className="w-full group relative px-6 py-8 bg-gradient-to-br from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              >
+                <div className="flex flex-col items-center gap-3">
+                  <Plus className="h-8 w-8" />
+                  <div>
+                    <p className="font-semibold">Create New Streamline</p>
+                    <p className="text-xs text-purple-200 mt-1">Start a fresh project</p>
+                  </div>
+                </div>
+              </button>
+            </div>
+
+            {/* Right Section - Recent Projects */}
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">
+                  Recent Projects
+                </h2>
+              </div>
+
+              <div className="space-y-2">
+                {recentProjects.map((project) => (
+                  <button
+                    key={project.id}
+                    onClick={() => handleProjectSelect(project.id)}
+                    className="w-full text-left px-4 py-4 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 hover:border-purple-500/50 rounded-lg transition-all duration-200 group"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-white group-hover:text-purple-400 transition-colors truncate">
+                          {project.name}
+                        </p>
+                        <p className="text-xs text-zinc-500 mt-1">
+                          {project.duration} • {project.lastModified}
+                        </p>
+                      </div>
+                      <ArrowRight className="h-4 w-4 text-zinc-500 group-hover:text-purple-400 transition-colors flex-shrink-0 ml-2" />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Project Interface View
   return (
     <div className="min-h-screen py-6 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header with Project Selector */}
+        {/* Header with Back Button */}
         <div className="mb-8 space-y-4">
           <div className="flex items-center justify-between">
-            <div className="flex-1">
-              <div className="relative">
-                <button
-                  onClick={() => setShowProjectList(!showProjectList)}
-                  className="flex items-center gap-3 group"
-                >
-                  <h1 className="text-2xl font-bold text-white hover:text-purple-400 transition-colors">
-                    {currentProject.name}
-                  </h1>
-                  <span className="px-2 py-1 text-xs font-medium bg-zinc-800 text-zinc-400 rounded group-hover:bg-zinc-700 transition-colors">
-                    ★
-                  </span>
-                </button>
-
-                {/* Project Dropdown Overlay */}
-                {showProjectList && (
-                  <div
-                    className="fixed inset-0 z-[9]"
-                    onClick={() => setShowProjectList(false)}
-                  />
-                )}
-
-                {/* Project Dropdown */}
-                {showProjectList && (
-                  <div className="absolute top-full left-0 mt-2 w-64 bg-zinc-800 border border-zinc-700 rounded-lg shadow-lg z-10 animate-in fade-in slide-in-from-top-2 duration-200">
-                    <div className="p-3 border-b border-zinc-700">
-                      <p className="text-xs font-semibold text-zinc-400 uppercase">Recent Projects</p>
-                    </div>
-                    <div className="max-h-96 overflow-y-auto">
-                      {recentProjects.map((project) => (
-                        <button
-                          key={project.id}
-                          onClick={() => handleProjectSelect(project.id)}
-                          className={cn(
-                            "w-full text-left px-4 py-3 transition-colors border-b border-zinc-700/50 last:border-b-0",
-                            selectedProject === project.id
-                              ? "bg-purple-600/20 text-white"
-                              : "text-zinc-300 hover:bg-zinc-700/50"
-                          )}
-                        >
-                          <div className="font-medium text-sm">{project.name}</div>
-                          <div className="text-xs text-zinc-500 mt-1">
-                            {project.duration} • {project.lastModified}
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
+            <div className="flex items-center gap-4">
+              <button
+                onClick={handleBackToSelector}
+                className="p-2 hover:bg-zinc-800 rounded-lg transition-colors text-zinc-400 hover:text-white"
+                title="Back to project selector"
+              >
+                <ArrowRight className="h-5 w-5 rotate-180" />
+              </button>
+              <div>
+                <h1 className="text-2xl font-bold text-white">
+                  {currentProject?.name}
+                </h1>
               </div>
             </div>
+            <button className="px-3 py-1 text-xs font-medium bg-zinc-800 text-zinc-400 rounded hover:bg-zinc-700 transition-colors">
+              ★
+            </button>
           </div>
 
           <div className="flex items-center gap-4 text-sm text-zinc-400">
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
-              <span>{currentProject.lastModified}</span>
+              <span>{currentProject?.lastModified}</span>
             </div>
             <div className="flex items-center gap-1">
               <Clock className="h-4 w-4" />
-              <span>{currentProject.duration}</span>
+              <span>{currentProject?.duration}</span>
             </div>
           </div>
         </div>
