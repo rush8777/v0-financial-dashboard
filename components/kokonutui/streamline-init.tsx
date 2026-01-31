@@ -1,5 +1,4 @@
 "use client"
-
 import { useState } from "react"
 
 interface RecentProject {
@@ -41,37 +40,38 @@ export default function StreamlineInit({ onProjectSelect, onCreateNew }: Streaml
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       {/* Centered Card */}
-      <div className="p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl text-left active:scale-95 min-h-[400px] flex flex-col justify-center ">
+      <div className="p-6 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl text-left active:scale-95">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-normal text-[#CCCCCC] mb-2">
+        <div className="mb-4">
+          <h1 className="text-xl font-normal text-[#CCCCCC] mb-1">
             Streamline
           </h1>
         </div>
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Left Section - Start */}
           <div>
-            <h2 className="text-sm text-[#CCCCCC] mb-4">
+            <h2 className="text-xs text-[#CCCCCC] mb-3">
               Start
             </h2>
             
-            <div className="space-y-3">
+            <div className="space-y-2">
               {/* Create New Streamline Button */}
               <button
                 onClick={onCreateNew}
-                className="w-full text-left px-4 py-3 bg-[#0E639C] hover:bg-[#1177BB] text-white text-sm rounded transition-colors flex items-center gap-3"
+                className="w-full text-left px-3 py-2 bg-[#0E639C] hover:bg-[#1177BB] text-white text-xs rounded transition-colors flex items-center gap-2"
               >
-                <span className="text-lg">✨</span>
+                <span className="text-sm">✨</span>
                 <span>Create New Streamline</span>
               </button>
+
               {/* Import Video Button */}
               <button
                 onClick={() => console.log("Import video clicked")}
-                className="w-full text-left px-4 py-3 bg-[#0E639C] hover:bg-[#1177BB] text-white text-sm rounded transition-colors flex items-center gap-3"
+                className="w-full text-left px-3 py-2 bg-[#0E639C] hover:bg-[#1177BB] text-white text-xs rounded transition-colors flex items-center gap-2"
               >
-                <span className="text-lg">📁</span>
+                <span className="text-sm">📁</span>
                 <span>Import Video</span>
               </button>
             </div>
@@ -79,14 +79,14 @@ export default function StreamlineInit({ onProjectSelect, onCreateNew }: Streaml
 
           {/* Right Section - Recent Projects */}
           <div>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm text-[#CCCCCC]">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-xs text-[#CCCCCC]">
                 Recent Projects
               </h2>
               {recentProjects.length > 3 && (
                 <button
                   onClick={() => setShowMore(!showMore)}
-                  className="text-xs text-[#CCCCCC] hover:text-white transition-colors"
+                  className="text-[10px] text-[#CCCCCC] hover:text-white transition-colors"
                 >
                   {showMore ? "Show Less" : "Show More..."}
                 </button>
@@ -98,16 +98,16 @@ export default function StreamlineInit({ onProjectSelect, onCreateNew }: Streaml
                 <button
                   key={project.id}
                   onClick={() => onProjectSelect(project.id)}
-                  className="w-full text-left px-2 py-2 hover:bg-[#2A2D2E] rounded transition-colors"
+                  className="w-full text-left px-2 py-1.5 hover:bg-[#2A2D2E] rounded transition-colors"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex-1 min-w-0 pr-4">
-                      <p className="text-sm text-[#CCCCCC] truncate">
+                      <p className="text-xs text-[#CCCCCC] truncate">
                         {project.name}
                       </p>
                     </div>
                     <div className="flex-shrink-0">
-                      <p className="text-xs text-[#858585]">
+                      <p className="text-[10px] text-[#858585]">
                         {project.path}
                       </p>
                     </div>
