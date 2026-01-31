@@ -142,11 +142,13 @@ export default function Streamline() {
   // Initial Selector View
   if (!selectedProject) {
     return (
-      <div className="min-h-screen overflow-hidden flex items-center justify-center p-4">
-        <StreamlineInit 
-          onProjectSelect={handleProjectSelect}
-          onCreateNew={() => handleProjectSelect("new")}
-        />
+      <div className="fixed inset-0 flex items-center justify-center p-4 bg-gradient-to-br from-zinc-900 via-zinc-900 to-black z-50">
+        <div className="w-full max-w-3xl">
+          <StreamlineInit 
+            onProjectSelect={handleProjectSelect}
+            onCreateNew={() => handleProjectSelect("new")}
+          />
+        </div>
       </div>
     )
   }
