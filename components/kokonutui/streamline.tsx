@@ -4,6 +4,7 @@ import React from "react"
 
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
+import { useSidebarContext } from "./layout"
 import {
   MessageCircle,
   FileText,
@@ -121,6 +122,7 @@ const insights = {
 }
 
 export default function Streamline() {
+  const { isSidebarExpanded } = useSidebarContext()
   const [isPlaying, setIsPlaying] = useState(false)
   const [activeTab, setActiveTab] = useState("transcript")
   const [activeTopTab, setActiveTopTab] = useState("video-chat")
@@ -141,8 +143,14 @@ export default function Streamline() {
 
   // Initial Selector View
   if (!selectedProject) {
+    // Calculate left offset based on sidebar expansion state
+    const sidebarWidth = isSidebarExpanded ? 224 : 64 // 56 = 14rem (224px), 16 = 4rem (64px)
+    
     return (
-      <div className="fixed inset-0 flex items-center justify-center p-4 bg-gradient-to-br from-zinc-900 via-zinc-900 to-black z-50">
+      <div 
+        className="fixed top-0 bottom-0 right-0 flex items-center justify-center p-4 bg-gradient-to-br from-zinc-900 via-zinc-900 to-black z-50 lg:left-auto hidden lg:flex"
+        style={{ left: `${sidebarWidth}px` }}
+      >
         <div className="w-full max-w-3xl">
           <StreamlineInit 
             onProjectSelect={handleProjectSelect}
