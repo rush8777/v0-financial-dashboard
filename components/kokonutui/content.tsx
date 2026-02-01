@@ -8,6 +8,7 @@ interface Course {
   id: number
   label: string
   icon: React.FC<{ className?: string }>
+  gradient: string
 }
 
 const columns = [
@@ -150,11 +151,11 @@ export default function CoursePage() {
   const activeFilterCount = (selectedPlatform ? 1 : 0) + (selectedContentType ? 1 : 0)
 
   const courses: Course[] = [
-    { id: 1, label: "Video", icon: Play },
-    { id: 2, label: "Post", icon: FileText },
-    { id: 3, label: "Image", icon: Image },
-    { id: 4, label: "Reels", icon: Film },
-    { id: 5, label: "Group", icon: Users },
+    { id: 1, label: "Video",  icon: Play,      gradient: "linear-gradient(135deg, #ef4444, #f97316, #eab308, #ef4444)" },
+    { id: 2, label: "Post",   icon: FileText,  gradient: "linear-gradient(135deg, #22c55e, #14b8a6, #06b6d4, #22c55e)" },
+    { id: 3, label: "Image",  icon: Image,     gradient: "linear-gradient(135deg, #8b5cf6, #ec4899, #f43f5e, #8b5cf6)" },
+    { id: 4, label: "Reels",  icon: Film,      gradient: "linear-gradient(135deg, #3b82f6, #6366f1, #8b5cf6, #3b82f6)" },
+    { id: 5, label: "Group",  icon: Users,     gradient: "linear-gradient(135deg, #f59e0b, #10b981, #3b82f6, #f59e0b)" },
   ]
 
   const lessons = [
@@ -179,6 +180,17 @@ export default function CoursePage() {
 
   return (
     <div className="space-y-8">
+      <style>{`
+        @keyframes gradient-shift {
+          0%   { background-position: 0% 50%; }
+          50%  { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .card-gradient-bg {
+          background-size: 200% 200%;
+          animation: gradient-shift 6s ease infinite;
+        }
+      `}</style>
       {/* Course Banner */}
       <div className="bg-gradient-to-r from-purple-600 to-purple-700 rounded-2xl p-8 text-white flex items-center justify-between overflow-hidden relative">
         <div className="absolute top-0 right-0 opacity-10">
@@ -206,12 +218,21 @@ export default function CoursePage() {
             <button
               key={course.id}
               onClick={() => handleCourseClick(course)}
-              className="p-5 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:border-purple-300 dark:hover:border-purple-700 active:scale-95 flex flex-col items-center justify-center gap-3"
+              className="relative overflow-hidden p-5 rounded-lg border border-zinc-100 dark:border-zinc-800 shadow-sm text-left transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95 flex flex-col items-center justify-center gap-3"
             >
-              <div className="p-3 rounded-xl bg-purple-100 dark:bg-purple-900/30">
-                <Icon className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+              {/* Animated gradient background */}
+              <div
+                className="card-gradient-bg absolute inset-0 opacity-20 dark:opacity-30"
+                style={{ background: course.gradient }}
+              />
+
+              {/* Icon */}
+              <div className="relative z-10 p-3 rounded-xl bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm">
+                <Icon className="w-6 h-6 text-zinc-700 dark:text-zinc-300" />
               </div>
-              <p className="text-sm font-semibold text-zinc-900 dark:text-white">{course.label}</p>
+
+              {/* Label */}
+              <p className="relative z-10 text-sm font-semibold text-zinc-900 dark:text-white">{course.label}</p>
             </button>
           )
         })}
