@@ -16,9 +16,9 @@ interface Course {
 }
 
 const columns = [
-  { id: "todo", title: "To Do" },
-  { id: "progress", title: "In Progress" },
-  { id: "review", title: "In Review" },
+  { id: "todo" },
+  { id: "progress" },
+  { id: "review" },
 ]
 
 const tasks = [
@@ -270,9 +270,7 @@ export default function CoursePage() {
         {/* Kanban Board */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {columns.map((column) => (
-            <div key={column.id}>
-              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 px-1">{column.title}</h3>
-              <div className="space-y-4">
+            <div key={column.id} className="space-y-4">
                 {tasks
                   .filter((task) => task.column === column.id)
                   .map((task) => (
@@ -331,7 +329,6 @@ export default function CoursePage() {
                       </CardContent>
                     </Card>
                   ))}
-              </div>
             </div>
           ))}
         </div>
