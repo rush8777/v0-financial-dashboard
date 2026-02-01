@@ -345,18 +345,12 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
               Cancel
             </button>
             <div className="flex gap-1.5">
-              <button
-                type="button"
-                onClick={handleSaveDraft}
-                className="px-3 py-1.5 text-xs text-white hover:bg-[#3A3A3E] rounded-lg font-medium transition-colors"
-              >
-                Save as Draft
-              </button>
+              
               <button
                 type="submit"
                 className="px-3 py-1.5 text-xs bg-white text-gray-900 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
               >
-                Save Project
+                Connect
               </button>
             </div>
           </div>
