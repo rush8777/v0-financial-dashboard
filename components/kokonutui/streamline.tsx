@@ -126,7 +126,7 @@ export default function Streamline() {
   }
 
   return (
-    <div className={cn("min-h-screen py-6 px-4", isDark ? "bg-zinc-950" : "bg-gray-50")}>
+    <div className={cn("min-h-screen py-6 px-4")}>
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
