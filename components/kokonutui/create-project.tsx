@@ -3,13 +3,9 @@ import { useState, DragEvent, ChangeEvent } from "react"
 
 interface Course {
   id: number
-  title: string
-  watched: number
-  total: number
-  icon: string
-  percentage: number
-  trend: string
-  trendUp: boolean
+  label: string
+  icon: React.ComponentType<{ className?: string }>
+  gradient: string
 }
 
 interface CreateProjectModalProps {
@@ -31,7 +27,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
   const [activeTab, setActiveTab] = useState<'import' | 'link' | 'local'>('local')
   const [formData, setFormData] = useState<FormData>({
     projectName: "",
-    category: course?.title || "",
+    category: course?.label || "",
     startDate: "",
     endDate: "",
     description: "",
@@ -101,7 +97,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
           </div>
           <div className="flex-1">
             <h2 className="text-lg font-bold text-white mb-0.5">
-              Create New Project
+              Create New {course?.label || 'Project'}
             </h2>
             <p className="text-[11px] text-gray-400">
               Create a project to structure your team's workflow.
@@ -273,10 +269,10 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
               {/* Header - Fixed */}
               <div className="flex-shrink-0 pb-2">
                 <label className="block text-[11px] font-medium text-white mb-0.5">
-                  Import Videos
+                  Import Documents
                 </label>
                 <p className="text-[10px] text-gray-400">
-                  Select files from your channel to import.
+                  Select files from your recent documents to import.
                 </p>
               </div>
               
