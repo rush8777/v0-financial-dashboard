@@ -100,7 +100,7 @@ const tasks = [
     title: "Create Icons for Navigation Bar",
     description: "All icons have been approved and exported as SVG.",
     priority: "Video",
-    category: "Facebook",
+    category: "Tiktok",
     progress: 100,
     progressColor: "bg-orange-500",
     team: ["👤", "👤", "👤", "👤"],
@@ -125,10 +125,10 @@ const getPriorityColor = (priority: string) => {
 
 const getCategoryColor = (category: string) => {
   const colors: Record<string, string> = {
-    Marketing: "bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400",
-    "Figma Design": "bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400",
-    Backend: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400",
-    Content: "bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400",
+    Facebook: "bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400",
+    Instagram: "bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400",
+    Tiktok: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400",
+    Youtube: "bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400",
   }
   return colors[category] || "bg-gray-100 text-gray-700 dark:bg-gray-900/20 dark:text-gray-400"
 }
