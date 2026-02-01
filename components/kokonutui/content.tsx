@@ -179,7 +179,7 @@ export default function CoursePage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 min-h-screen bg-gray-50 dark:bg-[#0F0F12] p-6">
       <style>{`
         @keyframes gradient-shift {
           0%   { background-position: 0% 50%; }
@@ -218,16 +218,16 @@ export default function CoursePage() {
             <button
               key={course.id}
               onClick={() => handleCourseClick(course)}
-              className="relative overflow-hidden p-5 rounded-lg border border-zinc-100 dark:border-zinc-800 shadow-sm text-left transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95 flex flex-col items-center justify-center gap-3"
+              className="relative overflow-hidden p-5 rounded-lg bg-white dark:bg-[#1F1F23] border border-zinc-100 dark:border-zinc-800 shadow-sm text-left transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95 flex flex-col items-center justify-center gap-3"
             >
               {/* Animated gradient background */}
               <div
-                className="card-gradient-bg absolute inset-0 opacity-20 dark:opacity-30"
+                className="card-gradient-bg absolute inset-0 opacity-25 dark:opacity-30"
                 style={{ background: course.gradient }}
               />
 
               {/* Icon */}
-              <div className="relative z-10 p-3 rounded-xl bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm">
+              <div className="relative z-10 p-3 rounded-xl bg-white/60 dark:bg-[#2F2F37]/60 backdrop-blur-sm">
                 <Icon className="w-6 h-6 text-zinc-700 dark:text-zinc-300" />
               </div>
 
@@ -340,7 +340,7 @@ export default function CoursePage() {
                 {filteredTasks
                   .filter((task) => task.column === column.id)
                   .map((task) => (
-                    <Card key={task.id} className="border border-gray-200 dark:border-[#2F2F37] hover:shadow-md transition-shadow">
+                    <Card key={task.id} className="border border-gray-200 dark:border-[#2F2F37] bg-white dark:bg-[#1F1F23] hover:shadow-md transition-shadow">
                       <CardContent className="p-4 space-y-3">
                         {/* Header */}
                         <div className="flex items-start justify-between gap-2">
@@ -369,13 +369,13 @@ export default function CoursePage() {
                             <span className="text-xs text-gray-600 dark:text-gray-400">Progress</span>
                             <span className="text-xs font-semibold text-gray-900 dark:text-white">{task.progress}%</span>
                           </div>
-                          <div className="w-full bg-gray-200 dark:bg-[#1F1F23] rounded-full h-1.5">
+                          <div className="w-full bg-gray-200 dark:bg-[#2F2F37] rounded-full h-1.5">
                             <div className={cn("h-1.5 rounded-full", task.progressColor)} style={{ width: `${task.progress}%` }} />
                           </div>
                         </div>
 
                         {/* Footer */}
-                        <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-[#1F1F23]">
+                        <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-[#2F2F37]">
                           <div className="flex items-center gap-1">
                             {task.team.map((member, idx) => (
                               <div key={idx} className="w-6 h-6 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-xs font-bold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600 -ml-1 first:ml-0" />
@@ -404,13 +404,13 @@ export default function CoursePage() {
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white">Your Lesson</h2>
-          <button className="text-sm text-purple-600 hover:text-purple-700 font-medium">See all</button>
+          <button className="text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium">See all</button>
         </div>
 
-        <div className="bg-white dark:bg-[#0F0F12] rounded-xl border border-gray-200 dark:border-[#1F1F23] overflow-hidden">
+        <div className="bg-white dark:bg-[#1F1F23] rounded-xl border border-gray-200 dark:border-[#2F2F37] overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-gray-200 dark:border-[#1F1F23]">
+              <tr className="border-b border-gray-200 dark:border-[#2F2F37]">
                 <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                   MENTOR
                 </th>
@@ -427,7 +427,7 @@ export default function CoursePage() {
             </thead>
             <tbody>
               {lessons.map((lesson) => (
-                <tr key={lesson.id} className="border-b border-gray-100 dark:border-[#1F1F23] hover:bg-gray-50 dark:hover:bg-[#1F1F23]/50 transition-colors">
+                <tr key={lesson.id} className="border-b border-gray-100 dark:border-[#2F2F37] hover:bg-gray-50 dark:hover:bg-[#2F2F37]/50 transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white text-xs font-bold">
@@ -440,7 +440,7 @@ export default function CoursePage() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-xs font-semibold text-purple-600 bg-purple-50 dark:bg-purple-900/20 px-3 py-1 rounded-full">
+                    <span className="text-xs font-semibold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 px-3 py-1 rounded-full">
                       {lesson.type}
                     </span>
                   </td>
