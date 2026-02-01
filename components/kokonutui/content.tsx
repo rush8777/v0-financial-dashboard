@@ -23,11 +23,7 @@ interface Lesson {
   description: string
 }
 
-const columns = [
-  { id: "todo", title: "To Do", count: 2 },
-  { id: "progress", title: "In progress", count: 2 },
-  { id: "review", title: "In Review", count: 2 },
-]
+
 
 const tasks = [
   {
@@ -277,23 +273,6 @@ export default function CoursePage() {
 
         {/* Kanban Board */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {columns.map((column) => (
-            <div key={column.id} className="flex flex-col">
-              {/* Column Header */}
-              <div className="flex items-center justify-between mb-4 pb-4 border-b-2 border-dashed border-gray-300 dark:border-[#2F2F37]">
-                <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  {column.title} <span className="text-gray-500">{column.count}</span>
-                </h2>
-                <div className="flex items-center gap-2">
-                  <button className="p-1 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
-                    <MessageCircle className="w-4 h-4" />
-                  </button>
-                  <button className="p-1 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
-                    <Plus className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-
               {/* Tasks */}
               <div className="space-y-4">
                 {tasks

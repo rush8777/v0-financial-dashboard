@@ -133,13 +133,13 @@ export default function Sidebar() {
                   <NavItem href="#" icon={Home}>
                     Home
                   </NavItem>
-                  <NavItem href="/post" icon={BarChart2}>
+                  <NavItem href="#" icon={BarChart2}>
                     Analytics
                   </NavItem>
                   <NavItem href="#" icon={Building2}>
                     Organization
                   </NavItem>
-                  <NavItem href="" icon={Folder}>
+                  <NavItem href="#" icon={Folder}>
                     Projects
                   </NavItem>
                   
