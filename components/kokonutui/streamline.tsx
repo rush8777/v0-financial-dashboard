@@ -192,7 +192,7 @@ export default function Streamline() {
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                     <div className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
-                      <Play className="w-4 h-4 text-black ml-0.5" />
+                      
                     </div>
                   </div>
                 </div>
