@@ -267,15 +267,15 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
 
           {activeTab === 'import' && (
             <div>
-              <label className="block text-[11px] font-medium text-white mb-1">
+              <label className="block text-[11px] font-medium text-white mb-0.5">
                 Import Documents
               </label>
-              <p className="text-[10px] text-gray-400 mb-1.5">
+              <p className="text-[10px] text-gray-400 mb-2">
                 Select files from your recent documents to import.
               </p>
               
-              {/* File List */}
-              <div className="space-y-1">
+              {/* File List - Scrollable */}
+              <div className="max-h-[280px] overflow-y-auto space-y-1 pr-1 scrollbar-thin scrollbar-thumb-[#4A4A4E] scrollbar-track-transparent">
                 {/* Sample files - replace with actual file data */}
                 {[
                   { name: 'WorldFoodsDealSheet.pdf', size: '8.8 mb', owner: 'Kristin Watson', color: 'bg-emerald-500' },
