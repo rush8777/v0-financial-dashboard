@@ -291,7 +291,7 @@ export default function Streamline() {
         </div>
 
         {/* Main Content */}
-        {activeTopTab === "statistics" ? (
+        {activeTopTab === "video-chat" ? (
           <div className="lg:col-span-5">
             <VideoAnalytics />
           </div>
