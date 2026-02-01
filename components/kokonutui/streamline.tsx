@@ -190,11 +190,7 @@ export default function Streamline() {
                     alt="Video thumbnail"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                    <div className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
-                      
-                    </div>
-                  </div>
+                  
                 </div>
 
                 {/* Video Info */}
