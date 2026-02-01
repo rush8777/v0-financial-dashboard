@@ -60,8 +60,8 @@ const tasks = [
     id: "MKT-098",
     title: "Write Blog Post on \"5 Productivity Tips\"",
     description: "Final draft is complete and ready for editorial review.",
-    priority: "Medium",
-    category: "Content",
+    priority: "Video",
+    category: "Youtube",
     progress: 100,
     progressColor: "bg-red-500",
     team: ["👤", "👤", "👤", "👤"],
@@ -73,8 +73,8 @@ const tasks = [
     id: "DEV-345",
     title: "Set up new Staging Database",
     description: "Provision and configure the PostgreSQL instance for staging.",
-    priority: "Medium",
-    category: "Backend",
+    priority: "Image",
+    category: "Instagram",
     progress: 40,
     progressColor: "bg-blue-600",
     team: ["👤", "👤", "👤", "👤"],
@@ -86,8 +86,8 @@ const tasks = [
     id: "DEV-340",
     title: "Implement Login Page UI",
     description: "Code the React components for the new login and registration forms.",
-    priority: "Medium",
-    category: "Figma Design",
+    priority: "Video",
+    category: "Facebook",
     progress: 40,
     progressColor: "bg-red-500",
     team: ["👤", "👤", "👤", "👤"],
@@ -99,8 +99,8 @@ const tasks = [
     id: "A-500",
     title: "Create Icons for Navigation Bar",
     description: "All icons have been approved and exported as SVG.",
-    priority: "Medium",
-    category: "Figma Design",
+    priority: "Video",
+    category: "Facebook",
     progress: 100,
     progressColor: "bg-orange-500",
     team: ["👤", "👤", "👤", "👤"],
@@ -112,11 +112,11 @@ const tasks = [
 
 const getPriorityColor = (priority: string) => {
   switch (priority) {
-    case "High":
+    case "Video":
       return "bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-400"
-    case "Medium":
+    case "Image":
       return "bg-orange-100 text-orange-700 dark:bg-orange-900/20 dark:text-orange-400"
-    case "Low":
+    case "Post":
       return "bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400"
     default:
       return "bg-gray-100 text-gray-700 dark:bg-gray-900/20 dark:text-gray-400"
