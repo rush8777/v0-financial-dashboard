@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronLeft, ChevronRight, Heart, TrendingUp, Filter, ArrowUpDown, FolderOpen, Plus, Link2, MessageCircle } from "lucide-react"
+import { ArrowRight, TrendingUp, Filter, ArrowUpDown, Link2, MessageCircle } from "lucide-react"
 import { useState } from "react"
 import CreateProjectModal from "@/components/kokonutui/create-project"
 import { Card, CardContent } from "@/components/ui/card"
@@ -15,15 +15,11 @@ interface Course {
   trendUp: boolean
 }
 
-interface Lesson {
-  id: number
-  mentor: string
-  date: string
-  type: string
-  description: string
-}
-
-
+const columns = [
+  { id: "todo", title: "To Do" },
+  { id: "progress", title: "In Progress" },
+  { id: "review", title: "In Review" },
+]
 
 const tasks = [
   {
@@ -186,7 +182,7 @@ export default function CoursePage() {
     },
   ]
 
-  const lessons: Lesson[] = [
+  const lessons = [
     {
       id: 1,
       mentor: "Padhang Satrio",
@@ -255,7 +251,7 @@ export default function CoursePage() {
         ))}
       </div>
 
-      {/* Projects Section - Replaces Continue Watching */}
+      {/* Projects Section */}
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white">Projects</h2>
@@ -273,7 +269,9 @@ export default function CoursePage() {
 
         {/* Kanban Board */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Tasks */}
+          {columns.map((column) => (
+            <div key={column.id}>
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 px-1">{column.title}</h3>
               <div className="space-y-4">
                 {tasks
                   .filter((task) => task.column === column.id)
