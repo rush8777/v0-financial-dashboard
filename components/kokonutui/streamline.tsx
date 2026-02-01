@@ -22,8 +22,8 @@ import {
 import { cn } from "@/lib/utils"
 import VideoAnalytics from "@/components/kokonutui/video-analytics"
 import FloatingVideoChat from "@/components/kokonutui/floating-chat-bar"
-import ChatMessage from "@/components/lovablechat"
-import ChatInput from "@/components/lovablechatinput"
+import ChatMessage from "@/components/kokonutui/lovablechat"
+import ChatInput from "@/components/kokonutui/lovablechatinput"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle },
