@@ -131,7 +131,7 @@ export default function Streamline() {
 
         {/* Header */}
         <div className="mb-8 space-y-4">
-          {activeTopTab === "video-tab" ? (
+          {activeTopTab === "video-chat" ? (
             // Original header for statistics tab
             <>
               <div className="flex items-center justify-between">
