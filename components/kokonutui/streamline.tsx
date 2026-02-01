@@ -22,8 +22,8 @@ import {
 import { cn } from "@/lib/utils"
 import VideoAnalytics from "@/components/kokonutui/video-analytics"
 import FloatingVideoChat from "@/components/kokonutui/floating-chat-bar"
-import ChatMessage from "@/components/kokonutui/lovablechat"
-import ChatInput from "@/components/kokonutui/lovablechatinput"
+import ChatMessage from "@/components/lovablechat"
+import ChatInput from "@/components/lovablechatinput"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle },
@@ -98,6 +98,9 @@ const currentProject = {
   name: "GreenLeaf Project",
   lastModified: "2023-10-01",
   duration: "28:14",
+  videoLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  platform: "YouTube",
+  thumbnail: "/images/design-mode/Screenshot%202025-05-08%20133020(1).png"
 }
 
 export default function Streamline() {
@@ -128,49 +131,126 @@ export default function Streamline() {
 
         {/* Header */}
         <div className="mb-8 space-y-4">
-          <div className="flex items-center justify-between">
-            <h1 className={cn("text-2xl font-bold", isDark ? "text-white" : "text-gray-900")}>
-              GreenLeaf // Basepoint
-            </h1>
+          {activeTopTab === "statistics" ? (
+            // Original header for statistics tab
+            <>
+              <div className="flex items-center justify-between">
+                <h1 className={cn("text-2xl font-bold", isDark ? "text-white" : "text-gray-900")}>
+                  GreenLeaf // Basepoint
+                </h1>
 
-            {/* Right side: star + theme toggle */}
-            <div className="flex items-center gap-2">
-              <button
-                className={cn(
-                  "px-3 py-1 text-xs font-medium rounded transition-colors",
-                  isDark
-                    ? "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
-                    : "bg-gray-100 border border-gray-200 text-gray-500 hover:bg-gray-200"
-                )}
-              >
-                ★
-              </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    className={cn(
+                      "px-3 py-1 text-xs font-medium rounded transition-colors",
+                      isDark
+                        ? "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
+                        : "bg-gray-100 border border-gray-200 text-gray-500 hover:bg-gray-200"
+                    )}
+                  >
+                    ★
+                  </button>
 
-              {/* Theme toggle */}
-              <button
-                onClick={() => setIsDark(!isDark)}
-                className={cn(
-                  "p-1.5 rounded-lg transition-colors",
-                  isDark
-                    ? "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-300"
-                    : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
-                )}
-              >
-                {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              </button>
-            </div>
-          </div>
+                  <button
+                    onClick={() => setIsDark(!isDark)}
+                    className={cn(
+                      "p-1.5 rounded-lg transition-colors",
+                      isDark
+                        ? "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-300"
+                        : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
+                    )}
+                  >
+                    {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                  </button>
+                </div>
+              </div>
 
-          <div className={cn("flex items-center gap-4 text-sm", isDark ? "text-zinc-400" : "text-gray-500")}>
-            <div className="flex items-center gap-1">
-              <Calendar className="h-4 w-4" />
-              <span>{currentProject?.lastModified}</span>
+              <div className={cn("flex items-center gap-4 text-sm", isDark ? "text-zinc-400" : "text-gray-500")}>
+                <div className="flex items-center gap-1">
+                  <Calendar className="h-4 w-4" />
+                  <span>{currentProject?.lastModified}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Clock className="h-4 w-4" />
+                  <span>{currentProject?.duration}</span>
+                </div>
+              </div>
+            </>
+          ) : (
+            // Video info card for all other tabs
+            <div className="flex items-center justify-between">
+              <div className={cn(
+                "flex items-center gap-4 px-4 py-3 rounded-xl",
+                isDark ? "bg-zinc-900/50 border border-zinc-800" : "bg-white border border-gray-200"
+              )}>
+                {/* Video Thumbnail */}
+                <div className="relative w-32 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-black">
+                  <img
+                    src={currentProject.thumbnail}
+                    alt="Video thumbnail"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                    <div className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
+                      <Play className="w-4 h-4 text-black ml-0.5" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Video Info */}
+                <div className="flex flex-col gap-1">
+                  <h2 className={cn("text-base font-semibold", isDark ? "text-white" : "text-gray-900")}>
+                    Video
+                  </h2>
+                  <a 
+                    href={currentProject.videoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(
+                      "text-sm hover:underline",
+                      isDark ? "text-zinc-400 hover:text-zinc-300" : "text-gray-600 hover:text-gray-700"
+                    )}
+                  >
+                    {currentProject.videoLink}
+                  </a>
+                  <button
+                    className={cn(
+                      "text-xs text-left hover:underline w-fit",
+                      isDark ? "text-zinc-500 hover:text-zinc-400" : "text-gray-500 hover:text-gray-600"
+                    )}
+                  >
+                    Rename
+                  </button>
+                </div>
+              </div>
+
+              {/* Right side: star + theme toggle */}
+              <div className="flex items-center gap-2">
+                <button
+                  className={cn(
+                    "px-3 py-1 text-xs font-medium rounded transition-colors",
+                    isDark
+                      ? "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
+                      : "bg-gray-100 border border-gray-200 text-gray-500 hover:bg-gray-200"
+                  )}
+                >
+                  ★
+                </button>
+
+                <button
+                  onClick={() => setIsDark(!isDark)}
+                  className={cn(
+                    "p-1.5 rounded-lg transition-colors",
+                    isDark
+                      ? "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-300"
+                      : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
+                  )}
+                >
+                  {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                </button>
+              </div>
             </div>
-            <div className="flex items-center gap-1">
-              <Clock className="h-4 w-4" />
-              <span>{currentProject?.duration}</span>
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Tab Navigation */}
