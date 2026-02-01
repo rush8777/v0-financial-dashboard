@@ -1,5 +1,5 @@
-import { ArrowRight, TrendingUp, Filter, ArrowUpDown, Link2, MessageCircle } from "lucide-react"
-import { useState } from "react"
+import { ArrowRight, TrendingUp, Filter, ArrowUpDown, Link2, MessageCircle, X, ChevronDown } from "lucide-react"
+import { useState, useRef, useEffect } from "react"
 import CreateProjectModal from "@/components/kokonutui/create-project"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
@@ -128,6 +128,31 @@ const getCategoryColor = (category: string) => {
 export default function CoursePage() {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null)
+  const [selectedContentType, setSelectedContentType] = useState<string | null>(null)
+  const filterRef = useRef<HTMLDivElement>(null)
+
+  const platforms = ["Facebook", "Instagram", "Tiktok", "Youtube"]
+  const contentTypes = ["Video", "Image", "Post"]
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (filterRef.current && !filterRef.current.contains(e.target as Node)) {
+        setIsFilterOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
+
+  const filteredTasks = tasks.filter((task) => {
+    const matchesPlatform = !selectedPlatform || task.category === selectedPlatform
+    const matchesContentType = !selectedContentType || task.priority === selectedContentType
+    return matchesPlatform && matchesContentType
+  })
+
+  const activeFilterCount = (selectedPlatform ? 1 : 0) + (selectedContentType ? 1 : 0)
 
   const courses: Course[] = [
     { 
