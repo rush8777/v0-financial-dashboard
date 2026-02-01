@@ -1,7 +1,5 @@
 "use client"
 
-import { Calendar, CalendarIcon } from "@/components/ui/calendar"
-
 import React from "react"
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -24,7 +22,7 @@ import {
   Copy,
   Share2,
   MoreHorizontal,
-  ArrowRight,
+  Calendar,
   Paperclip,
   ImageIcon,
 } from "lucide-react"
@@ -32,9 +30,7 @@ import { CarTaxiFrontIcon as ChartNoAxesColumnIncreasing } from "lucide-react"
 import { cn } from "@/lib/utils"
 import VideoAnalytics from "@/components/kokonutui/video-analytics"
 import FloatingVideoChat from "@/components/kokonutui/floating-chat-bar"
-import StreamlineInit from "@/components/kokonutui/streamline-init"
-import { useSidebarContext } from "@/context/sidebar-context"
-import { recentProjects } from "@/data/projects"
+import CalendarIcon from "lucide-react"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
