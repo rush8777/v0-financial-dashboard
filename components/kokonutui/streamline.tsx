@@ -11,51 +11,31 @@ import {
   Megaphone,
   Cpu,
   Play,
-  Pause,
   Volume2,
-  Send,
   Clock,
   Users,
   Settings2,
-  X,
-  Edit2,
-  Copy,
-  Share2,
-  MoreHorizontal,
   Calendar,
-  Paperclip,
-  ImageIcon,
+  Sun,
+  Moon,
 } from "lucide-react"
-import { CarTaxiFrontIcon as ChartNoAxesColumnIncreasing } from "lucide-react"
 import { cn } from "@/lib/utils"
 import VideoAnalytics from "@/components/kokonutui/video-analytics"
 import FloatingVideoChat from "@/components/kokonutui/floating-chat-bar"
-import CalendarIcon from "lucide-react"
 
 const toptabs = [
-  { id: "video-chat", label: "Video Chat", icon: MessageCircle, isActive: true },
-  { id: "statistics", label: "Statistics", icon: Search, isActive: false },
-  {
-    id: "transcription",
-    label: "Video Transcription",
-    icon: FileText,
-    isActive: false,
-  },
-  { id: "editor", label: "Video Editor", icon: Scissors, isActive: false },
-  {
-    id: "marketer",
-    label: "Video Marketer",
-    icon: Megaphone,
-    isActive: false,
-    badge: "Agent",
-  },
-  { id: "hardware", label: "AI Hardware", icon: Cpu, isActive: false, badge: "Agent" },
+  { id: "video-chat", label: "Video Chat", icon: MessageCircle },
+  { id: "statistics", label: "Statistics", icon: Search },
+  { id: "transcription", label: "Video Transcription", icon: FileText },
+  { id: "editor", label: "Video Editor", icon: Scissors },
+  { id: "marketer", label: "Video Marketer", icon: Megaphone, badge: "Agent" },
+  { id: "hardware", label: "AI Hardware", icon: Cpu, badge: "Agent" },
 ]
 
 const tabs = [
-  { id: "transcript", label: "Transcript", icon: FileText, isActive: true },
-  { id: "speakers", label: "Speakers", icon: Users, isActive: false },
-  { id: "meeting", label: "Meeting", icon: MessageCircle, isActive: false },
+  { id: "transcript", label: "Transcript" },
+  { id: "speakers", label: "Speakers" },
+  { id: "meeting", label: "Meeting" },
 ]
 
 const chatMessages = [
@@ -112,36 +92,57 @@ const insights = {
     "Annual budget is approximately $10,000. Must-have features include strong integrations, automation capabilities, and Ashley appears to be the lead on this initiative and is overseeing a range of stakeholders.",
 }
 
-function handleBackToSelector() {
-  // Implementation for handleBackToSelector
-}
-
 const currentProject = {
   name: "GreenLeaf Project",
   lastModified: "2023-10-01",
   duration: "28:14",
-};
+}
 
 export default function Streamline() {
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isDark, setIsDark] = useState(true)
   const [activeTab, setActiveTab] = useState("transcript")
   const [activeTopTab, setActiveTopTab] = useState("video-chat")
 
   return (
-    <div className="min-h-screen py-6 px-4">
+    <div className={cn("min-h-screen py-6 px-4", isDark ? "bg-zinc-950" : "bg-gray-50")}>
       <div className="max-w-7xl mx-auto">
+
         {/* Header */}
         <div className="mb-8 space-y-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-white">
+            <h1 className={cn("text-2xl font-bold", isDark ? "text-white" : "text-gray-900")}>
               GreenLeaf // Basepoint
             </h1>
-            <button className="px-3 py-1 text-xs font-medium bg-zinc-800 text-zinc-400 rounded hover:bg-zinc-700 transition-colors">
-              ★
-            </button>
+
+            {/* Right side: star + theme toggle */}
+            <div className="flex items-center gap-2">
+              <button
+                className={cn(
+                  "px-3 py-1 text-xs font-medium rounded transition-colors",
+                  isDark
+                    ? "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
+                    : "bg-gray-100 border border-gray-200 text-gray-500 hover:bg-gray-200"
+                )}
+              >
+                ★
+              </button>
+
+              {/* Theme toggle */}
+              <button
+                onClick={() => setIsDark(!isDark)}
+                className={cn(
+                  "p-1.5 rounded-lg transition-colors",
+                  isDark
+                    ? "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-300"
+                    : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
+                )}
+              >
+                {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </button>
+            </div>
           </div>
 
-          <div className="flex items-center gap-4 text-sm text-zinc-400">
+          <div className={cn("flex items-center gap-4 text-sm", isDark ? "text-zinc-400" : "text-gray-500")}>
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               <span>{currentProject?.lastModified}</span>
@@ -155,24 +156,32 @@ export default function Streamline() {
 
         {/* Tab Navigation */}
         <div className="mb-8 flex justify-center">
-          <div className="inline-flex items-center gap-1.5  p-1 rounded-lg">
+          <div className={cn("inline-flex items-center gap-1.5 p-1 rounded-lg", isDark ? "bg-transparent" : "bg-gray-100")}>
             {toptabs.map((toptab) => {
               const Icon = toptab.icon
+              const isActive = activeTopTab === toptab.id
               return (
                 <button
                   key={toptab.id}
                   onClick={() => setActiveTopTab(toptab.id)}
                   className={cn(
                     "px-3 py-2 rounded-md text-xs font-medium transition-all flex items-center gap-1.5 whitespace-nowrap",
-                    activeTopTab === toptab.id
-                      ? "bg-zinc-800 text-white shadow-lg"
-                      : "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
+                    isActive
+                      ? isDark
+                        ? "bg-zinc-800 text-white shadow-lg"
+                        : "bg-white text-gray-900 shadow"
+                      : isDark
+                        ? "text-zinc-400 hover:text-zinc-300 hover:bg-zinc-800/50"
+                        : "text-gray-500 hover:text-gray-700 hover:bg-gray-200"
                   )}
                 >
                   <Icon className="h-3.5 w-3.5" />
                   {toptab.label}
                   {toptab.badge && (
-                    <span className="ml-0.5 px-1.5 py-0.5 text-[10px] rounded-md bg-purple-500/30 text-purple-300 font-semibold">
+                    <span className={cn(
+                      "ml-0.5 px-1.5 py-0.5 text-[10px] rounded-md font-semibold",
+                      isDark ? "bg-purple-500/30 text-purple-300" : "bg-purple-100 text-purple-600"
+                    )}>
                       {toptab.badge}
                     </span>
                   )}
@@ -182,31 +191,32 @@ export default function Streamline() {
           </div>
         </div>
 
-        {/* Main Grid with Conditional Rendering */}
+        {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {activeTopTab === "statistics" ? (
-            // Statistics View - Full Width
             <div className="lg:col-span-5">
               <VideoAnalytics />
             </div>
           ) : (
-            // Video Chat View - Original Layout
             <>
-              {/* Left & Center Content */}
+              {/* Left & Center */}
               <div className="lg:col-span-3 space-y-6">
+
                 {/* Video Player */}
-                <Card className="border border-zinc-800 bg-zinc-900/50 overflow-hidden">
+                <Card className={cn("overflow-hidden", isDark ? "border-zinc-800 bg-zinc-900/50" : "border-gray-200 bg-white")}>
                   <div className="aspect-video bg-black relative group">
                     <img
                       src="/images/design-mode/Screenshot%202025-05-08%20133020(1).png"
                       alt="Video"
                       className="w-full h-full object-cover"
                     />
+                    {/* Hover play overlay — always white, it's on the dark video */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/30">
                       <button className="p-3 rounded-full bg-white/20 hover:bg-white/30 text-white">
                         <Play className="h-6 w-6" />
                       </button>
                     </div>
+                    {/* Controls bar — always white, it's on the dark video gradient */}
                     <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black via-black/50 to-transparent">
                       <div className="flex items-center gap-3 mb-3">
                         <span className="text-xs text-zinc-400">09:18</span>
@@ -230,25 +240,32 @@ export default function Streamline() {
                   </div>
                 </Card>
 
-                {/* Tabs */}
-                <div className="flex items-center gap-6 border-b border-zinc-800 px-0">
-                  {tabs.map((tab) => (
-                    <button
-                      key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
-                      className={cn(
-                        "pb-3 text-sm font-medium transition-colors border-b-2",
-                        activeTab === tab.id
-                          ? "text-white border-purple-600"
-                          : "text-zinc-400 border-transparent hover:text-zinc-300"
-                      )}
-                    >
-                      {tab.label}
-                    </button>
-                  ))}
+                {/* Lower Tabs */}
+                <div className={cn("flex items-center gap-6 px-0 border-b", isDark ? "border-zinc-800" : "border-gray-200")}>
+                  {tabs.map((tab) => {
+                    const isActive = activeTab === tab.id
+                    return (
+                      <button
+                        key={tab.id}
+                        onClick={() => setActiveTab(tab.id)}
+                        className={cn(
+                          "pb-3 text-sm font-medium transition-colors border-b-2",
+                          isActive
+                            ? isDark
+                              ? "text-white border-purple-600"
+                              : "text-gray-900 border-purple-600"
+                            : isDark
+                              ? "text-zinc-400 border-transparent hover:text-zinc-300"
+                              : "text-gray-500 border-transparent hover:text-gray-700"
+                        )}
+                      >
+                        {tab.label}
+                      </button>
+                    )
+                  })}
                 </div>
 
-                {/* Transcript / Chat */}
+                {/* Transcript */}
                 <div className="space-y-4">
                   {chatMessages.map((msg) => (
                     <div key={msg.id} className="flex gap-4">
@@ -257,77 +274,73 @@ export default function Streamline() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-sm font-semibold text-white">{msg.author}</span>
-                          <span className="text-xs text-zinc-500">{msg.time}</span>
+                          <span className={cn("text-sm font-semibold", isDark ? "text-white" : "text-gray-900")}>{msg.author}</span>
+                          <span className={cn("text-xs", isDark ? "text-zinc-500" : "text-gray-400")}>{msg.time}</span>
                         </div>
-                        <p className="text-sm text-zinc-300 leading-relaxed">{msg.message}</p>
+                        <p className={cn("text-sm leading-relaxed", isDark ? "text-zinc-300" : "text-gray-600")}>{msg.message}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Right Sidebar - Insights */}
+              {/* Right Sidebar */}
               <div className="lg:col-span-2 space-y-6">
+
                 {/* Summary Card */}
-                <Card className="border border-zinc-800 ">
+                <Card className={cn(isDark ? "border-zinc-800 bg-zinc-900/50" : "border-gray-200 bg-white")}>
                   <CardContent className="pt-6">
-                    <h2 className="text-sm font-semibold text-white mb-3">Summary</h2>
-                    <p className="text-sm text-zinc-300 leading-relaxed">{insights.summary}</p>
+                    <h2 className={cn("text-sm font-semibold mb-3", isDark ? "text-white" : "text-gray-900")}>{insights.summary && "Summary"}</h2>
+                    <p className={cn("text-sm leading-relaxed", isDark ? "text-zinc-300" : "text-gray-600")}>{insights.summary}</p>
                   </CardContent>
                 </Card>
 
-                {/* Insights Section */}
+                {/* Insights */}
                 <div className="space-y-4">
-                  <div>
-                    <h3 className="text-sm font-semibold text-white mb-3">Insights</h3>
-                  </div>
+                  <h3 className={cn("text-sm font-semibold", isDark ? "text-white" : "text-gray-900")}>Insights</h3>
 
-                  <Card className="border border-zinc-800 bg-zinc-900/50">
+                  <Card className={cn(isDark ? "border-zinc-800 bg-zinc-900/50" : "border-gray-200 bg-gray-50")}>
                     <CardContent className="pt-6 space-y-6">
-                      {/* Situation */}
+
                       <div>
-                        <h4 className="text-sm font-semibold text-white mb-2">Situation</h4>
-                        <p className="text-xs text-zinc-300 leading-relaxed">{insights.situation}</p>
+                        <h4 className={cn("text-sm font-semibold mb-2", isDark ? "text-white" : "text-gray-900")}>Situation</h4>
+                        <p className={cn("text-xs leading-relaxed", isDark ? "text-zinc-300" : "text-gray-600")}>{insights.situation}</p>
                       </div>
 
-                      {/* Pain */}
                       <div>
-                        <h4 className="text-sm font-semibold text-white mb-2">Pain</h4>
+                        <h4 className={cn("text-sm font-semibold mb-2", isDark ? "text-white" : "text-gray-900")}>Pain</h4>
                         <ul className="space-y-2">
                           {insights.pain.map((item, idx) => (
-                            <li key={idx} className="text-xs text-zinc-300 flex gap-2">
-                              <span className="text-purple-400 flex-shrink-0">•</span>
+                            <li key={idx} className={cn("text-xs flex gap-2", isDark ? "text-zinc-300" : "text-gray-600")}>
+                              <span className={cn("flex-shrink-0", isDark ? "text-purple-400" : "text-purple-500")}>•</span>
                               <span>{item}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      {/* Impact */}
                       <div>
-                        <h4 className="text-sm font-semibold text-white mb-2">Impact</h4>
+                        <h4 className={cn("text-sm font-semibold mb-2", isDark ? "text-white" : "text-gray-900")}>Impact</h4>
                         <ul className="space-y-2">
                           {insights.impact.map((item, idx) => (
-                            <li key={idx} className="text-xs text-zinc-300 flex gap-2">
-                              <span className="text-purple-400 flex-shrink-0">•</span>
+                            <li key={idx} className={cn("text-xs flex gap-2", isDark ? "text-zinc-300" : "text-gray-600")}>
+                              <span className={cn("flex-shrink-0", isDark ? "text-purple-400" : "text-purple-500")}>•</span>
                               <span>{item}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      {/* Critical Event */}
                       <div>
-                        <h4 className="text-sm font-semibold text-white mb-2">Critical Event</h4>
-                        <p className="text-xs text-zinc-300 leading-relaxed">{insights.criticalEvent}</p>
+                        <h4 className={cn("text-sm font-semibold mb-2", isDark ? "text-white" : "text-gray-900")}>Critical Event</h4>
+                        <p className={cn("text-xs leading-relaxed", isDark ? "text-zinc-300" : "text-gray-600")}>{insights.criticalEvent}</p>
                       </div>
 
-                      {/* Decision */}
                       <div>
-                        <h4 className="text-sm font-semibold text-white mb-2">Decision</h4>
-                        <p className="text-xs text-zinc-300 leading-relaxed">{insights.decision}</p>
+                        <h4 className={cn("text-sm font-semibold mb-2", isDark ? "text-white" : "text-gray-900")}>Decision</h4>
+                        <p className={cn("text-xs leading-relaxed", isDark ? "text-zinc-300" : "text-gray-600")}>{insights.decision}</p>
                       </div>
+
                     </CardContent>
                   </Card>
                 </div>
