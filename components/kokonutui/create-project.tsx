@@ -93,9 +93,9 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-md animate-in fade-in zoom-in-95 duration-200 max-h-[85vh] overflow-y-auto p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl">
+      <div className="relative w-full max-w-md animate-in fade-in zoom-in-95 duration-200 max-h-[85vh] p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl flex flex-col">
         {/* Header */}
-        <div className="flex items-start gap-2.5 p-4 pb-2">
+        <div className="flex items-start gap-2.5 p-4 pb-2 flex-shrink-0">
           <div className="p-1.5 bg-[#3A3A3E] rounded-lg">
             <FolderOpen className="w-4 h-4 text-white" />
           </div>
@@ -110,7 +110,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
         </div>
 
         {/* Tabs */}
-        <div className="px-4 pb-3">
+        <div className="px-4 pb-3 flex-shrink-0">
           <div className="flex gap-1 bg-[#35353A] rounded-lg p-1">
             <button
               type="button"
@@ -149,7 +149,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="px-4 pb-4 space-y-3">
+        <form onSubmit={handleSubmit} className="px-4 pb-4 space-y-3 flex-1 overflow-y-auto min-h-0">
           {/* Project Name & Category */}
           <div className="grid grid-cols-2 gap-2">
             <div>
@@ -275,7 +275,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
               </p>
               
               {/* File List - Scrollable */}
-              <div className="max-h-[280px] overflow-y-auto space-y-1 pr-1 scrollbar-thin scrollbar-thumb-[#4A4A4E] scrollbar-track-transparent">
+              <div className="max-h-[240px] overflow-y-auto space-y-1 pr-1 scrollbar-thin scrollbar-thumb-[#4A4A4E] scrollbar-track-transparent">
                 {/* Sample files - replace with actual file data */}
                 {[
                   { name: 'WorldFoodsDealSheet.pdf', size: '8.8 mb', owner: 'Kristin Watson', color: 'bg-emerald-500' },
@@ -334,7 +334,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
           )}
 
           {/* Footer Buttons */}
-          <div className="flex items-center justify-between pt-2.5 border-t border-[#3A3A3E]">
+          <div className="flex items-center justify-between pt-2.5 border-t border-[#3A3A3E] flex-shrink-0 sticky bottom-0 bg-zinc-900/70 backdrop-blur-xl -mx-4 px-4 pb-0">
             <button
               type="button"
               onClick={onClose}
