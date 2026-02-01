@@ -273,10 +273,10 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
               {/* Header - Fixed */}
               <div className="flex-shrink-0 pb-2">
                 <label className="block text-[11px] font-medium text-white mb-0.5">
-                  Import Documents
+                  Import Videos
                 </label>
                 <p className="text-[10px] text-gray-400">
-                  Select files from your recent documents to import.
+                  Select files from your channel to import.
                 </p>
               </div>
               
