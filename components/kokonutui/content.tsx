@@ -1,4 +1,4 @@
-import { ArrowRight, TrendingUp, Filter, ArrowUpDown, Link2, MessageCircle, X, ChevronDown } from "lucide-react"
+import { ArrowRight, Filter, ArrowUpDown, Link2, MessageCircle, X, ChevronDown, Play, Image, FileText, Film, Users } from "lucide-react"
 import { useState, useRef, useEffect } from "react"
 import CreateProjectModal from "@/components/kokonutui/create-project"
 import { Card, CardContent } from "@/components/ui/card"
@@ -6,13 +6,8 @@ import { cn } from "@/lib/utils"
 
 interface Course {
   id: number
-  title: string
-  watched: number
-  total: number
-  icon: string
-  percentage: number
-  trend: string
-  trendUp: boolean
+  label: string
+  icon: React.FC<{ className?: string }>
 }
 
 const columns = [
@@ -155,56 +150,11 @@ export default function CoursePage() {
   const activeFilterCount = (selectedPlatform ? 1 : 0) + (selectedContentType ? 1 : 0)
 
   const courses: Course[] = [
-    { 
-      id: 1, 
-      title: "UI/UX Design", 
-      watched: 2, 
-      total: 8, 
-      icon: "🎨",
-      percentage: 25,
-      trend: "+12%",
-      trendUp: true
-    },
-    { 
-      id: 2, 
-      title: "Branding", 
-      watched: 3, 
-      total: 8, 
-      icon: "💼",
-      percentage: 38,
-      trend: "+8%",
-      trendUp: true
-    },
-    { 
-      id: 3, 
-      title: "Front End", 
-      watched: 6, 
-      total: 12, 
-      icon: "💻",
-      percentage: 50,
-      trend: "+15%",
-      trendUp: true
-    },
-    { 
-      id: 4, 
-      title: "Marketing", 
-      watched: 4, 
-      total: 10, 
-      icon: "📊",
-      percentage: 40,
-      trend: "+10%",
-      trendUp: true
-    },
-    { 
-      id: 5, 
-      title: "Photography", 
-      watched: 5, 
-      total: 9, 
-      icon: "📷",
-      percentage: 56,
-      trend: "+18%",
-      trendUp: true
-    },
+    { id: 1, label: "Video", icon: Play },
+    { id: 2, label: "Post", icon: FileText },
+    { id: 3, label: "Image", icon: Image },
+    { id: 4, label: "Reels", icon: Film },
+    { id: 5, label: "Group", icon: Users },
   ]
 
   const lessons = [
@@ -250,30 +200,21 @@ export default function CoursePage() {
 
       {/* Course Progress Cards - Clickable */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-        {courses.map((course) => (
-          <button
-            key={course.id}
-            onClick={() => handleCourseClick(course)}
-            className="p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:border-purple-300 dark:hover:border-purple-700 active:scale-95"
-          >
-            <div className="flex items-start justify-between mb-2">
-              <div>
-                <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-0.5">{course.title}</p>
-                <h3 className="text-xl font-semibold text-zinc-900 dark:text-white">{course.percentage}%</h3>
+        {courses.map((course) => {
+          const Icon = course.icon
+          return (
+            <button
+              key={course.id}
+              onClick={() => handleCourseClick(course)}
+              className="p-5 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl text-left transition-all duration-200 hover:scale-105 hover:shadow-lg hover:border-purple-300 dark:hover:border-purple-700 active:scale-95 flex flex-col items-center justify-center gap-3"
+            >
+              <div className="p-3 rounded-xl bg-purple-100 dark:bg-purple-900/30">
+                <Icon className="w-6 h-6 text-purple-600 dark:text-purple-400" />
               </div>
-              <div className="p-1.5 rounded-lg bg-purple-100 dark:bg-purple-900/30">
-                <span className="text-lg">{course.icon}</span>
-              </div>
-            </div>
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-1.5">
-              {course.watched}/{course.total} watched
-            </p>
-            <p className="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-              <TrendingUp className="w-3 h-3" />
-              {course.trend}
-            </p>
-          </button>
-        ))}
+              <p className="text-sm font-semibold text-zinc-900 dark:text-white">{course.label}</p>
+            </button>
+          )
+        })}
       </div>
 
       {/* Projects Section */}
