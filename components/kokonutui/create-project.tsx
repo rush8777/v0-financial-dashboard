@@ -105,44 +105,36 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
           </div>
         </div>
 
-        {/* Tabs */}
+        {/* Tab Navigation */}
         <div className="px-4 pb-3 flex-shrink-0">
-          <div className="flex gap-1 bg-[#35353A] rounded-lg p-1">
-            <button
-              type="button"
-              onClick={() => setActiveTab('import')}
-              className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                activeTab === 'import'
-                  ? 'bg-purple-600 text-white'
-                  : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              Import
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab('link')}
-              className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                activeTab === 'link'
-                  ? 'bg-purple-600 text-white'
-                  : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              Link
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab('local')}
-              className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                activeTab === 'local'
-                  ? 'bg-purple-600 text-white'
-                  : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              Local
-            </button>
+          <div className="flex justify-center">
+            <div className="inline-flex items-center gap-1.5 p-1 rounded-lg bg-[#35353A]">
+              {toptabs.map((tab) => {
+                const isActive = activeTab === tab.id
+
+                return (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`
+                      px-4 py-1.5 rounded-md text-xs font-medium
+                      transition-all whitespace-nowrap
+                      ${
+                        isActive
+                          ? "bg-zinc-800 text-white shadow-md"
+                          : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50"
+                      }
+                    `}
+                  >
+                    {tab.label}
+                  </button>
+                )
+              })}
+            </div>
           </div>
         </div>
+
 
         {/* Form */}
         <div className="flex flex-col flex-1 min-h-0">
