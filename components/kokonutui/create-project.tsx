@@ -1,6 +1,12 @@
 import { X, Upload, FolderOpen, ChevronDown } from "lucide-react"
 import { useState, DragEvent, ChangeEvent } from "react"
 
+const toptabs = [
+  { id: "import", label: "Import"},
+  { id: "link", label: "Link"},
+  { id: "local", label: "Local"}
+] as const
+
 interface Course {
   id: number
   label: string
