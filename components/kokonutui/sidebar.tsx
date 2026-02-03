@@ -137,9 +137,9 @@ export default function Sidebar() {
                     Analytics
                   </NavItem>
                   <NavItem href="#" icon={Building2}>
-                    Organization
+                    Library
                   </NavItem>
-                  <NavItem href="#" icon={Folder}>
+                  <NavItem href="/projects" icon={Folder}>
                     Projects
                   </NavItem>
                   
