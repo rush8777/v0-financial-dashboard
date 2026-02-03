@@ -453,7 +453,7 @@ export default function CoursePage() {
 
                   {/* Platform Icon */}
                   <div className={cn("flex-shrink-0", getCategoryColor(task.category).split(' ')[0].replace('bg-', 'text-'))}>
-                    <PlatformIcon /><p className="text-sm text-gray-500 dark:text-gray-400 truncate">{task.category}</p>
+                    <PlatformIcon /><p className="text-sm text-gray-500 dark:text-gray-400">{task.category}</p>
                   </div>
 
                   {/* Right Side - Time and Menu */}
