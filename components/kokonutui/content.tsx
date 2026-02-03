@@ -15,6 +15,7 @@ const columns = [
   { id: "todo" },
   { id: "progress" },
   { id: "review" },
+  { id: "done" },
 ]
 
 const tasks = [
@@ -68,7 +69,7 @@ const tasks = [
     team: ["👤", "👤", "👤", "👤"],
     links: 5,
     comments: 2,
-    column: "todo",
+    column: "done",
   },
   {
     id: "DEV-340",
@@ -82,19 +83,6 @@ const tasks = [
     links: 5,
     comments: 2,
     column: "progress",
-  },
-  {
-    id: "A-500",
-    title: "Create Icons for Navigation Bar",
-    description: "All icons have been approved and exported as SVG.",
-    priority: "Video",
-    category: "Tiktok",
-    progress: 100,
-    progressColor: "bg-orange-500",
-    team: ["👤", "👤", "👤", "👤"],
-    links: 5,
-    comments: 2,
-    column: "review",
   },
 ]
 
@@ -333,22 +321,22 @@ export default function CoursePage() {
           </div>
         </div>
 
-        {/* Kanban Board */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Kanban Board - Changed to 4 columns with smaller cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {columns.map((column) => (
-            <div key={column.id} className="space-y-4">
+            <div key={column.id} className="space-y-3">
                 {filteredTasks
                   .filter((task) => task.column === column.id)
                   .map((task) => (
                     <Card key={task.id} className="border border-gray-200 dark:border-[#2F2F37] bg-white dark:bg-[#1F1F23] hover:shadow-md transition-shadow">
-                      <CardContent className="p-4 space-y-3">
+                      <CardContent className="p-3 space-y-2.5">
                         {/* Header */}
                         <div className="flex items-start justify-between gap-2">
-                          <div className="flex items-center gap-2">
-                            <span className={cn("px-2 py-1 rounded text-xs font-semibold", getPriorityColor(task.priority))}>
+                          <div className="flex items-center gap-1.5">
+                            <span className={cn("px-2 py-0.5 rounded text-xs font-semibold", getPriorityColor(task.priority))}>
                               {task.priority}
                             </span>
-                            <span className={cn("px-2 py-1 rounded text-xs font-semibold", getCategoryColor(task.category))}>
+                            <span className={cn("px-2 py-0.5 rounded text-xs font-semibold", getCategoryColor(task.category))}>
                               {task.category}
                             </span>
                           </div>
@@ -357,14 +345,14 @@ export default function CoursePage() {
 
                         {/* Title */}
                         <div>
-                          <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-2">{task.title}</h3>
+                          <h3 className="font-semibold text-sm text-gray-900 dark:text-white line-clamp-2">{task.title}</h3>
                         </div>
 
                         {/* Description */}
-                        <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{task.description}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">{task.description}</p>
 
                         {/* Progress */}
-                        <div className="space-y-2">
+                        <div className="space-y-1.5">
                           <div className="flex items-center justify-between">
                             <span className="text-xs text-gray-600 dark:text-gray-400">Progress</span>
                             <span className="text-xs font-semibold text-gray-900 dark:text-white">{task.progress}%</span>
@@ -376,18 +364,23 @@ export default function CoursePage() {
 
                         {/* Footer */}
                         <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-[#2F2F37]">
-                          <div className="flex items-center gap-1">
-                            {task.team.map((member, idx) => (
-                              <div key={idx} className="w-6 h-6 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-xs font-bold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600 -ml-1 first:ml-0" />
+                          <div className="flex items-center gap-0.5">
+                            {task.team.slice(0, 3).map((member, idx) => (
+                              <div key={idx} className="w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-xs font-bold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600 -ml-1 first:ml-0" />
                             ))}
+                            {task.team.length > 3 && (
+                              <div className="w-5 h-5 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-[10px] font-bold text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-600 -ml-1">
+                                +{task.team.length - 3}
+                              </div>
+                            )}
                           </div>
-                          <div className="flex items-center gap-3">
-                            <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-                              <Link2 className="w-4 h-4" />
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-0.5 text-gray-500 dark:text-gray-400">
+                              <Link2 className="w-3.5 h-3.5" />
                               <span className="text-xs font-medium">{task.links}</span>
                             </div>
-                            <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
-                              <MessageCircle className="w-4 h-4" />
+                            <div className="flex items-center gap-0.5 text-gray-500 dark:text-gray-400">
+                              <MessageCircle className="w-3.5 h-3.5" />
                               <span className="text-xs font-medium">{task.comments}</span>
                             </div>
                           </div>
