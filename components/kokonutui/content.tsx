@@ -511,7 +511,7 @@ function ChatRow({ task, index }: { task: any; index: number }) {
           </button>
         </div>
 
-        <div className="overflow-hidden divide-y divide-gray-200 dark:divide-[#2F2F37]">
+        <div className="overflow-hidden">
           {filteredTasks.slice(0, 5).map((task, index) => (
             <ChatRow key={task.id} task={task} index={index} />
           ))}
