@@ -225,19 +225,14 @@ export default function Sidebar() {
                     Team
                   </div>
                 )}
-                <div className="space-y-0.5">
-                  <NavItem href="#" icon={Users2}>
-                    Members
-                  </NavItem>
+
                   <NavItem href="/connections" icon={Boxes}>
                     Connections
                   </NavItem>
                   <NavItem href="#" icon={MessagesSquare}>
                     Chat
                   </NavItem>
-                  <NavItem href="#" icon={Video}>
-                    Meetings
-                  </NavItem>
+                  
                 </div>
               </div>
             </div>
