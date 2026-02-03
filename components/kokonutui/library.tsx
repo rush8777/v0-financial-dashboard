@@ -209,7 +209,7 @@ export default function LibraryPage() {
         </div>
 
         {/* Chat List */}
-        <div className="overflow-hidden">{filteredChats.map((chat, index) => (
+        <div>{filteredChats.map((chat, index) => (
             <ChatRow key={chat.id} chat={chat} index={index} />
           ))}
         </div>
