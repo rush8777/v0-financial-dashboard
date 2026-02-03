@@ -209,7 +209,7 @@ export default function LibraryPage() {
         </div>
 
         {/* Chat List */}
-        <div className="divide-y divide-gray-200 dark:divide-[#2F2F37]">{filteredChats.map((chat, index) => (
+        <div className="divide-gray-200 dark:divide-[#2F2F37]">{filteredChats.map((chat, index) => (
             <ChatRow key={chat.id} chat={chat} index={index} />
           ))}
         </div>
