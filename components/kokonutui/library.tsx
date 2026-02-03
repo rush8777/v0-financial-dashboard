@@ -93,11 +93,13 @@ function ChatRow({ chat, index }: { chat: any; index: number }) {
             {chat.name}
           </h3>
         </div>
+        {/* PlatformIcon */}
+        <div className="flex w-24 justify-center flex-shrink-0">
+          {PlatformIcon ? <PlatformIcon /> : <div className="w-4" />}
+        </div>
 
         {/* Right - Platform, Time, Status, Menu */}
         <div className="flex items-center gap-3 flex-shrink-0">
-          {/* Platform Icon */}
-          {PlatformIcon && <PlatformIcon />}
 
           {/* Time */}
           <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
