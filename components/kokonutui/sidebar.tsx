@@ -136,7 +136,7 @@ export default function Sidebar() {
                   <NavItem href="#" icon={BarChart2}>
                     Analytics
                   </NavItem>
-                  <NavItem href="#" icon={Building2}>
+                  <NavItem href="/library" icon={Building2}>
                     Library
                   </NavItem>
                   <NavItem href="/project" icon={Folder}>
