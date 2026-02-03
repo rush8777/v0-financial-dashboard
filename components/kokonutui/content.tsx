@@ -226,168 +226,53 @@ export default function CoursePage() {
         })}
       </div>
 
-      {/* Projects Section */}
+      {/* Recent Projects Section */}
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white">Projects</h2>
-          <div className="flex items-center gap-3">
-            <div className="relative" ref={filterRef}>
-              <button
-                onClick={() => setIsFilterOpen(!isFilterOpen)}
-                className={cn(
-                  "flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium transition-colors",
-                  activeFilterCount > 0
-                    ? "bg-purple-50 dark:bg-purple-900/20 border-purple-300 dark:border-purple-700 text-purple-700 dark:text-purple-300"
-                    : "bg-white dark:bg-[#1F1F23] border-gray-200 dark:border-[#2F2F37] hover:bg-gray-50 dark:hover:bg-[#2F2F37] text-gray-700 dark:text-gray-300"
-                )}
-              >
-                <Filter className="w-4 h-4" />
-                Filter
-                {activeFilterCount > 0 && (
-                  <span className="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full bg-purple-600 text-white text-xs font-bold">
-                    {activeFilterCount}
-                  </span>
-                )}
-                <ChevronDown className={cn("w-3.5 h-3.5 transition-transform", isFilterOpen && "rotate-180")} />
-              </button>
-
-              {isFilterOpen && (
-                <div className="absolute top-full right-0 mt-2 w-64 bg-white dark:bg-[#1F1F23] border border-gray-200 dark:border-[#2F2F37] rounded-xl shadow-lg shadow-black/10 dark:shadow-black/30 z-50 p-4 space-y-4">
-                  {/* Header */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Filters</span>
-                    {activeFilterCount > 0 && (
-                      <button
-                        onClick={() => { setSelectedPlatform(null); setSelectedContentType(null) }}
-                        className="flex items-center gap-1 text-xs text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors"
-                      >
-                        <X className="w-3 h-3" />
-                        Clear all
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Platform */}
-                  <div className="space-y-2">
-                    <p className="text-xs font-semibold text-gray-700 dark:text-gray-300">Platform</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {platforms.map((platform) => (
-                        <button
-                          key={platform}
-                          onClick={() => setSelectedPlatform(selectedPlatform === platform ? null : platform)}
-                          className={cn(
-                            "px-3 py-1 rounded-full text-xs font-medium transition-all",
-                            selectedPlatform === platform
-                              ? getCategoryColor(platform) + " ring-2 ring-offset-1 dark:ring-offset-[#1F1F23] ring-current"
-                              : "bg-gray-100 dark:bg-[#2F2F37] text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-[#3F3F47]"
-                          )}
-                        >
-                          {platform}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Divider */}
-                  <hr className="border-gray-200 dark:border-[#2F2F37]" />
-
-                  {/* Content Type */}
-                  <div className="space-y-2">
-                    <p className="text-xs font-semibold text-gray-700 dark:text-gray-300">Content Type</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {contentTypes.map((type) => (
-                        <button
-                          key={type}
-                          onClick={() => setSelectedContentType(selectedContentType === type ? null : type)}
-                          className={cn(
-                            "px-3 py-1 rounded-full text-xs font-medium transition-all",
-                            selectedContentType === type
-                              ? getPriorityColor(type) + " ring-2 ring-offset-1 dark:ring-offset-[#1F1F23] ring-current"
-                              : "bg-gray-100 dark:bg-[#2F2F37] text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-[#3F3F47]"
-                          )}
-                        >
-                          {type}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-            <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-[#1F1F23] border border-gray-200 dark:border-[#2F2F37] hover:bg-gray-50 dark:hover:bg-[#2F2F37] text-gray-700 dark:text-gray-300 text-sm font-medium transition-colors">
-              <ArrowUpDown className="w-4 h-4" />
-              Sort
-            </button>
-          </div>
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-semibold text-gray-400 dark:text-gray-400">Recent Projects</h2>
+          <button className="text-sm text-gray-400 hover:text-gray-300 font-medium flex items-center gap-1">
+            View All
+            <ArrowRight className="w-4 h-4" />
+          </button>
         </div>
 
-        {/* Kanban Board - Changed to 4 columns with smaller cards */}
+        {/* Project Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {columns.map((column) => (
-            <div key={column.id} className="space-y-3">
-                {filteredTasks
-                  .filter((task) => task.column === column.id)
-                  .map((task) => (
-                    <Card key={task.id} className="border border-gray-200 dark:border-[#2F2F37] bg-white dark:bg-[#1F1F23] hover:shadow-md transition-shadow">
-                      <CardContent className="p-3 space-y-2.5">
-                        {/* Header */}
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="flex items-center gap-1.5">
-                            <span className={cn("px-2 py-0.5 rounded text-xs font-semibold", getPriorityColor(task.priority))}>
-                              {task.priority}
-                            </span>
-                            <span className={cn("px-2 py-0.5 rounded text-xs font-semibold", getCategoryColor(task.category))}>
-                              {task.category}
-                            </span>
-                          </div>
-                          <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">{task.id}</span>
-                        </div>
-
-                        {/* Title */}
-                        <div>
-                          <h3 className="font-semibold text-sm text-gray-900 dark:text-white line-clamp-2">{task.title}</h3>
-                        </div>
-
-                        {/* Description */}
-                        <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">{task.description}</p>
-
-                        {/* Progress */}
-                        <div className="space-y-1.5">
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-600 dark:text-gray-400">Progress</span>
-                            <span className="text-xs font-semibold text-gray-900 dark:text-white">{task.progress}%</span>
-                          </div>
-                          <div className="w-full bg-gray-200 dark:bg-[#2F2F37] rounded-full h-1.5">
-                            <div className={cn("h-1.5 rounded-full", task.progressColor)} style={{ width: `${task.progress}%` }} />
-                          </div>
-                        </div>
-
-                        {/* Footer */}
-                        <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-[#2F2F37]">
-                          <div className="flex items-center gap-0.5">
-                            {task.team.slice(0, 3).map((member, idx) => (
-                              <div key={idx} className="w-5 h-5 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-xs font-bold text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600 -ml-1 first:ml-0" />
-                            ))}
-                            {task.team.length > 3 && (
-                              <div className="w-5 h-5 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-[10px] font-bold text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-600 -ml-1">
-                                +{task.team.length - 3}
-                              </div>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <div className="flex items-center gap-0.5 text-gray-500 dark:text-gray-400">
-                              <Link2 className="w-3.5 h-3.5" />
-                              <span className="text-xs font-medium">{task.links}</span>
-                            </div>
-                            <div className="flex items-center gap-0.5 text-gray-500 dark:text-gray-400">
-                              <MessageCircle className="w-3.5 h-3.5" />
-                              <span className="text-xs font-medium">{task.comments}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+          {filteredTasks.slice(0, 4).map((task, index) => (
+            <div key={task.id} className="group relative">
+              <div className="bg-[#1a1a1a] dark:bg-[#1a1a1a] rounded-xl overflow-hidden border border-gray-800 dark:border-gray-800 hover:border-gray-700 transition-all">
+                {/* Thumbnail */}
+                <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                  {index === 0 ? (
+                    <div className="absolute inset-0 bg-white/5 backdrop-blur-sm">
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-4xl font-bold text-white/20">📊</div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-6xl text-gray-700">v0</div>
+                  )}
+                </div>
+                
+                {/* Content */}
+                <div className="p-4">
+                  <h3 className="font-medium text-white mb-1 truncate">{task.title.replace(/\.\.$/, '')}</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-500">
+                    {task.id === "MKT-101" ? "7d ago" : 
+                     task.id === "DES-218" ? "55d ago" : 
+                     task.id === "MKT-098" ? "55d ago" : "60d ago"}
+                  </p>
+                </div>
+              </div>
+              
+              {/* Three dots menu */}
+              <button className="absolute top-3 right-3 w-8 h-8 rounded-lg bg-black/40 hover:bg-black/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex flex-col gap-1">
+                  <div className="w-1 h-1 rounded-full bg-white"></div>
+                  <div className="w-1 h-1 rounded-full bg-white"></div>
+                  <div className="w-1 h-1 rounded-full bg-white"></div>
+                </div>
+              </button>
             </div>
           ))}
         </div>
