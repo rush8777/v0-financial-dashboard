@@ -1,4 +1,4 @@
-import LibraryPage from "@/components/kokonutui/project"
+import LibraryPage from "@/components/kokonutui/library"
 
 
 export default function Library () {
