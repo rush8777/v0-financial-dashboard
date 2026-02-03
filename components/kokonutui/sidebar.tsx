@@ -225,7 +225,8 @@ export default function Sidebar() {
                     Team
                   </div>
                 )}
-
+                <div className="space-y-0.5">
+                    
                   <NavItem href="/connections" icon={Boxes}>
                     Connections
                   </NavItem>
