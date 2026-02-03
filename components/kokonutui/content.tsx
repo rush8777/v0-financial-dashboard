@@ -454,12 +454,14 @@ export default function CoursePage() {
                   
 
                   {/* Right Side - Time and Menu */}
-                  {/* Platform Icon */}
+                  <div className="flex items-center gap-3 flex-shrink-0">
+                    
+                    {/* Platform Icon */}
                     <div className={cn("flex items-center gap-2 flex-shrink-0", getCategoryColor(task.category).split(' ')[0].replace('bg-', 'text-'))}>
                       <PlatformIcon />
                       <p className="text-sm text-gray-500 dark:text-gray-400 truncate">{task.category}</p>
                     </div>
-                  <div className="flex items-center gap-3 flex-shrink-0">
+
                     <span className="text-sm text-gray-500 dark:text-gray-400">
                       {index === 0 ? "20h ago" : index === 1 ? "5d ago" : "29d ago"}
                     </span>
