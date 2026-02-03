@@ -449,7 +449,7 @@ export default function CoursePage() {
 
                     {/* Chat Info */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-gray-900 dark:text-white truncate">{task.title.replace(/\.\.$/, '')}</h3>
+                      <h3 className="font-small text-gray-900 dark:text-white truncate">{task.title.replace(/\.\.$/, '')}</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400 truncate">{task.category}</p>
                     </div>
                   </div>
