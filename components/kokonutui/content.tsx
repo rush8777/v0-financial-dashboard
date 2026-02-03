@@ -442,15 +442,17 @@ export default function CoursePage() {
               <div key={task.id} className="group hover:bg-gray-50 dark:hover:bg-[#2F2F37]/50 transition-colors">
                 <div className="px-6 py-2 flex items-center justify-between">
                   <div className="flex items-center gap-3 flex-1 min-w-0">
-                    {/* Platform Icon */}
-                    <div className={cn("flex-shrink-0", getCategoryColor(task.category).split(' ')[0].replace('bg-', 'text-'))}>
-                      <PlatformIcon />
-                    </div>
+                    
 
                     {/* Chat Info */}
                     <div className="flex-1 min-w-0">
                       <h3 className="font-small text-gray-900 dark:text-white truncate">{task.title.replace(/\.\.$/, '')}</h3>                      <p className="text-sm text-gray-500 dark:text-gray-400 truncate">{task.category}</p>
                     </div>
+                  </div>
+
+                  {/* Platform Icon */}
+                  <div className={cn("flex-shrink-0", getCategoryColor(task.category).split(' ')[0].replace('bg-', 'text-'))}>
+                    <PlatformIcon />
                   </div>
 
                   {/* Right Side - Time and Menu */}
