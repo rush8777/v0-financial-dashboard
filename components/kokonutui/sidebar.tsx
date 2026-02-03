@@ -139,7 +139,7 @@ export default function Sidebar() {
                   <NavItem href="#" icon={Building2}>
                     Library
                   </NavItem>
-                  <NavItem href="/projects" icon={Folder}>
+                  <NavItem href="/project" icon={Folder}>
                     Projects
                   </NavItem>
                   
