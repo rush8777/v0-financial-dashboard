@@ -94,7 +94,7 @@ function ChatRow({ chat, index }: { chat: any; index: number }) {
           </h3>
         </div>
         {/* PlatformIcon */}
-        <div className="flex w-24 justify-center flex-shrink-0">
+        <div className="w-24 flex justify-center flex-shrink-0">
           {PlatformIcon ? <PlatformIcon /> : <div className="w-4" />}
         </div>
 
