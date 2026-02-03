@@ -24,6 +24,7 @@ import VideoAnalytics from "@/components/kokonutui/video-analytics"
 import FloatingVideoChat from "@/components/kokonutui/floating-chat-bar"
 import ChatMessage from "@/components/kokonutui/lovablechat"
 import ChatInput from "@/components/kokonutui/lovablechatinput"
+import EmotionalIntensityGraph from "@/components/kokonutui/emotional-anal"
 
 const toptabs = [
   { id: "video-chat", label: "Video Chat", icon: MessageCircle },
