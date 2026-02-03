@@ -181,9 +181,6 @@ export default function Sidebar() {
                   <NavItem href="#" icon={Home}>
                     Home
                   </NavItem>
-                  <NavItem href="#" icon={BarChart2}>
-                    Analytics
-                  </NavItem>
                   <NavItem href="/library" icon={Building2}>
                     Library
                   </NavItem>
@@ -193,9 +190,7 @@ export default function Sidebar() {
                   <NavItem href="/connections" icon={Boxes}>
                     Connections
                   </NavItem>
-                  <NavItem href="#" icon={MessagesSquare}>
-                    Chat
-                  </NavItem>
+                  
                 </div>
               </div>
 
