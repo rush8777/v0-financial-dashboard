@@ -1,10 +1,10 @@
 import ProjectsView from "@/components/kokonutui/project"
 
 
-export default function Project () {
+export default function LibraryPage () {
   return (
     
-    <ProjectsView />
+    <LibraryPage />
     
   )
 }
