@@ -397,7 +397,7 @@ export default function CoursePage() {
           </button>
         </div>
 
-        <div className="bg-white dark:bg-[#1F1F23] rounded-xl border border-gray-200 dark:border-[#2F2F37] overflow-hidden divide-y divide-gray-200 dark:divide-[#2F2F37]">
+        <div className="rounded-xl border border-gray-200 dark:border-[#2F2F37] overflow-hidden divide-y divide-gray-200 dark:divide-[#2F2F37]">
           {filteredTasks.slice(0, 5).map((task, index) => {
             const [isMenuOpen, setIsMenuOpen] = useState(false)
             const menuRef = useRef<HTMLDivElement>(null)
