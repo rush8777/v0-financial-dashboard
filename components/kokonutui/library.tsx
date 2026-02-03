@@ -1,6 +1,6 @@
 import { Search, ChevronDown } from "lucide-react"
 import { useState, useRef, useEffect } from "react"
-import Layout from "@/components/Layout"
+import Layout from "./layout"
 
 interface Chat {
   id: string
