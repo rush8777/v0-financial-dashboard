@@ -1,7 +1,7 @@
-import ProjectsView from "@/components/kokonutui/project"
+import LibraryPage from "@/components/kokonutui/project"
 
 
-export default function LibraryPage () {
+export default function Library () {
   return (
     
     <LibraryPage />
