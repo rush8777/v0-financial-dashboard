@@ -149,7 +149,7 @@ export default function Sidebar() {
               <div>
                 {isSidebarExpanded && (
                   <div className="px-2 mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                    TOOLS
+                    RECENT
                   </div>
                 )}
                 <div className="space-y-0.5">
