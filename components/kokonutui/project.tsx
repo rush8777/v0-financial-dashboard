@@ -1,6 +1,6 @@
 import { Search, Plus, MoreVertical } from "lucide-react"
 import { useState } from "react"
-import Layout from "@/components/Layout"
+import Layout from "./layout"
 
 interface Project {
   id: string
