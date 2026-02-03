@@ -100,8 +100,6 @@ export default function Sidebar() {
         }`}
         title={chat.name}
       >
-        {/* Dashed Circle Icon */}
-        <div className="w-4 h-4 rounded-full border border-dashed border-gray-500 dark:border-gray-500 flex-shrink-0"></div>
         {isSidebarExpanded && (
           <span className="text-xs truncate flex-1">{chat.name}</span>
         )}
