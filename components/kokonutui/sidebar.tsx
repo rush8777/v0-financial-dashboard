@@ -4,21 +4,17 @@ import React from "react"
 
 import {
   BarChart2,
-  Receipt,
   Building2,
-  Youtube,
   Folder,
-  Facebook,
   Users2,
   Boxes,
   MessagesSquare,
-  Instagram,
   Video,
   Settings,
   HelpCircle,
   Menu,
   ChevronLeft,
-  Zap,
+  ChevronDown,
 } from "lucide-react"
 
 import { Home } from "lucide-react"
@@ -27,8 +23,43 @@ import { useState } from "react"
 import Image from "next/image"
 import { useSidebarContext } from "./layout"
 
+// Recent chats data from library.tsx
+const recentChats = [
+  {
+    id: "1",
+    name: "Draft Q3 Social Media Calendar",
+    platform: "Facebook",
+    updatedAt: "20h ago",
+  },
+  {
+    id: "2",
+    name: "Research Competitor Onboarding Flows",
+    platform: "Instagram",
+    updatedAt: "5d ago",
+  },
+  {
+    id: "3",
+    name: 'Write Blog Post on "5 Productivity Tips"',
+    platform: "Youtube",
+    updatedAt: "29d ago",
+  },
+  {
+    id: "4",
+    name: "Set up new Staging Database",
+    platform: "Instagram",
+    updatedAt: "29d ago",
+  },
+  {
+    id: "5",
+    name: "Implement Login Page UI",
+    platform: "Facebook",
+    updatedAt: "29d ago",
+  },
+]
+
 export default function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isRecentsOpen, setIsRecentsOpen] = useState(true)
   const { isSidebarExpanded, setIsSidebarExpanded } = useSidebarContext()
 
   function handleNavigation() {
@@ -55,6 +86,25 @@ export default function Sidebar() {
       >
         <Icon className="h-3.5 w-3.5 flex-shrink-0" />
         {isSidebarExpanded && <span className="ml-2 text-xs">{children}</span>}
+      </Link>
+    )
+  }
+
+  function RecentChatItem({ chat }: { chat: typeof recentChats[0] }) {
+    return (
+      <Link
+        href={`/chat/${chat.id}`}
+        onClick={handleNavigation}
+        className={`flex items-center gap-2 rounded-md transition-colors text-gray-400 dark:text-gray-400 hover:text-gray-100 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-[#1F1F23] ${
+          isSidebarExpanded ? "px-2 py-1.5" : "px-2 py-1.5 justify-center"
+        }`}
+        title={chat.name}
+      >
+        {/* Dashed Circle Icon */}
+        <div className="w-4 h-4 rounded-full border border-dashed border-gray-500 dark:border-gray-500 flex-shrink-0"></div>
+        {isSidebarExpanded && (
+          <span className="text-xs truncate flex-1">{chat.name}</span>
+        )}
       </Link>
     )
   }
@@ -142,30 +192,31 @@ export default function Sidebar() {
                   <NavItem href="/project" icon={Folder}>
                     Projects
                   </NavItem>
-                  
                 </div>
               </div>
 
+              {/* Recents Section */}
               <div>
-                {isSidebarExpanded && (
-                  <div className="px-2 mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                    RECENT
+                {isSidebarExpanded ? (
+                  <button
+                    onClick={() => setIsRecentsOpen(!isRecentsOpen)}
+                    className="w-full flex items-center justify-between px-2 mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                  >
+                    <span>Recents</span>
+                    <ChevronDown
+                      className={`h-3 w-3 transition-transform ${
+                        !isRecentsOpen ? "-rotate-90" : ""
+                      }`}
+                    />
+                  </button>
+                ) : null}
+                {isRecentsOpen && (
+                  <div className="space-y-0.5">
+                    {recentChats.map((chat) => (
+                      <RecentChatItem key={chat.id} chat={chat} />
+                    ))}
                   </div>
                 )}
-                <div className="space-y-0.5">
-                  <NavItem href="/streamline" icon={Facebook}>
-                    Streamline
-                  </NavItem>
-                  <NavItem href="/feedsense" icon={Instagram}>
-                    FeedSense
-                  </NavItem>
-                  <NavItem href="#" icon={Youtube}>
-                    Comments Analysis
-                  </NavItem>
-                  <NavItem href="#" icon={Youtube}>
-                    Idea Validation
-                  </NavItem>
-                </div>
               </div>
 
               <div>
