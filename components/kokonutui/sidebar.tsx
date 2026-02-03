@@ -190,6 +190,12 @@ export default function Sidebar() {
                   <NavItem href="/project" icon={Folder}>
                     Projects
                   </NavItem>
+                  <NavItem href="/connections" icon={Boxes}>
+                    Connections
+                  </NavItem>
+                  <NavItem href="#" icon={MessagesSquare}>
+                    Chat
+                  </NavItem>
                 </div>
               </div>
 
@@ -217,23 +223,7 @@ export default function Sidebar() {
                 )}
               </div>
 
-              <div>
-                {isSidebarExpanded && (
-                  <div className="px-2 mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                    Team
-                  </div>
-                )}
-                <div className="space-y-0.5">
-                    
-                  <NavItem href="/connections" icon={Boxes}>
-                    Connections
-                  </NavItem>
-                  <NavItem href="#" icon={MessagesSquare}>
-                    Chat
-                  </NavItem>
-                  
-                </div>
-              </div>
+
             </div>
           </div>
 
