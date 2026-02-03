@@ -4,7 +4,7 @@ import Layout from "@/components/kokonutui/layout"
 export default function Project () {
   return (
     <Layout>
-      <ProjectView />
+      <ProjectsView />
     </Layout>
   )
 }
