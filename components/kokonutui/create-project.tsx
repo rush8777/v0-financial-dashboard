@@ -263,56 +263,145 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
           )}
 
           {activeTab === 'import' && (
-            <div className="flex flex-col h-full">
+            <div className="flex flex-col h-full -mx-4">
               {/* Header - Fixed */}
-              <div className="flex-shrink-0 pb-2">
+              <div className="flex-shrink-0 px-4 pb-3">
                 <label className="block text-[11px] font-medium text-white mb-0.5">
-                  Import Documents
+                  Import from Library
                 </label>
                 <p className="text-[10px] text-gray-400">
-                  Select files from your recent documents to import.
+                  Select videos from your content library to import.
                 </p>
               </div>
               
-              {/* File List - Scrollable */}
-              <div className="flex-1 overflow-y-auto space-y-1 pr-1 scrollbar-thin scrollbar-thumb-[#4A4A4E] scrollbar-track-transparent">
-                {/* Sample files - replace with actual file data */}
-                {[
-                  { name: 'WorldFoodsDealSheet.pdf', size: '8.8 mb', owner: 'Kristin Watson', color: 'bg-emerald-500' },
-                  { name: 'promo432432.pdf', size: '3.6 mb', owner: 'Devon Lane', color: 'bg-pink-500' },
-                  { name: 'pop0315021.xlsx', size: '4.1 mb', owner: 'Ronald Richards', color: 'bg-red-500' },
-                  { name: 'DealSheet032021.xlsx', size: '3.9 mb', owner: 'Bessie Cooper', color: 'bg-purple-500' },
-                  { name: 'Verkoopfactuur 5L200472.pdf', size: '8.4 mb', owner: 'Jenny Wilson', color: 'bg-cyan-500' },
-                  { name: 'Invoice for YAAAS Queen.pdf', size: '337 kb', owner: 'Cameron Williamson', color: 'bg-emerald-500' },
-                ].map((file, index) => (
-                  <div 
-                    key={index}
-                    className="flex items-center justify-between p-2 hover:bg-[#35353A] rounded-lg transition-colors group"
+              {/* Filter Bar */}
+              <div className="flex-shrink-0 px-4 pb-3">
+                <div className="flex items-center gap-2">
+                  <button 
+                    type="button"
+                    className="px-2.5 py-1.5 text-[10px] bg-[#35353A] border border-[#4A4A4E] rounded-lg text-white hover:bg-[#3A3A3E] transition-colors flex items-center gap-1.5"
                   >
-                    <div className="flex items-center gap-2 flex-1 min-w-0">
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs text-blue-400 font-medium truncate">{file.name}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3 flex-shrink-0">
-                      <span className="text-[10px] text-gray-400">{file.size}</span>
-                      <div className="flex items-center gap-1.5">
-                        <div className={`w-5 h-5 rounded-full ${file.color} flex items-center justify-center`}>
-                          <span className="text-[9px] text-white font-semibold">
-                            {file.owner.split(' ').map(n => n[0]).join('')}
-                          </span>
+                    All categories
+                    <ChevronDown className="w-3 h-3" />
+                  </button>
+                  <button 
+                    type="button"
+                    className="px-2.5 py-1.5 text-[10px] bg-[#35353A] border border-[#4A4A4E] rounded-lg text-white hover:bg-[#3A3A3E] transition-colors flex items-center gap-1.5"
+                  >
+                    Sort by
+                    <ChevronDown className="w-3 h-3" />
+                  </button>
+                  <button 
+                    type="button"
+                    className="px-2.5 py-1.5 text-[10px] bg-[#35353A] border border-[#4A4A4E] rounded-lg text-white hover:bg-[#3A3A3E] transition-colors flex items-center gap-1.5"
+                  >
+                    Filters
+                  </button>
+                </div>
+              </div>
+              
+              {/* Video Grid - Scrollable */}
+              <div className="flex-1 overflow-y-auto px-4 pb-2">
+                <div className="grid grid-cols-2 gap-2.5">
+                  {/* Sample videos - replace with actual video data */}
+                  {[
+                    { 
+                      title: 'How to make the best best pancakes...', 
+                      channel: 'Cooking with Sam',
+                      views: '3.2M views',
+                      time: '10 days ago',
+                      duration: '20:32',
+                      stats: '4M subs • 26K VPH • 8.2 V/S',
+                      thumbnail: 'https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=400&q=80'
+                    },
+                    { 
+                      title: "Secrets of the cat's life", 
+                      channel: 'Animal Stories',
+                      views: '2K views',
+                      time: '2 hours ago',
+                      duration: '8:15',
+                      stats: '134K subs • 1.2K VPH • 1.32 V/S',
+                      thumbnail: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&q=80'
+                    },
+                    { 
+                      title: 'Most beautiful instagram spots on Ice...', 
+                      channel: 'Travellers',
+                      views: '1.2M views',
+                      time: '2 weeks ago',
+                      duration: '15:46',
+                      stats: '1.6M subs • 24K VPH • 3.12 V/S',
+                      thumbnail: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=400&q=80'
+                    },
+                    { 
+                      title: 'Northern lights in out area', 
+                      channel: 'Living on the North',
+                      views: '2.4M views',
+                      time: '2 weeks ago',
+                      duration: '5:28',
+                      stats: '1.5M subs • 40K VPH • 4.15 V/S',
+                      thumbnail: 'https://images.unsplash.com/photo-1579033461380-adb47c3eb938?w=400&q=80'
+                    },
+                    { 
+                      title: 'Stunning discoveries under the micro...', 
+                      channel: 'SciHub Now',
+                      views: '412K views',
+                      time: '3 days ago',
+                      duration: '21:16',
+                      stats: '318K subs • 7.5K VPH • 1.57 V/S',
+                      thumbnail: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80'
+                    },
+                    { 
+                      title: 'Does the perfect diet exist?', 
+                      channel: 'Foodies Talk',
+                      views: '627K views',
+                      time: '5 days ago',
+                      duration: '12:37',
+                      stats: '120K subs • 1.2K VPH • 2.57 V/S',
+                      thumbnail: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80'
+                    },
+                  ].map((video, index) => (
+                    <div 
+                      key={index}
+                      className="group cursor-pointer animate-in fade-in zoom-in-95 duration-200"
+                      style={{ animationDelay: `${index * 50}ms` }}
+                    >
+                      {/* Thumbnail */}
+                      <div className="relative aspect-video rounded-lg overflow-hidden mb-1.5 bg-[#3A3A3E]">
+                        <img 
+                          src={video.thumbnail} 
+                          alt={video.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        {/* Duration Badge */}
+                        <div className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 bg-black/80 rounded text-[9px] text-white font-semibold">
+                          {video.duration}
                         </div>
-                        <span className="text-[10px] text-gray-400 hidden sm:block">{file.owner}</span>
+                        {/* Hover Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                          <button 
+                            type="button"
+                            className="px-3 py-1.5 bg-white text-black text-[10px] font-semibold rounded-md hover:bg-gray-100 transition-all transform translate-y-2 group-hover:translate-y-0"
+                          >
+                            Select
+                          </button>
+                        </div>
                       </div>
-                      <button
-                        type="button"
-                        className="text-xs text-blue-500 hover:text-blue-400 font-medium"
-                      >
-                        Select
-                      </button>
+                      
+                      {/* Video Info */}
+                      <div className="space-y-0.5">
+                        <h3 className="text-[11px] text-white font-medium line-clamp-2 leading-tight group-hover:text-purple-400 transition-colors">
+                          {video.title}
+                        </h3>
+                        <p className="text-[9px] text-gray-400">
+                          {video.channel} • {video.views} • {video.time}
+                        </p>
+                        <p className="text-[8px] text-gray-500">
+                          {video.stats}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           )}
