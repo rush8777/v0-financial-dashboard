@@ -5,7 +5,8 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLe
 import { cn } from "@/lib/utils"
 import { TrendingUp, AlertCircle, MessageCircle, HelpCircle, ThumbsUp } from "lucide-react"
 import EmotionalIntensityChart from "./emotional-anal"
-import AudienceDemographics from "./audience-demographics"
+import { AgeDistribution, GenderDistribution, TopLocations, AudienceInterests } from './audience-demo'
+
 
 // Mock data for Sentiment Pulse
 const sentimentData = [
