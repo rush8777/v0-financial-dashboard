@@ -45,15 +45,15 @@ const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload
     return (
-      <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg shadow-lg p-3">
-        <p className="text-xs font-semibold text-gray-900 dark:text-white mb-1">
+      <div className="bg-zinc-900 border border-zinc-800 rounded-lg shadow-lg p-3">
+        <p className="text-xs font-semibold text-white mb-1">
           {data.time}
         </p>
-        <p className="text-xs text-gray-600 dark:text-zinc-400 mb-1">
-          Intensity: <span className="font-semibold text-purple-600 dark:text-purple-400">{data.intensity}</span>
+        <p className="text-xs text-zinc-400 mb-1">
+          Intensity: <span className="font-semibold text-purple-400">{data.intensity}</span>
         </p>
-        <p className="text-xs text-gray-600 dark:text-zinc-400 capitalize">
-          Emotion: <span className="font-semibold text-gray-900 dark:text-white">{data.emotion}</span>
+        <p className="text-xs text-zinc-400 capitalize">
+          Emotion: <span className="font-semibold text-white">{data.emotion}</span>
         </p>
       </div>
     )
@@ -63,30 +63,22 @@ const CustomTooltip = ({ active, payload }: any) => {
 
 interface EmotionalIntensityChartProps {
   data?: typeof emotionalData
-  isDark?: boolean
 }
 
 export default function EmotionalIntensityChart({ 
-  data = emotionalData, 
-  isDark = true 
+  data = emotionalData
 }: EmotionalIntensityChartProps) {
   const peaks = findPeaks(data)
   const drops = findDrops(data)
 
   return (
-    <div className={`rounded-xl border p-6 ${
-      isDark ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-gray-200"
-    }`}>
+    <div className="rounded-xl border p-6 bg-zinc-900/50 border-zinc-800">
       {/* Header */}
       <div className="mb-6">
-        <h3 className={`text-lg font-semibold mb-1 ${
-          isDark ? "text-white" : "text-gray-900"
-        }`}>
+        <h3 className="text-lg font-semibold mb-1 text-white">
           Emotional Intensity Timeline
         </h3>
-        <p className={`text-sm ${
-          isDark ? "text-zinc-400" : "text-gray-500"
-        }`}>
+        <p className="text-sm text-zinc-400">
           Video emotional analysis over time
         </p>
       </div>
@@ -94,22 +86,14 @@ export default function EmotionalIntensityChart({
       {/* Legend */}
       <div className="flex items-center gap-6 mb-6">
         <div className="flex items-center gap-2">
-          <TrendingUp className={`h-4 w-4 ${
-            isDark ? "text-green-400" : "text-green-600"
-          }`} />
-          <span className={`text-xs ${
-            isDark ? "text-zinc-400" : "text-gray-600"
-          }`}>
+          <TrendingUp className="h-4 w-4 text-green-400" />
+          <span className="text-xs text-zinc-400">
             Peaks ({peaks.length})
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <TrendingDown className={`h-4 w-4 ${
-            isDark ? "text-red-400" : "text-red-600"
-          }`} />
-          <span className={`text-xs ${
-            isDark ? "text-zinc-400" : "text-gray-600"
-          }`}>
+          <TrendingDown className="h-4 w-4 text-red-400" />
+          <span className="text-xs text-zinc-400">
             Drops ({drops.length})
           </span>
         </div>
@@ -131,30 +115,30 @@ export default function EmotionalIntensityChart({
             
             <CartesianGrid
               strokeDasharray="3 3"
-              stroke={isDark ? "#27272a" : "#e5e7eb"}
+              stroke="#27272a"
               vertical={false}
             />
             
             <XAxis
               dataKey="time"
-              stroke={isDark ? "#71717a" : "#9ca3af"}
-              tick={{ fill: isDark ? "#71717a" : "#6b7280", fontSize: 11 }}
+              stroke="#71717a"
+              tick={{ fill: "#71717a", fontSize: 11 }}
               tickLine={false}
-              axisLine={{ stroke: isDark ? "#27272a" : "#e5e7eb" }}
+              axisLine={{ stroke: "#27272a" }}
             />
             
             <YAxis
               domain={[0, 100]}
-              stroke={isDark ? "#71717a" : "#9ca3af"}
-              tick={{ fill: isDark ? "#71717a" : "#6b7280", fontSize: 11 }}
+              stroke="#71717a"
+              tick={{ fill: "#71717a", fontSize: 11 }}
               tickLine={false}
-              axisLine={{ stroke: isDark ? "#27272a" : "#e5e7eb" }}
+              axisLine={{ stroke: "#27272a" }}
               label={{
                 value: "Intensity",
                 angle: -90,
                 position: "insideLeft",
                 style: {
-                  fill: isDark ? "#71717a" : "#6b7280",
+                  fill: "#71717a",
                   fontSize: 11,
                 },
               }}
@@ -186,8 +170,8 @@ export default function EmotionalIntensityChart({
                 x={peak.time}
                 y={peak.intensity}
                 r={5}
-                fill={isDark ? "#22c55e" : "#16a34a"}
-                stroke={isDark ? "#86efac" : "#22c55e"}
+                fill="#22c55e"
+                stroke="#86efac"
                 strokeWidth={2}
               />
             ))}
@@ -199,8 +183,8 @@ export default function EmotionalIntensityChart({
                 x={drop.time}
                 y={drop.intensity}
                 r={5}
-                fill={isDark ? "#ef4444" : "#dc2626"}
-                stroke={isDark ? "#fca5a5" : "#ef4444"}
+                fill="#ef4444"
+                stroke="#fca5a5"
                 strokeWidth={2}
               />
             ))}
@@ -210,58 +194,38 @@ export default function EmotionalIntensityChart({
 
       {/* Key Moments */}
       <div className="mt-6 grid grid-cols-2 gap-4">
-        <div className={`rounded-lg p-3 ${
-          isDark ? "bg-green-500/10 border border-green-500/20" : "bg-green-50 border border-green-200"
-        }`}>
+        <div className="rounded-lg p-3 bg-green-500/10 border border-green-500/20">
           <div className="flex items-center gap-2 mb-1">
-            <TrendingUp className={`h-4 w-4 ${
-              isDark ? "text-green-400" : "text-green-600"
-            }`} />
-            <span className={`text-xs font-semibold ${
-              isDark ? "text-green-400" : "text-green-700"
-            }`}>
+            <TrendingUp className="h-4 w-4 text-green-400" />
+            <span className="text-xs font-semibold text-green-400">
               Highest Peak
             </span>
           </div>
           {peaks.length > 0 && (
             <>
-              <p className={`text-sm font-bold ${
-                isDark ? "text-white" : "text-gray-900"
-              }`}>
+              <p className="text-sm font-bold text-white">
                 {Math.max(...peaks.map(p => p.intensity))}
               </p>
-              <p className={`text-xs ${
-                isDark ? "text-zinc-400" : "text-gray-600"
-              }`}>
+              <p className="text-xs text-zinc-400">
                 at {peaks.find(p => p.intensity === Math.max(...peaks.map(p => p.intensity)))?.time}
               </p>
             </>
           )}
         </div>
 
-        <div className={`rounded-lg p-3 ${
-          isDark ? "bg-red-500/10 border border-red-500/20" : "bg-red-50 border border-red-200"
-        }`}>
+        <div className="rounded-lg p-3 bg-red-500/10 border border-red-500/20">
           <div className="flex items-center gap-2 mb-1">
-            <TrendingDown className={`h-4 w-4 ${
-              isDark ? "text-red-400" : "text-red-600"
-            }`} />
-            <span className={`text-xs font-semibold ${
-              isDark ? "text-red-400" : "text-red-700"
-            }`}>
+            <TrendingDown className="h-4 w-4 text-red-400" />
+            <span className="text-xs font-semibold text-red-400">
               Lowest Drop
             </span>
           </div>
           {drops.length > 0 && (
             <>
-              <p className={`text-sm font-bold ${
-                isDark ? "text-white" : "text-gray-900"
-              }`}>
+              <p className="text-sm font-bold text-white">
                 {Math.min(...drops.map(d => d.intensity))}
               </p>
-              <p className={`text-xs ${
-                isDark ? "text-zinc-400" : "text-gray-600"
-              }`}>
+              <p className="text-xs text-zinc-400">
                 at {drops.find(d => d.intensity === Math.min(...drops.map(d => d.intensity)))?.time}
               </p>
             </>
