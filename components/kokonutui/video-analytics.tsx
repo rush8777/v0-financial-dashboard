@@ -4,6 +4,7 @@ import { LineChart, Line, BarChart, Bar, RadarChart, Radar, PolarGrid, PolarAngl
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart"
 import { cn } from "@/lib/utils"
 import { TrendingUp, AlertCircle, MessageCircle, HelpCircle, ThumbsUp } from "lucide-react"
+import EmotionalIntensityChart from "./emotional-anal"
 
 // Mock data for Sentiment Pulse
 const sentimentData = [
