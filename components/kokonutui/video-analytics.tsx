@@ -343,8 +343,7 @@ export default function VideoAnalytics() {
         </div>
       </div>
 
-      <EmotionalIntensityChart 
-        isDark={isDark} 
+      <EmotionalIntensityChart
         data={customEmotionalData}
       />
 
