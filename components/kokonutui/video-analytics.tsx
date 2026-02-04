@@ -5,7 +5,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLe
 import { cn } from "@/lib/utils"
 import { TrendingUp, AlertCircle, MessageCircle, HelpCircle, ThumbsUp } from "lucide-react"
 import EmotionalIntensityChart from "./emotional-anal"
-
+import AudienceDemographics from "./audience-demographics"
 
 // Mock data for Sentiment Pulse
 const sentimentData = [
@@ -263,6 +263,14 @@ export default function VideoAnalytics() {
       <EmotionalIntensityChart
         data={emotionalData}
       />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Age Distribution */}
+        <AudienceDemographics />
+        {/* Gender Distribution */}
+        {/* Top Locations */}
+        {/* Audience Interests - full width */}
+      </div>
 
       {/* Top Comments */}
       <div className={cn(
