@@ -27,7 +27,7 @@ import ChatInput from "@/components/kokonutui/lovablechatinput"
 import EmotionalIntensityGraph from "@/components/kokonutui/emotional-anal"
 
 const toptabs = [
-  { id: "video-chat", label: "Video Chat", icon: MessageCircle },
+  { id: "overview", label: "Video Overview", icon: MessageCircle },
   { id: "statistics", label: "Statistics", icon: Search },
   { id: "transcription", label: "Video Transcription", icon: FileText },
   { id: "editor", label: "Video Editor", icon: Scissors },
@@ -107,7 +107,7 @@ const currentProject = {
 export default function Streamline() {
   const [isDark, setIsDark] = useState(true)
   const [activeTab, setActiveTab] = useState("transcript")
-  const [activeTopTab, setActiveTopTab] = useState("video-chat")
+  const [activeTopTab, setActiveTopTab] = useState("overview")
   const [editorMessages, setEditorMessages] = useState([
     { id: 1, content: "Hi! I'm your AI video editor assistant. How can I help you edit this video today?", isUser: false },
   ])
@@ -132,7 +132,7 @@ export default function Streamline() {
 
         {/* Header */}
         <div className="mb-8 space-y-4">
-          {activeTopTab === "video-chat" ? (
+          {activeTopTab === "overview" ? (
             // Original header for statistics tab
             <>
               <div className="flex items-center justify-between">
