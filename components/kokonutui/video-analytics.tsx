@@ -5,7 +5,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLe
 import { cn } from "@/lib/utils"
 import { TrendingUp, AlertCircle, MessageCircle, HelpCircle, ThumbsUp } from "lucide-react"
 import EmotionalIntensityChart from "./emotional-anal"
-import { useTheme } from "next-theme"
+
 
 // Mock data for Sentiment Pulse
 const sentimentData = [
@@ -107,8 +107,7 @@ const customEmotionalData = [
 
 
 export default function VideoAnalytics() {
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
+  
   
   return (
     <div className="space-y-6">
