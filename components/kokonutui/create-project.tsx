@@ -94,8 +94,8 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
         onClick={onClose}
       />
       
-      {/* Modal */}
-      <div className={`relative w-full animate-in fade-in zoom-in-95 duration-200 max-h-[85vh] p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl flex flex-col transition-all duration-500 ease-in-out ${
+      {/* Modal - Remove animate-in classes that conflict with resize animation */}
+      <div className={`relative w-full max-h-[85vh] p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl flex flex-col transition-all duration-500 ease-in-out ${
         activeTab === 'import' ? 'max-w-4xl' : 'max-w-md'
       }`}>
         {/* Header */}
