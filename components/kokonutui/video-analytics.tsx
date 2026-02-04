@@ -97,12 +97,20 @@ const emotionConfig = {
   A: { label: "Sentiment Level", color: "hsl(262 80% 50%)" },
 }
 
-const customEmotionalData = [
+const emotionalData = [
+  { time: "00:00", intensity: 45, emotion: "neutral" },
   { time: "00:05", intensity: 32, emotion: "neutral" },
   { time: "00:10", intensity: 68, emotion: "surprise" },
   { time: "00:15", intensity: 91, emotion: "excitement" },
   { time: "00:20", intensity: 40, emotion: "calm" },
-  // ... your data from LLM analysis
+  { time: "00:25", intensity: 55, emotion: "interest" },
+  { time: "00:30", intensity: 78, emotion: "joy" },
+  { time: "00:35", intensity: 23, emotion: "sadness" },
+  { time: "00:40", intensity: 62, emotion: "surprise" },
+  { time: "00:45", intensity: 85, emotion: "excitement" },
+  { time: "00:50", intensity: 48, emotion: "neutral" },
+  { time: "00:55", intensity: 70, emotion: "interest" },
+  { time: "01:00", intensity: 38, emotion: "calm" },
 ]
 
 
@@ -253,7 +261,7 @@ export default function VideoAnalytics() {
       
 
       <EmotionalIntensityChart
-        data={customEmotionalData}
+        data={emotionalData}
       />
 
       {/* Top Comments */}
