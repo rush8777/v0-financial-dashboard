@@ -90,12 +90,14 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300"
         onClick={onClose}
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-md animate-in fade-in zoom-in-95 duration-200 max-h-[85vh] p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl flex flex-col">
+      <div className={`relative w-full animate-in fade-in zoom-in-95 duration-200 max-h-[85vh] p-3 rounded-lg bg-white dark:bg-zinc-900/70 border border-zinc-100 dark:border-zinc-800 shadow-sm backdrop-blur-xl flex flex-col transition-all duration-500 ease-in-out ${
+        activeTab === 'import' ? 'max-w-4xl' : 'max-w-md'
+      }`}>
         {/* Header */}
         <div className="flex items-start gap-2.5 p-4 pb-2 flex-shrink-0">
           <div className="p-1.5 bg-[#3A3A3E] rounded-lg">
@@ -125,7 +127,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
                     onClick={() => setActiveTab(tab.id)}
                     className={`
                       px-4 py-1.5 rounded-md text-xs font-medium
-                      transition-all whitespace-nowrap
+                      transition-all duration-300 whitespace-nowrap
                       ${
                         isActive
                           ? "bg-zinc-800 text-white shadow-md"
@@ -187,7 +189,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
           {/* Scrollable Content Area */}
           <form onSubmit={handleSubmit} className="px-4 space-y-3 flex-1 overflow-y-auto min-h-0">
           {activeTab === 'local' && (
-            <>
+            <div className="animate-in fade-in slide-in-from-right-5 duration-300">
               {/* Upload Documents */}
               <div>
                 <label className="block text-[11px] font-medium text-white mb-1">
@@ -259,11 +261,11 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
                   </div>
                 )}
               </div>
-            </>
+            </div>
           )}
 
           {activeTab === 'import' && (
-            <div className="flex flex-col h-full -mx-4">
+            <div className="flex flex-col h-full -mx-4 animate-in fade-in slide-in-from-left-5 duration-300">
               {/* Header - Fixed */}
               <div className="flex-shrink-0 px-4 pb-3">
                 <label className="block text-[11px] font-medium text-white mb-0.5">
@@ -279,21 +281,21 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
                 <div className="flex items-center gap-2">
                   <button 
                     type="button"
-                    className="px-2.5 py-1.5 text-[10px] bg-[#35353A] border border-[#4A4A4E] rounded-lg text-white hover:bg-[#3A3A3E] transition-colors flex items-center gap-1.5"
+                    className="px-2.5 py-1.5 text-[10px] bg-[#35353A] border border-[#4A4A4E] rounded-lg text-white hover:bg-[#3A3A3E] transition-all duration-200 flex items-center gap-1.5"
                   >
                     All categories
                     <ChevronDown className="w-3 h-3" />
                   </button>
                   <button 
                     type="button"
-                    className="px-2.5 py-1.5 text-[10px] bg-[#35353A] border border-[#4A4A4E] rounded-lg text-white hover:bg-[#3A3A3E] transition-colors flex items-center gap-1.5"
+                    className="px-2.5 py-1.5 text-[10px] bg-[#35353A] border border-[#4A4A4E] rounded-lg text-white hover:bg-[#3A3A3E] transition-all duration-200 flex items-center gap-1.5"
                   >
                     Sort by
                     <ChevronDown className="w-3 h-3" />
                   </button>
                   <button 
                     type="button"
-                    className="px-2.5 py-1.5 text-[10px] bg-[#35353A] border border-[#4A4A4E] rounded-lg text-white hover:bg-[#3A3A3E] transition-colors flex items-center gap-1.5"
+                    className="px-2.5 py-1.5 text-[10px] bg-[#35353A] border border-[#4A4A4E] rounded-lg text-white hover:bg-[#3A3A3E] transition-all duration-200 flex items-center gap-1.5"
                   >
                     Filters
                   </button>
@@ -302,7 +304,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
               
               {/* Video Grid - Scrollable */}
               <div className="flex-1 overflow-y-auto px-4 pb-2">
-                <div className="grid grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-4 gap-3">
                   {/* Sample videos - replace with actual video data */}
                   {[
                     { 
@@ -359,28 +361,46 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
                       stats: '120K subs • 1.2K VPH • 2.57 V/S',
                       thumbnail: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80'
                     },
+                    { 
+                      title: 'The art of coffee making', 
+                      channel: 'Brew Masters',
+                      views: '890K views',
+                      time: '1 week ago',
+                      duration: '18:24',
+                      stats: '560K subs • 15K VPH • 2.84 V/S',
+                      thumbnail: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&q=80'
+                    },
+                    { 
+                      title: 'Tech review of the year', 
+                      channel: 'Tech Insights',
+                      views: '1.8M views',
+                      time: '4 days ago',
+                      duration: '25:13',
+                      stats: '2.3M subs • 42K VPH • 5.21 V/S',
+                      thumbnail: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80'
+                    },
                   ].map((video, index) => (
                     <div 
                       key={index}
-                      className="group cursor-pointer animate-in fade-in zoom-in-95 duration-200"
-                      style={{ animationDelay: `${index * 50}ms` }}
+                      className="group cursor-pointer animate-in fade-in zoom-in-95 duration-300"
+                      style={{ animationDelay: `${index * 40}ms` }}
                     >
                       {/* Thumbnail */}
                       <div className="relative aspect-video rounded-lg overflow-hidden mb-1.5 bg-[#3A3A3E]">
                         <img 
                           src={video.thumbnail} 
                           alt={video.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                         />
                         {/* Duration Badge */}
                         <div className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 bg-black/80 rounded text-[9px] text-white font-semibold">
                           {video.duration}
                         </div>
                         {/* Hover Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out flex items-center justify-center">
                           <button 
                             type="button"
-                            className="px-3 py-1.5 bg-white text-black text-[10px] font-semibold rounded-md hover:bg-gray-100 transition-all transform translate-y-2 group-hover:translate-y-0"
+                            className="px-3 py-1.5 bg-white text-black text-[10px] font-semibold rounded-md hover:bg-gray-100 transition-all duration-200 transform translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100"
                           >
                             Select
                           </button>
@@ -389,7 +409,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
                       
                       {/* Video Info */}
                       <div className="space-y-0.5">
-                        <h3 className="text-[11px] text-white font-medium line-clamp-2 leading-tight group-hover:text-purple-400 transition-colors">
+                        <h3 className="text-[11px] text-white font-medium line-clamp-2 leading-tight group-hover:text-purple-400 transition-colors duration-200">
                           {video.title}
                         </h3>
                         <p className="text-[9px] text-gray-400">
@@ -407,7 +427,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
           )}
 
           {activeTab === 'link' && (
-            <div>
+            <div className="animate-in fade-in slide-in-from-right-5 duration-300">
               <label className="block text-[11px] font-medium text-white mb-1">
                 Project URL<span className="text-red-500">*</span>
               </label>
@@ -427,7 +447,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
             <button
               type="button"
               onClick={onClose}
-              className="px-3 py-1.5 text-xs text-white hover:bg-[#3A3A3E] rounded-lg font-medium transition-colors"
+              className="px-3 py-1.5 text-xs text-white hover:bg-[#3A3A3E] rounded-lg font-medium transition-colors duration-200"
             >
               Cancel
             </button>
@@ -435,7 +455,7 @@ export default function CreateProjectModal({ isOpen, onClose, course }: CreatePr
               
               <button
                 type="submit"
-                className="px-3 py-1.5 text-xs bg-white text-gray-900 hover:bg-gray-100 rounded-lg font-semibold transition-colors"
+                className="px-3 py-1.5 text-xs bg-white text-gray-900 hover:bg-gray-100 rounded-lg font-semibold transition-colors duration-200"
               >
                 Connect
               </button>
